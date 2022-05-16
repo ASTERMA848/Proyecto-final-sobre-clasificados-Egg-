@@ -1,0 +1,68 @@
+
+package arg.cuarteto.Proyecto_clasificados.Service;
+
+import arg.cuarteto.Proyecto_clasificados.Entity.Publicacion;
+import arg.cuarteto.Proyecto_clasificados.Entity.Usuario;
+import arg.cuarteto.Proyecto_clasificados.ErrorService.ErrorService;
+import arg.cuarteto.Proyecto_clasificados.Repository.PublicacionRepository;
+import java.util.Date;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class PublicacionService {
+     @Autowired
+    private PublicacionRepository publicacionRepository;
+    
+    private void crearPublicacion(Usuario usuario,String id,String titulo, int precio, String localidad, String descripcion, String oficio, Boolean activado, Date fechaAltabaja )throws ErrorService{
+        validar(titulo,precio,localidad,descripcion,oficio);
+        Publicacion publicacion = new Publicacion();
+        publicacion.setActivo(Boolean.TRUE);
+        publicacion.setTitulo(titulo);
+        publicacion.setUsuario(usuario);
+        publicacion.setDescripcion(descripcion);
+        publicacion.setLocalidad(localidad);
+        publicacion.setOficio(oficio);
+        publicacion.setFechaAltabaja(new Date());
+        
+        publicacionRepository.save(publicacion);
+      
+    }
+    
+    private void modificarPublicacion(String id,String titulo, int precio, String localidad, String descripcion, String oficio, Boolean activado, Date fechaAltabaja )throws ErrorService{
+	validar(titulo,precio,localidad,descripcion,oficio);
+	Optional<Publicacion> respuesta = publicacionRepository.findById(id);
+        if(respuesta.isPresent()){
+         	Publicacion publicacion = respuesta.get(); 
+	    	publicacion.setActivo(Boolean.TRUE);
+        	publicacion.setTitulo(titulo);
+        	publicacion.setDescripcion(descripcion);
+        	publicacion.setLocalidad(localidad);
+        	publicacion.setOficio(oficio);
+        	publicacion.setFechaAltabaja(new Date());
+        
+        	publicacionRepository.save(publicacion);	
+                
+        }
+      
+
+    }
+public void validar(String titulo, int precio, String localidad, String descripcion, String oficio) throws ErrorService{
+        if (titulo == null || titulo.isEmpty()){
+            throw new ErrorService("El nombre no puede ser nulo ni puede estar vacio");
+        }
+        if (precio <= 0 ){
+            throw new ErrorService("El precio tiene que ser mayor a 0.");
+        }
+        if (descripcion == null || descripcion.isEmpty()){
+            throw new ErrorService("La descripcion no puede ser nulo ni puede estar vacio");
+        }
+        if(localidad == null){
+            throw new ErrorService("Debe poseer una localidad identificada");
+        }
+        if(oficio == null){
+            throw new ErrorService("Debe poseer un oficio identificado");
+        }
+    }
+}
