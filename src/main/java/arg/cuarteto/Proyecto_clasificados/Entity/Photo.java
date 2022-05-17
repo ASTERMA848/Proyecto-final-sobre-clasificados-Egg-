@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -25,6 +26,8 @@ public class Photo {
     private String id;
     private String name;
     private String mime;
+    
+  
     
     @Lob @Basic(fetch = FetchType.LAZY) //LAZY significa carga tardia del archivo
     private byte[] content;
@@ -89,4 +92,8 @@ public class Photo {
     public String toString() {
         return "Photo{" + "Id=" + id + ", name=" + name + ", mime=" + mime + ", content=" + content + '}';
     }
+
+  
+    
+    
 }

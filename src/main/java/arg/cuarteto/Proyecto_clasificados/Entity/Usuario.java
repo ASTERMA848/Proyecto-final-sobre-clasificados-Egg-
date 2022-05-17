@@ -37,6 +37,9 @@ public class Usuario {
     
     @OneToOne
     private Photo foto;
+    
+    @OneToOne
+    private experienciaUsuario experienciaUsuario;
       
     
 
@@ -120,5 +123,15 @@ public class Usuario {
     public void setFoto(Photo foto) {
         this.foto = foto;
     }
+
+    public experienciaUsuario getExperienciaUsuario() {
+        return experienciaUsuario;
+    }
+
+    public void setExperienciaUsuario(experienciaUsuario experienciaUsuario) {
+        this.experienciaUsuario = experienciaUsuario;
+    }
+    
+    
     
 }
