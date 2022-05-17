@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
@@ -17,8 +18,13 @@ public class Publicacion implements Serializable {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-    //private Usuario usuario;
-    //private Photo photo;
+    
+    @OneToOne
+   private Usuario usuario;
+    
+    @OneToOne
+    private Photo photo;
+    
     private String titulo;
     private int precio;
     private String localidad;
@@ -36,13 +42,13 @@ public class Publicacion implements Serializable {
         this.id = id;
     }
 
-    //public Usuario getUsuario() {
-        //return usuario;
-    //}
+    public Usuario getUsuario() {
+        return usuario;
+    }
 
-    //public void setUsuario(Usuario usuario) {
-       // this.usuario = usuario;
-    //}
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
 
     public String getTitulo() {
@@ -101,9 +107,9 @@ public class Publicacion implements Serializable {
         this.fechaAltabaja = fechaAltabaja;
     }
 
-   // @Override
-   // public String toString() {
-      //  return "Publicacion{" + "id=" + id + ", usuario=" + usuario + ", titulo=" + titulo + ", precio=" + precio + ", localidad=" + localidad + ", oficio=" + oficio + ", descripcion=" + descripcion + ", activo=" + activo + ", fechaAltabaja=" + fechaAltabaja + '}';
-  //  }
+    @Override
+    public String toString() {
+        return "Publicacion{" + "id=" + id + ", usuario=" + usuario + ", titulo=" + titulo + ", precio=" + precio + ", localidad=" + localidad + ", oficio=" + oficio + ", descripcion=" + descripcion + ", activo=" + activo + ", fechaAltabaja=" + fechaAltabaja + '}';
+    }
  
 }
