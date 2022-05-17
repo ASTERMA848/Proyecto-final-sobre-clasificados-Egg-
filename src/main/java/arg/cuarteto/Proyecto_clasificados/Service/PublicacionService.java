@@ -7,6 +7,7 @@ import arg.cuarteto.Proyecto_clasificados.ErrorService.ErrorService;
 import arg.cuarteto.Proyecto_clasificados.Repository.PublicacionRepository;
 import java.util.Date;
 import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,9 +26,7 @@ public class PublicacionService {
         publicacion.setLocalidad(localidad);
         publicacion.setOficio(oficio);
         publicacion.setFechaAltabaja(new Date());
-        
-        publicacionRepository.save(publicacion);
-      
+        publicacionRepository.save(publicacion);      
     }
     
     private void modificarPublicacion(String id,String titulo, int precio, String localidad, String descripcion, String oficio, Boolean activado, Date fechaAltabaja )throws ErrorService{
@@ -40,13 +39,31 @@ public class PublicacionService {
         	publicacion.setDescripcion(descripcion);
         	publicacion.setLocalidad(localidad);
         	publicacion.setOficio(oficio);
-        	publicacion.setFechaAltabaja(new Date());
-        
-        	publicacionRepository.save(publicacion);	
-                
+        	publicacion.setFechaAltabaja(new Date());        
+        	publicacionRepository.save(publicacion);	       
         }
-      
-
+    }
+    @Transactional
+    public void publicacionDeshabilitar(String id) throws ErrorService{
+        Optional<Publicacion> respuesta = publicacionRepository.findById(id);
+        if(respuesta.isPresent()){
+            Publicacion publicacion = respuesta.get();
+            publicacion.setFechaAltabaja(new Date());
+            publicacionRepository.save(publicacion);   
+        }else {
+            throw new ErrorService("El ID consultado no se encuentra en la base de datos.");
+        }                             
+    }
+    @Transactional
+    public void publicacionHabilitar(String id) throws ErrorService{
+        Optional<Publicacion> respuesta = publicacionRepository.findById(id);
+        if(respuesta.isPresent()){
+            Publicacion publicacion = respuesta.get();
+            publicacion.setFechaAltabaja(null);
+            publicacionRepository.save(publicacion);   
+        }else {
+            throw new ErrorService("El ID consultado no se encuentra en la base de datos.");
+        }
     }
 public void validar(String titulo, int precio, String localidad, String descripcion, String oficio) throws ErrorService{
         if (titulo == null || titulo.isEmpty()){
@@ -65,4 +82,5 @@ public void validar(String titulo, int precio, String localidad, String descripc
             throw new ErrorService("Debe poseer un oficio identificado");
         }
     }
+
 }
