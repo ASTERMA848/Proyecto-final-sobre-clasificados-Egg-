@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
@@ -20,9 +21,10 @@ public class Publicacion implements Serializable {
 
     private String id;
     
-    @OneToMany
+    @OneToOne
     private Usuario usuario;
-    //private Photo photo;
+     @OneToOne
+    private Photo photo;
     private String titulo;
     private int precio;
     private String localidad;
@@ -40,6 +42,7 @@ public class Publicacion implements Serializable {
         this.id = id;
     }
 
+    
     public Usuario getUsuario() {
         return usuario;
     }
@@ -48,6 +51,13 @@ public class Publicacion implements Serializable {
         this.usuario = usuario;
     }
 
+    public Photo getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Photo photo) {
+        this.photo = photo;
+    }
 
     public String getTitulo() {
         return titulo;
@@ -104,6 +114,8 @@ public class Publicacion implements Serializable {
     public void setFechaAltabaja(Date fechaAltabaja) {
         this.fechaAltabaja = fechaAltabaja;
     }
+
+    
 
     @Override
     public String toString() {
