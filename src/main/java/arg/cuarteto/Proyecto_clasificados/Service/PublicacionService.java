@@ -10,13 +10,15 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class PublicacionService {
      @Autowired
     private PublicacionRepository publicacionRepository;
-    
-    private void crearPublicacion(String id,String titulo, int precio, String localidad, String descripcion, String oficio, Boolean activado, Date fechaAltabaja )throws ErrorService{
+     @Transactional(propagation = Propagation.NESTED)
+     public void crearPublicacion(String titulo, int precio, String localidad, String descripcion, String oficio, Date fechaAltabaja )throws ErrorService{
         validar(titulo,precio,localidad,descripcion,oficio);
         Publicacion publicacion = new Publicacion();
         publicacion.setActivo(Boolean.TRUE);
@@ -28,8 +30,8 @@ public class PublicacionService {
         publicacion.setFechaAltabaja(new Date());
         publicacionRepository.save(publicacion);      
     }
-    
-    private void modificarPublicacion(String id,String titulo, int precio, String localidad, String descripcion, String oficio, Boolean activado, Date fechaAltabaja )throws ErrorService{
+     @Transactional(propagation = Propagation.NESTED)
+     public void modificarPublicacion(String id,String titulo, int precio, String localidad, String descripcion, String oficio, Date fechaAltabaja )throws ErrorService{
 	validar(titulo,precio,localidad,descripcion,oficio);
 	Optional<Publicacion> respuesta = publicacionRepository.findById(id);
         if(respuesta.isPresent()){
