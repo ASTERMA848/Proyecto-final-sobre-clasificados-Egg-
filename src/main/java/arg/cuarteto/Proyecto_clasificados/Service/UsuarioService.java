@@ -111,7 +111,7 @@ public class UsuarioService implements UserDetailsService {
         }
     }
     
-    @org.springframework.transaction.annotation.Transactional(propagation = Propagation.NESTED)
+    @Transactional(propagation = Propagation.NESTED)
     public void deshabilitar(String id) throws ErrorService {
         
         Optional<Usuario> respuesta = usuarioRepository.findById(id);
@@ -126,7 +126,7 @@ public class UsuarioService implements UserDetailsService {
     }
     
     
-    @org.springframework.transaction.annotation.Transactional(propagation = Propagation.NESTED)
+    @Transactional(propagation = Propagation.NESTED)
     public void habilitar(String id) throws ErrorService {
         
         Optional<Usuario> respuesta = usuarioRepository.findById(id);

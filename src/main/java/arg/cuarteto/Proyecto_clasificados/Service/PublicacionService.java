@@ -2,7 +2,7 @@
 package arg.cuarteto.Proyecto_clasificados.Service;
 
 import arg.cuarteto.Proyecto_clasificados.Entity.Publicacion;
-import arg.cuarteto.Proyecto_clasificados.Entity.Usuario;
+
 import arg.cuarteto.Proyecto_clasificados.ErrorService.ErrorService;
 import arg.cuarteto.Proyecto_clasificados.Repository.PublicacionRepository;
 import java.util.Date;
@@ -16,12 +16,12 @@ public class PublicacionService {
      @Autowired
     private PublicacionRepository publicacionRepository;
     
-    private void crearPublicacion(Usuario usuario,String id,String titulo, int precio, String localidad, String descripcion, String oficio, Boolean activado, Date fechaAltabaja )throws ErrorService{
+    private void crearPublicacion(String id,String titulo, int precio, String localidad, String descripcion, String oficio, Boolean activado, Date fechaAltabaja )throws ErrorService{
         validar(titulo,precio,localidad,descripcion,oficio);
         Publicacion publicacion = new Publicacion();
         publicacion.setActivo(Boolean.TRUE);
         publicacion.setTitulo(titulo);
-        publicacion.setUsuario(usuario);
+       
         publicacion.setDescripcion(descripcion);
         publicacion.setLocalidad(localidad);
         publicacion.setOficio(oficio);

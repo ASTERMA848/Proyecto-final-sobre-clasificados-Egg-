@@ -72,4 +72,10 @@ public class UsuarioController {
             modelo.put("descripcion", "Tu usuario fue registrado satisfactoriamente"); // <p th:text="${descripcion}"></p>     
             return "exito.html";        
     }
+    
+    @GetMapping("/formulario-clasificados") // pagina registro
+    public String formClasificados() {
+        return "formularioClasificados.html";
+    } 
+    
 }

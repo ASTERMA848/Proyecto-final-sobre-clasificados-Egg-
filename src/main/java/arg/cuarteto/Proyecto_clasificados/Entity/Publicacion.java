@@ -16,10 +16,9 @@ public class Publicacion implements Serializable {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-
     private String id;
-    private Usuario usuario;
-    //private Photo photo;
+
+    
     private String titulo;
     private int precio;
     private String localidad;
@@ -37,14 +36,7 @@ public class Publicacion implements Serializable {
         this.id = id;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
+    
 
     public String getTitulo() {
         return titulo;
@@ -102,9 +94,6 @@ public class Publicacion implements Serializable {
         this.fechaAltabaja = fechaAltabaja;
     }
 
-    @Override
-    public String toString() {
-        return "Publicacion{" + "id=" + id + ", usuario=" + usuario + ", titulo=" + titulo + ", precio=" + precio + ", localidad=" + localidad + ", oficio=" + oficio + ", descripcion=" + descripcion + ", activo=" + activo + ", fechaAltabaja=" + fechaAltabaja + '}';
-    }
+    
  
 }

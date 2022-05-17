@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package arg.cuarteto.Proyecto_clasificados.Entity;
 
 import java.util.Date;
@@ -14,10 +10,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
-/**
- *
- * @author Nnahu
- */
 @Entity
 public class Usuario {
     @Id
@@ -37,6 +29,9 @@ public class Usuario {
     
     @OneToOne
     private Photo foto;
+    
+    @OneToOne
+    private experienciaUsuario experienciaUsuario;
       
     
 
@@ -120,5 +115,15 @@ public class Usuario {
     public void setFoto(Photo foto) {
         this.foto = foto;
     }
+
+    public experienciaUsuario getExperienciaUsuario() {
+        return experienciaUsuario;
+    }
+
+    public void setExperienciaUsuario(experienciaUsuario experienciaUsuario) {
+        this.experienciaUsuario = experienciaUsuario;
+    }
+    
+    
     
 }
