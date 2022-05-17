@@ -44,6 +44,9 @@ public class UsuarioService implements UserDetailsService {
      
      @Transactional(propagation = Propagation.NESTED)
     public void register(MultipartFile archivo, String nombre, String apellido, String email, String clave) throws ErrorService {//este metodo registra al usuario en la base de datos
+      
+   
+        
         validation(nombre, apellido, email, clave);// implementamos validation para no andar haciendo if en cada transaccion
         //llamamos a usuario entidad donde seteamos los atributos
         Usuario usuario = new Usuario(); 
@@ -64,6 +67,7 @@ public class UsuarioService implements UserDetailsService {
            
         usuarioRepository.save(usuario);
     }
+    
     
     @Transactional(propagation = Propagation.NESTED)
     public void modificar(MultipartFile archivo, String id, String nombre, String apellido, String email, String clave) throws ErrorService {// este metodo modifica al usuario en la base de datos
@@ -91,12 +95,15 @@ public class UsuarioService implements UserDetailsService {
             throw new ErrorService("No se encontro el usuario solicitado");
         }
     }
+   
     
     public Usuario buscarPorId(String id){ // todavia no le doy uso
         return usuarioRepository.buscarPorId(id);
     }
     
     private void validation(String nombre, String apellido, String email, String clave) throws ErrorService {// validation para no andar haciendo if anidados en cada transaccion
+             
+         
         if (nombre == null || nombre.isEmpty()) {//pd: esto enlaza al msj de ErrorService para controlador, que luego se ve reflejado en la vista
             throw new ErrorService("El nombre del usuario no puede ser nulo.");
         }
@@ -109,7 +116,10 @@ public class UsuarioService implements UserDetailsService {
         if (clave == null || clave.isEmpty() || clave.length() <= 3) {
             throw new ErrorService("La clave del usuario no puede ser nulo y debe tener mas de tres digitos.");
         }
+       
+    
     }
+    
     
     @Transactional(propagation = Propagation.NESTED)
     public void deshabilitar(String id) throws ErrorService {

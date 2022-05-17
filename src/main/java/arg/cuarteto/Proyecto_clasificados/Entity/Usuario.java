@@ -33,7 +33,11 @@ public class Usuario {
     @OneToOne
     private experienciaUsuario experienciaUsuario;
       
+    @OneToOne
+    private Direccion direccion;
     
+    @OneToOne
+    private Publicacion publicacion;
 
     public Usuario() {
     }
@@ -119,9 +123,26 @@ public class Usuario {
     public experienciaUsuario getExperienciaUsuario() {
         return experienciaUsuario;
     }
-
+  
+    
     public void setExperienciaUsuario(experienciaUsuario experienciaUsuario) {
         this.experienciaUsuario = experienciaUsuario;
+    }
+
+    public Direccion getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(Direccion direccion) {
+        this.direccion = direccion;
+    }
+
+    public Publicacion getPublicacion() {
+        return publicacion;
+    }
+
+    public void setPublicacion(Publicacion publicacion) {
+        this.publicacion = publicacion;
     }
     
     
