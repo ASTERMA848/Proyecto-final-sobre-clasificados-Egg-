@@ -46,7 +46,7 @@ public class PublicacionController {
                 modelo.put("localida:", localidad);
                 modelo.put("descripcion:", descripcion);
                 modelo.put("oficio:", oficio);
-                    return "index.html";
+                    return "formularioClasificados.html";
         } 
             modelo.put("titulo", "Bienvenido a PostSolutions"); // <h2 class="display-4" th:text="${titulo}"></h2> enlazado ala vista exito - msj que se ve una vez bien registrado el usuario
             modelo.put("descripcion", "Tu usuario fue registrado satisfactoriamente"); // <p th:text="${descripcion}"></p>     
