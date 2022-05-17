@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
@@ -18,6 +19,8 @@ public class Publicacion implements Serializable {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
 
     private String id;
+    
+    @OneToMany
     private Usuario usuario;
     //private Photo photo;
     private String titulo;
