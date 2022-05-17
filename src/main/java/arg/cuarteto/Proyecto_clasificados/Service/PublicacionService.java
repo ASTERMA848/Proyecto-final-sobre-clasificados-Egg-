@@ -7,7 +7,6 @@ import arg.cuarteto.Proyecto_clasificados.ErrorService.ErrorService;
 import arg.cuarteto.Proyecto_clasificados.Repository.PublicacionRepository;
 import java.util.Date;
 import java.util.Optional;
-import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -17,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class PublicacionService {
      @Autowired
     private PublicacionRepository publicacionRepository;
-     @Transactional(propagation = Propagation.NESTED)
+    @Transactional(propagation = Propagation.NESTED)
      public void crearPublicacion(String titulo, int precio, String localidad, String descripcion, String oficio, Date fechaAltabaja )throws ErrorService{
         validar(titulo,precio,localidad,descripcion,oficio);
         Publicacion publicacion = new Publicacion();
@@ -30,7 +29,7 @@ public class PublicacionService {
         publicacion.setFechaAltabaja(new Date());
         publicacionRepository.save(publicacion);      
     }
-     @Transactional(propagation = Propagation.NESTED)
+    @Transactional(propagation = Propagation.NESTED)
      public void modificarPublicacion(String id,String titulo, int precio, String localidad, String descripcion, String oficio, Date fechaAltabaja )throws ErrorService{
 	validar(titulo,precio,localidad,descripcion,oficio);
 	Optional<Publicacion> respuesta = publicacionRepository.findById(id);
@@ -45,7 +44,7 @@ public class PublicacionService {
         	publicacionRepository.save(publicacion);	       
         }
     }
-    @Transactional
+    @Transactional(propagation = Propagation.NESTED)
     public void publicacionDeshabilitar(String id) throws ErrorService{
         Optional<Publicacion> respuesta = publicacionRepository.findById(id);
         if(respuesta.isPresent()){
@@ -56,7 +55,7 @@ public class PublicacionService {
             throw new ErrorService("El ID consultado no se encuentra en la base de datos.");
         }                             
     }
-    @Transactional
+    @Transactional(propagation = Propagation.NESTED)
     public void publicacionHabilitar(String id) throws ErrorService{
         Optional<Publicacion> respuesta = publicacionRepository.findById(id);
         if(respuesta.isPresent()){
