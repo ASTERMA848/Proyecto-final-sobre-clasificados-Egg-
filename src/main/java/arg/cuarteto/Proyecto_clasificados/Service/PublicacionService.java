@@ -1,38 +1,53 @@
 
 package arg.cuarteto.Proyecto_clasificados.Service;
 
+import arg.cuarteto.Proyecto_clasificados.Entity.Photo;
 import arg.cuarteto.Proyecto_clasificados.Entity.Publicacion;
+import arg.cuarteto.Proyecto_clasificados.Entity.Usuario;
 
 import arg.cuarteto.Proyecto_clasificados.ErrorService.ErrorService;
 import arg.cuarteto.Proyecto_clasificados.Repository.PublicacionRepository;
+import arg.cuarteto.Proyecto_clasificados.Repository.UsuarioRepository;
 import java.util.Date;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class PublicacionService {
      @Autowired
     private PublicacionRepository publicacionRepository;
+     @Autowired
+    private UsuarioRepository usuarioRepository;
+     
+     @Autowired
+     private PhotoService fotoService;
+
     @Transactional(propagation = Propagation.NESTED)
-     public void crearPublicacion(String titulo, int precio, String localidad, String descripcion, String oficio, Date fechaAltabaja )throws ErrorService{
+     public void crearPublicacion(MultipartFile archivo,String titulo, int precio, String localidad, String descripcion, String oficio, Date fechaAltabaja, Usuario usuario)throws ErrorService{
         validar(titulo,precio,localidad,descripcion,oficio);
-        Publicacion publicacion = new Publicacion();
+        Photo foto = fotoService.guardar(archivo);
+        Publicacion publicacion = new Publicacion(); 
         publicacion.setActivo(Boolean.TRUE);
         publicacion.setTitulo(titulo);
-       
         publicacion.setDescripcion(descripcion);
         publicacion.setLocalidad(localidad);
         publicacion.setOficio(oficio);
         publicacion.setFechaAltabaja(new Date());
+        publicacion.setUsuario(usuario);
+        publicacion.setPhoto(foto);
         publicacionRepository.save(publicacion);      
     }
+    
     @Transactional(propagation = Propagation.NESTED)
-     public void modificarPublicacion(String id,String titulo, int precio, String localidad, String descripcion, String oficio, Date fechaAltabaja )throws ErrorService{
+     public void modificarPublicacion(MultipartFile archivo,String id,String titulo, int precio, String localidad, String descripcion, String oficio, Date fechaAltabaja )throws ErrorService{
 	validar(titulo,precio,localidad,descripcion,oficio);
 	Optional<Publicacion> respuesta = publicacionRepository.findById(id);
+        Photo foto = fotoService.guardar(archivo); 
+
         if(respuesta.isPresent()){
          	Publicacion publicacion = respuesta.get(); 
 	    	publicacion.setActivo(Boolean.TRUE);
@@ -40,7 +55,8 @@ public class PublicacionService {
         	publicacion.setDescripcion(descripcion);
         	publicacion.setLocalidad(localidad);
         	publicacion.setOficio(oficio);
-        	publicacion.setFechaAltabaja(new Date());        
+        	publicacion.setFechaAltabaja(new Date());     
+                publicacion.setPhoto(foto);
         	publicacionRepository.save(publicacion);	       
         }
     }
