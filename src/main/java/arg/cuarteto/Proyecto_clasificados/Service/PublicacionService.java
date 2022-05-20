@@ -33,6 +33,7 @@ public class PublicacionService {
         Publicacion publicacion = new Publicacion(); 
         publicacion.setActivo(Boolean.TRUE);
         publicacion.setTitulo(titulo);
+        publicacion.setPrecio(precio);
         publicacion.setDescripcion(descripcion);
         publicacion.setLocalidad(localidad);
         publicacion.setOficio(oficio);
