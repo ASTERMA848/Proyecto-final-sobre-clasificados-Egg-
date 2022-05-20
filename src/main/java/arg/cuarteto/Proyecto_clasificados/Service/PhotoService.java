@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package arg.cuarteto.Proyecto_clasificados.Service;
 
 import arg.cuarteto.Proyecto_clasificados.Entity.Photo;
@@ -27,8 +23,7 @@ public class PhotoService {
     @Transactional
     public Photo guardar(MultipartFile archivo) throws ErrorService {
         if (archivo != null) {
-            try {
-                
+            try { 
                Photo foto = new Photo();
                foto.setMime(archivo.getContentType());
                 foto.setName(archivo.getName());

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package arg.cuarteto.Proyecto_clasificados.Entity;
 
 import javax.persistence.Basic;
@@ -11,7 +7,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.OneToOne;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -20,15 +15,12 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 public class Photo {
-     @Id
+    @Id
     @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @ GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     private String name;
-    private String mime;
-    
-  
-    
+    private String mime; 
     @Lob @Basic(fetch = FetchType.LAZY) //LAZY significa carga tardia del archivo
     private byte[] content;
 
@@ -40,7 +32,7 @@ public class Photo {
     }
 
     /**
-     * @param Id the Id to set
+     * @param id the Id to set
      */
     public void setid(String id) {
         this.id = id;

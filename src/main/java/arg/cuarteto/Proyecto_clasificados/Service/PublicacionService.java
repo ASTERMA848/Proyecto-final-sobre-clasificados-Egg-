@@ -27,7 +27,8 @@ public class PublicacionService {
      private PhotoService fotoService;
 
     @Transactional(propagation = Propagation.NESTED)
-     public void crearPublicacion(MultipartFile archivo,String titulo, int precio, String localidad, String descripcion, String oficio, Date fechaAltabaja, Usuario usuario)throws ErrorService{
+     public void crearPublicacion(MultipartFile archivo,String idUsuario,String titulo, int precio, String localidad, String descripcion, String oficio, Date fechaAltabaja)throws ErrorService{
+        Usuario usuario = usuarioRepository.findById(idUsuario).get();
         validar(titulo,precio,localidad,descripcion,oficio);
         Photo foto = fotoService.guardar(archivo);
         Publicacion publicacion = new Publicacion(); 

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package arg.cuarteto.Proyecto_clasificados.Service;
 
 import arg.cuarteto.Proyecto_clasificados.Entity.Photo;
@@ -44,27 +39,19 @@ public class UsuarioService implements UserDetailsService {
      
      @Transactional(propagation = Propagation.NESTED)
     public void register(MultipartFile archivo, String nombre, String apellido, String email, String clave) throws ErrorService {//este metodo registra al usuario en la base de datos
-      
-   
-        
         validation(nombre, apellido, email, clave);// implementamos validation para no andar haciendo if en cada transaccion
         //llamamos a usuario entidad donde seteamos los atributos
         Usuario usuario = new Usuario(); 
         Photo foto = fotoService.guardar(archivo); // guarda la foto en la base de dato
         usuario.setFoto(foto); // setea la foto
-        
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
         usuario.setEmail(email);    
         //encriptamos la clave para que se vea con un hash 
         String encriptada = new BCryptPasswordEncoder().encode(clave);
-        usuario.setClave(encriptada);
-                
+        usuario.setClave(encriptada);      
         usuario.setAlta(new Date());
-           //guardamos los datos en un nuevo objeto usuario
-           
-           
-           
+           //guardamos los datos en un nuevo objeto usuario    
         usuarioRepository.save(usuario);
     }
     

@@ -32,9 +32,9 @@ public class PublicacionController {
     @PostMapping("/cargarPublicacionFrom") // metodo registrar para la pagina registro, carga en la base de datos lo solicitado
     public String crearPublicacion(ModelMap modelo,MultipartFile archivo, @RequestParam (required = false) String titulo, @RequestParam (required = false) int precio,
          @RequestParam (required = false) String localidad, @RequestParam (required = false) String descripcion,
-         @RequestParam (required = false) String oficio, @RequestParam (required = false) Date fechaAltabaja, @RequestParam (required = false) Usuario usuario) {        
+         @RequestParam (required = false) String oficio, @RequestParam (required = false) Date fechaAltabaja, @RequestParam (required = false) String idUsuario) {        
         try {                 
-            publicacionService.crearPublicacion(archivo, titulo, precio, localidad, descripcion, oficio, fechaAltabaja, usuario); 
+            publicacionService.crearPublicacion(archivo, idUsuario, titulo, precio, localidad, descripcion, oficio, fechaAltabaja); 
         } catch (ErrorService ex) { // <p th:if="${Error != null}" th:text="${Error}" style=color:red;></p>   
                 modelo.put("Error", ex.getMessage()); //estos msj estan enlazados en validation usuarioService
                 modelo.put("Foto:", archivo);
@@ -43,7 +43,7 @@ public class PublicacionController {
                 modelo.put("localida:", localidad);
                 modelo.put("descripcion:", descripcion);
                 modelo.put("oficio:", oficio);
-                modelo.put("Usuario",usuario); 
+                modelo.put("Usuario",idUsuario); 
                     return "formularioClasificados.html";
         } 
             modelo.put("titulo", "Bienvenido a PostSolutions"); // <h2 class="display-4" th:text="${titulo}"></h2> enlazado ala vista exito - msj que se ve una vez bien registrado el usuario
