@@ -21,12 +21,14 @@ and open the template in the editor.
         <div th:replace="index :: navbar2"></div>
         
         <div class="form-login">
-        <form th:action="@{/cargarPublicacionFrom}" method = "POST"> <!-- enctype="multipart/form-data" este ultimo para enviar archivo-->                 
+        <form th:action="@{/cargarPublicacionFrom}" method = "POST" enctype="multipart/form-data"> <!-- enctype="multipart/form-data" este ultimo para enviar archivo-->                 
         <h5>Formulario de publicacion de clasificado</h5>
         <p th:if="${Error != null}" th:text="${Error}" style=color:red;></p><!--esto vincula al controlador error con servicio--> 
         
         <!--<input type="file" class="form-control" name="archivo" placeholder="foto"/>  envia el archivo ala base de datos -->       
         <input type="file" class="form-control" name="archivo" placeholder="foto"/>
+        <!--hidden sirve es pra que la etiqueta funcione pero no se muestre en la vista-->
+        <input type="hidden" class="form-control" name="idUsuario" placeholder="id"  th:value="${session.usuariosession.id }"/> //session.usuariosession.id trael el ID del usuario que inicio sesion en ese momento (en el metodo get del controlador tiene una anoracion que permite hacer eso)
         <input th:value="${titulo}" class="form-control" type="text" name="titulo" placeholder="Titulo"/> <!-- envia el nombre ala base de datos -->
         <input th:value="${precio}" class="form-control" type="number" name="precio" placeholder="Precio"/>
         <input th:value="${localidad}" class="form-control" type="text" name="localidad" placeholder="Localidad"/> <!-- envia el apellido ala base de datos -->

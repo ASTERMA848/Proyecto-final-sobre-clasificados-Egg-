@@ -40,7 +40,7 @@ public class Publicacion implements Serializable {
     public void setPhoto(Photo photo) {
         this.photo = photo;
     }
-
+   
     public Usuario getUsuario() {
         return usuario;
     }
