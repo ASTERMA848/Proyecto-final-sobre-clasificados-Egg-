@@ -3,6 +3,7 @@ package arg.cuarteto.Proyecto_clasificados.Service;
 import arg.cuarteto.Proyecto_clasificados.Entity.Photo;
 import arg.cuarteto.Proyecto_clasificados.Repository.UsuarioRepository;
 import arg.cuarteto.Proyecto_clasificados.Entity.Usuario;
+import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Provincia;
 import arg.cuarteto.Proyecto_clasificados.ErrorService.ErrorService;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,10 +25,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
-/**
- *
- * @author Nnahu
- */
+
 @Service
 public class UsuarioService implements UserDetailsService {
 
@@ -38,7 +36,7 @@ public class UsuarioService implements UserDetailsService {
     private PhotoService fotoService;
 
     @Transactional(propagation = Propagation.NESTED)
-    public void register(MultipartFile archivo, String nombre, String apellido, String email, String clave) throws ErrorService {//este metodo registra al usuario en la base de datos
+    public void register(MultipartFile archivo, String nombre, String apellido, String email, String clave, Provincia provincia) throws ErrorService {//este metodo registra al usuario en la base de datos
         validation(nombre, apellido, email, clave);// implementamos validation para no andar haciendo if en cada transaccion
         //llamamos a usuario entidad donde seteamos los atributos
         Usuario usuario = new Usuario();
@@ -46,7 +44,7 @@ public class UsuarioService implements UserDetailsService {
         usuario.setFoto(foto); // setea la foto
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
-
+        usuario.setProvincia(provincia);
         usuario.setEmail(email);
         //encriptamos la clave para que se vea con un hash 
         String encriptada = new BCryptPasswordEncoder().encode(clave);
@@ -57,7 +55,7 @@ public class UsuarioService implements UserDetailsService {
     }
 
     @Transactional(propagation = Propagation.NESTED)
-    public void modificar(MultipartFile archivo, String id, String nombre, String apellido, String email, String clave) throws ErrorService {// este metodo modifica al usuario en la base de datos
+    public void modificar(MultipartFile archivo, String id, String nombre, String apellido, String email, String clave, Provincia provincia) throws ErrorService {// este metodo modifica al usuario en la base de datos
         validation(nombre, apellido, email, clave);
 
         //jpa nos devuelve un opcional usuario
@@ -68,6 +66,7 @@ public class UsuarioService implements UserDetailsService {
             usuario.setApellido(apellido);
             usuario.setEmail(email);
             usuario.setClave(clave);
+            usuario.setProvincia(provincia);
 
             String idFoto = null; // crea una variable para guardar el idfoto en el servicio foto
             if (usuario.getFoto() != null) { //if vinculaa la foto que no este nula

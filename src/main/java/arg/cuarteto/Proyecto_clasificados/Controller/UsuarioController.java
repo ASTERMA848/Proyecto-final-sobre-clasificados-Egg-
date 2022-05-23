@@ -5,6 +5,7 @@
  */
 package arg.cuarteto.Proyecto_clasificados.Controller;
 
+import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Provincia;
 import arg.cuarteto.Proyecto_clasificados.ErrorService.ErrorService;
 import arg.cuarteto.Proyecto_clasificados.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,8 @@ public class UsuarioController {
 }
 
 @GetMapping("/registro") // pagina registro
-    public String registro() {
+    public String registro(ModelMap modelo) {
+        modelo.addAttribute("provincias", Provincia.values());
         return "registro.html";
     } 
     
@@ -58,20 +60,20 @@ public class UsuarioController {
     //ModelMap guarda todo lo que neceistamos guardar temporariamente interfaz de usuario
 @PostMapping("/registrar") // metodo registrar para la pagina registro, carga en la base de datos lo solicitado
     public String register(ModelMap modelo, MultipartFile archivo, @RequestParam String nombre, @RequestParam String apellido,
-            @RequestParam String email, @RequestParam String clave) {        
+            @RequestParam String email, @RequestParam String clave,@RequestParam Provincia provincia ) {        
         try {    
            
               
               
-            usuarioService.register(archivo, nombre, apellido, email, clave);
-            
-                } catch (ErrorService ex) { // <p th:if="${Error != null}" th:text="${Error}" style=color:red;></p>  
+            usuarioService.register(archivo, nombre, apellido, email, clave, provincia);
+        } catch (ErrorService ex) { // <p th:if="${Error != null}" th:text="${Error}" style=color:red;></p>  
    
                 modelo.put("Error", ex.getMessage()); //estos msj estan enlazados en validation usuarioService
                 modelo.put("nombre", nombre);
                 modelo.put("apellido", apellido);
                 modelo.put("email", email);
                 modelo.put("clave", clave);
+                modelo.put("provincia", provincia);
                
                     return "registro.html";
         } 
