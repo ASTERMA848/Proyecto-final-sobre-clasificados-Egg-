@@ -37,7 +37,7 @@ public class UsuarioService implements UserDetailsService {
 
     @Transactional(propagation = Propagation.NESTED)
     public void register(MultipartFile archivo, String nombre, String apellido, String email, String clave, Provincia provincia) throws ErrorService {//este metodo registra al usuario en la base de datos
-        validation(nombre, apellido, email, clave);// implementamos validation para no andar haciendo if en cada transaccion
+        validation(nombre, apellido, email, clave,provincia);// implementamos validation para no andar haciendo if en cada transaccion
         //llamamos a usuario entidad donde seteamos los atributos
         Usuario usuario = new Usuario();
         Photo foto = fotoService.guardar(archivo); // guarda la foto en la base de dato
@@ -56,7 +56,7 @@ public class UsuarioService implements UserDetailsService {
 
     @Transactional(propagation = Propagation.NESTED)
     public void modificar(MultipartFile archivo, String id, String nombre, String apellido, String email, String clave, Provincia provincia) throws ErrorService {// este metodo modifica al usuario en la base de datos
-        validation(nombre, apellido, email, clave);
+        validation(nombre, apellido, email, clave,provincia);
 
         //jpa nos devuelve un opcional usuario
         Optional<Usuario> respuesta = usuarioRepository.findById(id);
@@ -86,7 +86,7 @@ public class UsuarioService implements UserDetailsService {
         return usuarioRepository.buscarPorId(id);
     }
 
-    private void validation(String nombre, String apellido, String email, String clave) throws ErrorService {// validation para no andar haciendo if anidados en cada transaccion
+    private void validation(String nombre, String apellido, String email, String clave, Provincia provincia) throws ErrorService {// validation para no andar haciendo if anidados en cada transaccion
 
         if (nombre == null || nombre.isEmpty()) {//pd: esto enlaza al msj de ErrorService para controlador, que luego se ve reflejado en la vista
             throw new ErrorService("El nombre del usuario no puede ser nulo.");
@@ -99,6 +99,10 @@ public class UsuarioService implements UserDetailsService {
         }
         if (clave == null || clave.isEmpty() || clave.length() <= 3) {
             throw new ErrorService("La clave del usuario no puede ser nulo y debe tener mas de tres digitos.");
+        }
+        
+        if (provincia==null ){
+            throw new ErrorService("Debe ingresar una provincia valida");
         }
 
     }

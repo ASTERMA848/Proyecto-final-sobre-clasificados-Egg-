@@ -1,6 +1,7 @@
 
 package arg.cuarteto.Proyecto_clasificados.Entity;
 
+import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Oficio;
 import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Provincia;
 import java.util.Date;
 import javax.persistence.Column;

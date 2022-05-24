@@ -4,6 +4,7 @@ package arg.cuarteto.Proyecto_clasificados.Service;
 import arg.cuarteto.Proyecto_clasificados.Entity.Photo;
 import arg.cuarteto.Proyecto_clasificados.Entity.Publicacion;
 import arg.cuarteto.Proyecto_clasificados.Entity.Usuario;
+import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Oficio;
 
 import arg.cuarteto.Proyecto_clasificados.ErrorService.ErrorService;
 import arg.cuarteto.Proyecto_clasificados.Repository.PublicacionRepository;
@@ -27,18 +28,18 @@ public class PublicacionService {
      private PhotoService fotoService;
 
     @Transactional(propagation = Propagation.NESTED)
-     public void crearPublicacion(MultipartFile archivo,String idUsuario,String titulo, int precio, String localidad, String descripcion, String oficio, Date fechaAltabaja)throws ErrorService{
+     public void crearPublicacion(MultipartFile archivo,String idUsuario,String titulo, int precio, String descripcion,Oficio oficio, Date fechaAltabaja)throws ErrorService{
         Usuario usuario = usuarioRepository.findById(idUsuario).get();
-        validar(titulo,precio,localidad,descripcion,oficio);
+        validar(titulo,precio,descripcion,oficio);
         Photo foto = fotoService.guardar(archivo);
         
         Publicacion publicacion = new Publicacion(); 
         publicacion.setActivo(Boolean.TRUE);
         publicacion.setTitulo(titulo);
+        publicacion.setOficio(oficio);
         publicacion.setPrecio(precio);
         publicacion.setDescripcion(descripcion);
-        publicacion.setLocalidad(localidad);
-        publicacion.setOficio(oficio);
+       
         publicacion.setFechaAltabaja(new Date());
         publicacion.setUsuario(usuario);
         publicacion.setPhoto(foto);
@@ -46,8 +47,8 @@ public class PublicacionService {
     }
     
     @Transactional(propagation = Propagation.NESTED)
-     public void modificarPublicacion(MultipartFile archivo,String id,String titulo, int precio, String localidad, String descripcion, String oficio, Date fechaAltabaja )throws ErrorService{
-	validar(titulo,precio,localidad,descripcion,oficio);
+     public void modificarPublicacion(MultipartFile archivo,String id,String titulo, int precio, String descripcion,Oficio oficio, Date fechaAltabaja )throws ErrorService{
+	validar(titulo,precio,descripcion,oficio);
 	Optional<Publicacion> respuesta = publicacionRepository.findById(id);
         Photo foto = fotoService.guardar(archivo); 
 
@@ -56,7 +57,6 @@ public class PublicacionService {
 	    	publicacion.setActivo(Boolean.TRUE);
         	publicacion.setTitulo(titulo);
         	publicacion.setDescripcion(descripcion);
-        	publicacion.setLocalidad(localidad);
         	publicacion.setOficio(oficio);
         	publicacion.setFechaAltabaja(new Date());     
                 publicacion.setPhoto(foto);
@@ -85,7 +85,8 @@ public class PublicacionService {
             throw new ErrorService("El ID consultado no se encuentra en la base de datos.");
         }
     }
-public void validar(String titulo, int precio, String localidad, String descripcion, String oficio) throws ErrorService{
+    
+public void validar(String titulo, int precio, String descripcion, Oficio oficio) throws ErrorService{
         if (titulo == null || titulo.isEmpty()){
             throw new ErrorService("El nombre no puede ser nulo ni puede estar vacio");
         }
@@ -94,9 +95,6 @@ public void validar(String titulo, int precio, String localidad, String descripc
         }
         if (descripcion == null || descripcion.isEmpty()){
             throw new ErrorService("La descripcion no puede ser nulo ni puede estar vacio");
-        }
-        if(localidad == null){
-            throw new ErrorService("Debe poseer una localidad identificada");
         }
         if(oficio == null){
             throw new ErrorService("Debe poseer un oficio identificado");

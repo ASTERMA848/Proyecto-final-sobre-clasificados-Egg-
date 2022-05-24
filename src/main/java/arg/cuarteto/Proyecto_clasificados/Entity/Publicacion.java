@@ -1,6 +1,7 @@
 
 package arg.cuarteto.Proyecto_clasificados.Entity;
 
+import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Oficio;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -19,11 +20,9 @@ public class Publicacion implements Serializable {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
-    
+    private Oficio oficio;
     private String titulo;
     private int precio;
-    private String localidad;
-    private String oficio;
     private String descripcion;
     private Boolean activo;
     @Temporal(TemporalType.TIMESTAMP)
@@ -31,7 +30,15 @@ public class Publicacion implements Serializable {
     @OneToOne
     private Photo photo;
     @OneToOne
-    private Usuario usuario; 
+    private Usuario usuario;
+
+    public Oficio getOficio() {
+        return oficio;
+    }
+
+    public void setOficio(Oficio oficio) {
+        this.oficio = oficio;
+    }
 
     public Photo getPhoto() {
         return photo;
@@ -75,23 +82,6 @@ public class Publicacion implements Serializable {
     public void setPrecio(int precio) {
         this.precio = precio;
     }
-
-    public String getLocalidad() {
-        return localidad;
-    }
-
-    public void setLocalidad(String localidad) {
-        this.localidad = localidad;
-    }
-
-    public String getOficio() {
-        return oficio;
-    }
-
-    public void setOficio(String oficio) {
-        this.oficio = oficio;
-    }
-
     public String getDescripcion() {
         return descripcion;
     }
