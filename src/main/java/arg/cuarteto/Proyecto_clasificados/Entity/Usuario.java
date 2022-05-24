@@ -1,6 +1,7 @@
 
 package arg.cuarteto.Proyecto_clasificados.Entity;
 
+import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Provincia;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,13 +35,20 @@ public class Usuario {
     
     @OneToOne
     private experienciaUsuario experienciaUsuario;
-      
-    @OneToOne
-    private Direccion direccion;
-    
+ 
     @OneToOne
     private Publicacion publicacion;
 
+    
+    private Provincia Provincia;
+
+    public Provincia getProvincia() {
+        return Provincia;
+    }
+
+    public void setProvincia(Provincia Provincia) {
+        this.Provincia = Provincia;
+    }
     public Usuario() {
     }
 
@@ -129,14 +137,6 @@ public class Usuario {
     
     public void setExperienciaUsuario(experienciaUsuario experienciaUsuario) {
         this.experienciaUsuario = experienciaUsuario;
-    }
-
-    public Direccion getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(Direccion direccion) {
-        this.direccion = direccion;
     }
 
     public Publicacion getPublicacion() {

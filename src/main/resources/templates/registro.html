@@ -19,17 +19,19 @@
     <div th:replace="inicio :: navbar"></div>
 
 <div class="form-login">
-    <form th:action="@{/registrar}" method = "POST" enctype="multipart/form-data"><!--este ultimo para enviar archivo-->                 
-        <h5>Registro</h5>
+  
+        <h5>Registrooo</h5>
+          <form th:action="@{/registrar}" method = "POST" enctype="multipart/form-data"><!--este ultimo para enviar archivo-->                 
         <p th:if="${Error != null}" th:text="${Error}" style=color:red;></p><!--esto vincula al controlador error con servicio--> 
+        <input class="form-control" type="text" name="nombre" placeholder="Nombre" th:value="${nombre}" /> <!-- envia el nombre ala base de datos -->
+        <input  class="form-control" type="text" name="apellido" placeholder="Apellido" th:value="${apellido}"/> <!-- envia el apellido ala base de datos -->
+        <input  class="form-control" type="email" name="email" placeholder="Email" th:value="${email}"/> <!-- envia el email ala base de datos -->
+        <input class="form-control" type="password" name="clave" placeholder="Clave" th:value="${clave}"/>   <!-- envia la password ala base de datos -->  
+        <input type="file" class="form-control" name="archivo" placeholder="foto"/>  <!--envia el archivo ala base de datos  --> 
         
-        <input type="file" class="form-control" name="archivo" placeholder="foto"/> <!-- envia el archivo ala base de datos -->
-        <input th:value="${nombre}" class="form-control" type="text" name="nombre" placeholder="Nombre"/> <!-- envia el nombre ala base de datos -->
-        <input th:value="${apellido}" class="form-control" type="text" name="apellido" placeholder="Apellido"/> <!-- envia el apellido ala base de datos -->
-        <input th:value="${email}" class="form-control" type="email" name="email" placeholder="Email"/> <!-- envia el email ala base de datos -->
-        <input th:value="${clave}" class="form-control" type="password" name="clave" placeholder="Clave"/>   <!-- envia la password ala base de datos -->      
         <button class="buttons" type="submit" name="registro" onclick="alert('Registrado')"> Registrar</button> <!-- boton para enviar todo lo demas ala base de datos -->
         <button class="buttons" type="reset" name="borrar" onclick="alert('Borrado')"> Limpiar registro</button>    <!-- boton para limpiar registro de formulario -->    
+         
     </form>
 </div>   
     

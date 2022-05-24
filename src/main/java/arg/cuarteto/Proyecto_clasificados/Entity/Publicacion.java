@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
@@ -27,6 +28,27 @@ public class Publicacion implements Serializable {
     private Boolean activo;
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaAltabaja;
+    @OneToOne
+    private Photo photo;
+    @OneToOne
+    private Usuario usuario; 
+
+    public Photo getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Photo photo) {
+        this.photo = photo;
+    }
+   
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    
 
     public String getId() {
         return id;
