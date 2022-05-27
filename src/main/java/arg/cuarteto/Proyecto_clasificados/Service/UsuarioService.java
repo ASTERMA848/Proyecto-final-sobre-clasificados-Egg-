@@ -89,16 +89,16 @@ public class UsuarioService implements UserDetailsService {
     private void validation(String nombre, String apellido, String email, String clave, Provincia provincia) throws ErrorService {// validation para no andar haciendo if anidados en cada transaccion
 
         if (nombre == null || nombre.isEmpty()) {//pd: esto enlaza al msj de ErrorService para controlador, que luego se ve reflejado en la vista
-            throw new ErrorService("El nombre del usuario no puede ser nulo.");
+            throw new ErrorService("Nombre obligatorio.");
         }
         if (apellido == null || apellido.isEmpty()) {
-            throw new ErrorService("El apellido del usuario no puede ser nulo.");
+            throw new ErrorService("Apellido obligatorio.");
         }
         if (email == null || email.isEmpty()) {
-            throw new ErrorService("El email del usuario no puede ser nulo.");
+            throw new ErrorService("Email obligatorio.");
         }
         if (clave == null || clave.isEmpty() || clave.length() <= 3) {
-            throw new ErrorService("La clave del usuario no puede ser nulo y debe tener mas de tres digitos.");
+            throw new ErrorService("Clave obligatoria. Debe tener mas de tres digitos.");
         }
         
         if (provincia==null ){

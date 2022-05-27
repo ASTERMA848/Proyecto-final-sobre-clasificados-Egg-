@@ -42,7 +42,7 @@ public class UsuarioController {
             @RequestParam(required = false) String logout, ModelMap model) {
 // con ResquestParam (required = false) hacemos que no sea obligatorio el atributo solicitado
         if (error != null) {
-            model.put("error", "Email de usuario o clave incorrectos.");
+            model.put("error", "Email o clave incorrectos.");
 // <p th:if="${error !=null}" th:text ="${error}" style="color:red"></p>
         }
 
