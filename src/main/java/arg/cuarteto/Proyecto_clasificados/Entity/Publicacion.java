@@ -2,6 +2,7 @@
 package arg.cuarteto.Proyecto_clasificados.Entity;
 
 import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Oficio;
+import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Provincia;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -32,6 +33,17 @@ public class Publicacion implements Serializable {
     @OneToOne
     private Usuario usuario;
 
+    private Provincia provincia;
+
+    public Provincia getProvincia() {
+        return provincia;
+    }
+
+    public void setProvincia(Provincia provincia) {
+        this.provincia = provincia;
+    }
+    
+    
     public Oficio getOficio() {
         return oficio;
     }

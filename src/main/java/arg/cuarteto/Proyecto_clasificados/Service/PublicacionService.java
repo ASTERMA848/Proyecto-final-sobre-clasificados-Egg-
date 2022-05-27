@@ -1,10 +1,10 @@
-
 package arg.cuarteto.Proyecto_clasificados.Service;
 
 import arg.cuarteto.Proyecto_clasificados.Entity.Photo;
 import arg.cuarteto.Proyecto_clasificados.Entity.Publicacion;
 import arg.cuarteto.Proyecto_clasificados.Entity.Usuario;
 import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Oficio;
+import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Provincia;
 
 import arg.cuarteto.Proyecto_clasificados.ErrorService.ErrorService;
 import arg.cuarteto.Proyecto_clasificados.Repository.PublicacionRepository;
@@ -19,86 +19,101 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class PublicacionService {
-     @Autowired
+
+    @Autowired
     private PublicacionRepository publicacionRepository;
-     @Autowired
+    @Autowired
     private UsuarioRepository usuarioRepository;
-     
-     @Autowired
-     private PhotoService fotoService;
+
+    @Autowired
+    private PhotoService fotoService;
 
     @Transactional(propagation = Propagation.NESTED)
-     public void crearPublicacion(MultipartFile archivo,String idUsuario,String titulo, int precio, String descripcion,Oficio oficio, Date fechaAltabaja)throws ErrorService{
+    public void crearPublicacion(MultipartFile archivo, String idUsuario, String titulo,
+            int precio, String descripcion, Oficio oficio, Date fechaAltabaja,
+            Provincia provincia) throws ErrorService {
         Usuario usuario = usuarioRepository.findById(idUsuario).get();
-        validar(titulo,precio,descripcion,oficio);
+        validar(titulo, precio, descripcion, oficio, provincia);
         Photo foto = fotoService.guardar(archivo);
-        
-        Publicacion publicacion = new Publicacion(); 
+
+        Publicacion publicacion = new Publicacion();
         publicacion.setActivo(Boolean.TRUE);
         publicacion.setTitulo(titulo);
         publicacion.setOficio(oficio);
         publicacion.setPrecio(precio);
         publicacion.setDescripcion(descripcion);
-       
+        publicacion.setProvincia(provincia);
         publicacion.setFechaAltabaja(new Date());
         publicacion.setUsuario(usuario);
         publicacion.setPhoto(foto);
-        publicacionRepository.save(publicacion);      
+        publicacionRepository.save(publicacion);
     }
-    
-    @Transactional(propagation = Propagation.NESTED)
-     public void modificarPublicacion(MultipartFile archivo,String id,String titulo, int precio, String descripcion,Oficio oficio, Date fechaAltabaja )throws ErrorService{
-	validar(titulo,precio,descripcion,oficio);
-	Optional<Publicacion> respuesta = publicacionRepository.findById(id);
-        Photo foto = fotoService.guardar(archivo); 
 
-        if(respuesta.isPresent()){
-         	Publicacion publicacion = respuesta.get(); 
-	    	publicacion.setActivo(Boolean.TRUE);
-        	publicacion.setTitulo(titulo);
-        	publicacion.setDescripcion(descripcion);
-        	publicacion.setOficio(oficio);
-        	publicacion.setFechaAltabaja(new Date());     
-                publicacion.setPhoto(foto);
-        	publicacionRepository.save(publicacion);	       
+    @Transactional(propagation = Propagation.NESTED)
+    public void modificarPublicacion(MultipartFile archivo, String id, String titulo,
+            int precio, String descripcion, Oficio oficio, Date fechaAltabaja,
+            Provincia provincia) throws ErrorService {
+        
+        
+        validar(titulo, precio, descripcion, oficio, provincia);
+        Optional<Publicacion> respuesta = publicacionRepository.findById(id);
+        Photo foto = fotoService.guardar(archivo);
+
+        if (respuesta.isPresent()) {
+            Publicacion publicacion = respuesta.get();
+            publicacion.setActivo(Boolean.TRUE);
+            publicacion.setTitulo(titulo);
+            publicacion.setDescripcion(descripcion);
+            publicacion.setOficio(oficio);
+            publicacion.setFechaAltabaja(new Date());
+            publicacion.setPhoto(foto);
+            publicacion.setProvincia(provincia);
+            publicacionRepository.save(publicacion);
         }
     }
+
     @Transactional(propagation = Propagation.NESTED)
-    public void publicacionDeshabilitar(String id) throws ErrorService{
+    public void publicacionDeshabilitar(String id) throws ErrorService {
         Optional<Publicacion> respuesta = publicacionRepository.findById(id);
-        if(respuesta.isPresent()){
+        if (respuesta.isPresent()) {
             Publicacion publicacion = respuesta.get();
             publicacion.setFechaAltabaja(new Date());
-            publicacionRepository.save(publicacion);   
-        }else {
+            publicacionRepository.save(publicacion);
+        } else {
             throw new ErrorService("El ID consultado no se encuentra en la base de datos.");
-        }                             
+        }
     }
+
     @Transactional(propagation = Propagation.NESTED)
-    public void publicacionHabilitar(String id) throws ErrorService{
+    public void publicacionHabilitar(String id) throws ErrorService {
         Optional<Publicacion> respuesta = publicacionRepository.findById(id);
-        if(respuesta.isPresent()){
+        if (respuesta.isPresent()) {
             Publicacion publicacion = respuesta.get();
             publicacion.setFechaAltabaja(null);
-            publicacionRepository.save(publicacion);   
-        }else {
+            publicacionRepository.save(publicacion);
+        } else {
             throw new ErrorService("El ID consultado no se encuentra en la base de datos.");
         }
     }
-    
-public void validar(String titulo, int precio, String descripcion, Oficio oficio) throws ErrorService{
-        if (titulo == null || titulo.isEmpty()){
+
+    public void validar(String titulo, int precio, String descripcion,
+            Oficio oficio, Provincia provincia) throws ErrorService {
+        if (titulo == null || titulo.isEmpty()) {
             throw new ErrorService("El nombre no puede ser nulo ni puede estar vacio");
         }
-        if (precio <= 0 ){
+        if (precio <= 0) {
             throw new ErrorService("El precio tiene que ser mayor a 0.");
         }
-        if (descripcion == null || descripcion.isEmpty()){
+        if (descripcion == null || descripcion.isEmpty()) {
             throw new ErrorService("La descripcion no puede ser nulo ni puede estar vacio");
         }
-        if(oficio == null){
+        if (oficio == null) {
             throw new ErrorService("Debe poseer un oficio identificado");
         }
+         if (provincia == null) {
+            throw new ErrorService("Debe ingresar una provincia de la lista");
+        }
+        
     }
 
 }
