@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,9 +29,11 @@
 <img src="registroimg/facebook.png"  alt="icono-facebook" >
 
 </div>
-<form id="login" class="input-group">
-<input type="text" class="input-field" placeholder="Nombre de Usuario" required>
-<input type="text" class="input-field" placeholder="Contraseña" required>
+<form id="login" class="input-group" action= "/logincheck" method = "POST">
+    <p th:if="${error !=null}" th:text ="${error}" style="color:red"></p>
+    <p th:if="${logout !=null}" th:text ="${logout}" style="color:green"></p>
+<input type="text" class="input-field" placeholder="Email de Usuario" required name="email" th:value="${email}">
+<input type="password" class="input-field" placeholder="Contraseña" required name="clave" th:value="${clave}">
 <input type="checkbox" class="check-box"><span>Recordar Contraseña</span>
 <button type="submit" class="submit-btn">Acceder</button>
 
@@ -40,10 +42,13 @@
 
 </form>
 
-<form id="registrar" class="input-group">
-    <input type="text" class="input-field" placeholder="Nombre de Usuario" required>
-    <input type="email" class="input-field" placeholder="Correo" required>
-    <input type="text" class="input-field" placeholder="Contraseña" required>
+<form id="registrar" class="input-group" th:action="@{/registrar}" method = "POST">
+    <input type="text" class="input-field" placeholder="Nombre de Usuario" required name="nombre" th:value="${nombre}">
+        <p th:if="${Error != null}" th:text="${Error}" style=color:red;></p>
+    <input type="email" class="input-field" placeholder="Correo" required name="email" th:value="${email}">
+        <p th:if="${Error != null}" th:text="${Error}" style=color:red;></p>
+    <input type="text" class="input-field" placeholder="Contraseña" required name="clave" th:value="${clave}">
+        <p th:if="${Error != null}" th:text="${Error}" style=color:red;></p>
     <input type="checkbox" class="check-box"><span>Acepto los Términos y Condiciones.</span>
     <button type="submit" class="submit-btn">Registrarse</button>
     
