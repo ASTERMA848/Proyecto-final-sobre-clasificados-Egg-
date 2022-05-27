@@ -53,10 +53,10 @@ public class UsuarioController {
         return "logg.html";
     }
 
-    @GetMapping("/registro") // pagina registro
+    @GetMapping("/login-registro") // pagina registro
     public String registro(ModelMap modelo) {
         modelo.addAttribute("provincias", Provincia.values());
-        return "registro.html";
+        return "registroylogin.html";
     }
 
     //registrar, envia datos del formlario a base datos, form th:action="@{/registrar}" method="POST"

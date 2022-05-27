@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="registro.css">
+    <script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
+    <link rel="stylesheet" href="light.css" media="(prefers-color-scheme: light)">
+    <link rel="stylesheet" href="dark.css" media="(prefers-color-scheme: dark)">
+    <meta name="color-scheme" content="dark light">
+</head>
+<body>
+   
+<div class="container">
+<div class="form-box">
+    <dark-mode-toggle  id="light-mode-toggle-1" appearance="toggle"></dark-mode-toggle>  
+    <div class="button-box">
+<div id="elegir"></div>
+<button type="button" class="toggle-btn" onclick="login()">Iniciar Sesión</button>
+<button type="button" class="toggle-btn" onclick="registrar()">Registrar </button>
+
+    </div>
+<div class="redes-sociales">
+
+<img src="registroimg/whatsapp.png"   alt="iconop-whatsapp" >
+<img src="registroimg/gmail.png"   alt="icono-gmail">
+<img src="registroimg/facebook.png"  alt="icono-facebook" >
+
+</div>
+<form id="login" class="input-group">
+<input type="text" class="input-field" placeholder="Nombre de Usuario" required>
+<input type="text" class="input-field" placeholder="Contraseña" required>
+<input type="checkbox" class="check-box"><span>Recordar Contraseña</span>
+<button type="submit" class="submit-btn">Acceder</button>
+
+
+
+
+</form>
+
+<form id="registrar" class="input-group">
+    <input type="text" class="input-field" placeholder="Nombre de Usuario" required>
+    <input type="email" class="input-field" placeholder="Correo" required>
+    <input type="text" class="input-field" placeholder="Contraseña" required>
+    <input type="checkbox" class="check-box"><span>Acepto los Términos y Condiciones.</span>
+    <button type="submit" class="submit-btn">Registrarse</button>
+    
+</form>    
+
+</div>
+
+</div>
+
+<script>
+var x = document.getElementById("login");
+var y = document.getElementById("registrar");
+var z = document.getElementById("elegir");
+   
+
+
+function login(){
+     x.style.left = "50px";
+y.style.left = "450px";
+z.style.left = "0px";
+
+}
+
+function registrar(){
+
+x.style.left = "-400px";
+y.style.left = "50px";
+z.style.left = "120px";
+
+}
+
+
+</script>
+
+    
+</body>
+</html>
