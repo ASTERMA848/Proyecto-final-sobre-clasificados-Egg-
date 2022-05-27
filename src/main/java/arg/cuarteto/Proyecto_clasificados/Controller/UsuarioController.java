@@ -36,7 +36,7 @@ public class UsuarioController {
         return "exito.html";
     }
 
-    @GetMapping("/logear") // toma como enlace al securitySettings donde valida 
+    @GetMapping("/login-registro") // toma como enlace al securitySettings donde valida 
     //el inicio de sesion y redirecciona al main
     public String login(@RequestParam(required = false) String error,
             @RequestParam(required = false) String logout, ModelMap model) {
@@ -50,26 +50,26 @@ public class UsuarioController {
             model.put("logout", "Ha salido correctamente de la plataforma.");
             // <p th:if="${logout !=null}" th:text ="${logout}" style="color:green"></p>
         }
-        return "logg.html";
+        return "registroaylogin.html";
     }
 
-    @GetMapping("/login-registro") // pagina registro
-    public String registro(ModelMap modelo) {
-        modelo.addAttribute("provincias", Provincia.values());
-        return "registroylogin.html";
-    }
+//    @GetMapping("/login-registro") // pagina registro
+//    public String registro() {
+//        return "registroaylogin.html";
+//    }
 
     //registrar, envia datos del formlario a base datos, form th:action="@{/registrar}" method="POST"
     //RequestParam es para indicar que son necesarios para guardar y viajen  en metodo post
     //ModelMap guarda todo lo que neceistamos guardar temporariamente interfaz de usuario
+    
+    
     @PostMapping("/registrar") // metodo registrar para la pagina registro, carga en la base de datos lo solicitado
-    public String register(ModelMap modelo, MultipartFile archivo,
+    public String register(ModelMap modelo,
             @RequestParam String nombre, @RequestParam String apellido,
-            @RequestParam String email, @RequestParam String clave,
-            @RequestParam Provincia provincia) {
+            @RequestParam String email, @RequestParam String clave) {
         try {
 
-            usuarioService.register(archivo, nombre, apellido, email, clave, provincia);
+            usuarioService.register(nombre, apellido, email, clave);
         } catch (ErrorService ex) { // <p th:if="${Error != null}" th:text="${Error}" style=color:red;></p>  
 
             modelo.put("Error", ex.getMessage()); //estos msj estan enlazados en validation usuarioService
@@ -77,7 +77,7 @@ public class UsuarioController {
             modelo.put("apellido", apellido);
             modelo.put("email", email);
             modelo.put("clave", clave);
-            modelo.put("provincia", provincia);
+           
 
             return "registro.html";
         }

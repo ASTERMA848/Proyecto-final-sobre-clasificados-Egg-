@@ -36,15 +36,12 @@ public class UsuarioService implements UserDetailsService {
     private PhotoService fotoService;
 
     @Transactional(propagation = Propagation.NESTED)
-    public void register(MultipartFile archivo, String nombre, String apellido, String email, String clave, Provincia provincia) throws ErrorService {//este metodo registra al usuario en la base de datos
-        validation(nombre, apellido, email, clave,provincia);// implementamos validation para no andar haciendo if en cada transaccion
+        public void register(String nombre, String apellido, String email, String clave) throws ErrorService {//este metodo registra al usuario en la base de datos
+        validation(nombre, apellido, email, clave);// implementamos validation para no andar haciendo if en cada transaccion
         //llamamos a usuario entidad donde seteamos los atributos
         Usuario usuario = new Usuario();
-        Photo foto = fotoService.guardar(archivo); // guarda la foto en la base de dato
-        usuario.setFoto(foto); // setea la foto
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
-        usuario.setProvincia(provincia);
         usuario.setEmail(email);
         //encriptamos la clave para que se vea con un hash 
         String encriptada = new BCryptPasswordEncoder().encode(clave);
@@ -54,10 +51,27 @@ public class UsuarioService implements UserDetailsService {
         usuarioRepository.save(usuario);
     }
 
+//    public void register(MultipartFile archivo, String nombre, String apellido, String email, String clave, Provincia provincia) throws ErrorService {//este metodo registra al usuario en la base de datos
+//        validation(nombre, apellido, email, clave,provincia);// implementamos validation para no andar haciendo if en cada transaccion
+//        //llamamos a usuario entidad donde seteamos los atributos
+//        Usuario usuario = new Usuario();
+//        Photo foto = fotoService.guardar(archivo); // guarda la foto en la base de dato
+//        usuario.setFoto(foto); // setea la foto
+//        usuario.setNombre(nombre);
+//        usuario.setApellido(apellido);
+//        usuario.setProvincia(provincia);
+//        usuario.setEmail(email);
+//        //encriptamos la clave para que se vea con un hash 
+//        String encriptada = new BCryptPasswordEncoder().encode(clave);
+//        usuario.setClave(encriptada);
+//        usuario.setAlta(new Date());
+//        //guardamos los datos en un nuevo objeto usuario    
+//        usuarioRepository.save(usuario);
+//    }
+
     @Transactional(propagation = Propagation.NESTED)
     public void modificar(MultipartFile archivo, String id, String nombre, String apellido, String email, String clave, Provincia provincia) throws ErrorService {// este metodo modifica al usuario en la base de datos
-        validation(nombre, apellido, email, clave,provincia);
-
+        validation(nombre, apellido, email, clave);
         //jpa nos devuelve un opcional usuario
         Optional<Usuario> respuesta = usuarioRepository.findById(id);
         if (respuesta.isPresent()) {
@@ -86,7 +100,7 @@ public class UsuarioService implements UserDetailsService {
         return usuarioRepository.buscarPorId(id);
     }
 
-    private void validation(String nombre, String apellido, String email, String clave, Provincia provincia) throws ErrorService {// validation para no andar haciendo if anidados en cada transaccion
+    private void validation(String nombre, String apellido, String email, String clave) throws ErrorService {// validation para no andar haciendo if anidados en cada transaccion
 
         if (nombre == null || nombre.isEmpty()) {//pd: esto enlaza al msj de ErrorService para controlador, que luego se ve reflejado en la vista
             throw new ErrorService("Nombre obligatorio.");
@@ -101,9 +115,7 @@ public class UsuarioService implements UserDetailsService {
             throw new ErrorService("Clave obligatoria. Debe tener mas de tres digitos.");
         }
         
-        if (provincia==null ){
-            throw new ErrorService("Debe ingresar una provincia valida");
-        }
+
 
     }
 

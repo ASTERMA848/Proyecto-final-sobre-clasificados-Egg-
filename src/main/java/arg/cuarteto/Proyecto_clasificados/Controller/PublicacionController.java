@@ -45,12 +45,11 @@ public class PublicacionController {
          @RequestParam (required = false) String descripcion,
          @RequestParam (required = false) Oficio oficio,
          @RequestParam (required = false) Date fechaAltabaja,
-         @RequestParam (required = false) String idUsuario,
-         @RequestParam (required = false) Provincia provincia) {        
+         @RequestParam (required = false) String idUsuario) {        
         try {   
             
             publicacionService.crearPublicacion(archivo, idUsuario, titulo, precio, 
-                    descripcion, oficio, fechaAltabaja, provincia); 
+                    descripcion, oficio, fechaAltabaja); 
         } catch (ErrorService ex) { // <p th:if="${Error != null}" th:text="${Error}" style=color:red;></p>   
                 modelo.put("Error", ex.getMessage()); //estos msj estan enlazados en validation usuarioService
                 modelo.put("Foto:", archivo);
@@ -59,7 +58,7 @@ public class PublicacionController {
                 modelo.put("descripcion:", descripcion);
                 modelo.put("oficio:", oficio);
                 modelo.put("usuario",idUsuario); 
-                 modelo.put("provincia", provincia); 
+               
                 return "formularioClasificados.html";
         } 
            

@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml">
+    <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
-    <link rel="stylesheet" href="registro.css">
+    <link rel="stylesheet" href="css/registro.css">
     <script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
-    <link rel="stylesheet" href="light.css" media="(prefers-color-scheme: light)">
-    <link rel="stylesheet" href="dark.css" media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" href="css/light.css" media="(prefers-color-scheme: light)">
+    <link rel="stylesheet" href="css/dark.css" media="(prefers-color-scheme: dark)">
+        
+        
     <meta name="color-scheme" content="dark light">
 </head>
 <body>
@@ -24,9 +27,9 @@
     </div>
 <div class="redes-sociales">
 
-<img src="registroimg/whatsapp.png"   alt="iconop-whatsapp" >
-<img src="registroimg/gmail.png"   alt="icono-gmail">
-<img src="registroimg/facebook.png"  alt="icono-facebook" >
+<img src="css/whatsapp.png"   alt="iconop-whatsapp" >
+<img src="css/gmail.png"   alt="icono-gmail">
+<img src="css/facebook.png"  alt="icono-facebook" >
 
 </div>
 <form id="login" class="input-group" action= "/logincheck" method = "POST">
@@ -45,9 +48,12 @@
 <form id="registrar" class="input-group" th:action="@{/registrar}" method = "POST">
     <input type="text" class="input-field" placeholder="Nombre de Usuario" required name="nombre" th:value="${nombre}">
         <p th:if="${Error != null}" th:text="${Error}" style=color:red;></p>
+        
+    <input type="text" class="input-field" placeholder="Apellido" required name="apellido" th:value="${apellido}">
+        <p th:if="${Error != null}" th:text="${Error}" style=color:red;></p>
     <input type="email" class="input-field" placeholder="Correo" required name="email" th:value="${email}">
         <p th:if="${Error != null}" th:text="${Error}" style=color:red;></p>
-    <input type="text" class="input-field" placeholder="Contraseña" required name="clave" th:value="${clave}">
+    <input type="password" class="input-field" placeholder="Contraseña" required name="clave" th:value="${clave}">
         <p th:if="${Error != null}" th:text="${Error}" style=color:red;></p>
     <input type="checkbox" class="check-box"><span>Acepto los Términos y Condiciones.</span>
     <button type="submit" class="submit-btn">Registrarse</button>

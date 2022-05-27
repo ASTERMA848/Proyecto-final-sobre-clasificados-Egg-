@@ -37,7 +37,7 @@ public class SecuritySettings extends WebSecurityConfigurerAdapter{ // websecuri
                     .antMatchers("/css/", "/js/", "/img/*")//cualquiera puede acceder a css, js, img
                     .permitAll()
                 .and().formLogin() //configuramos el método login, a través de que url se va a acceder al login
-                    .loginPage("/logear")
+                    .loginPage("/login-registro")
                         .loginProcessingUrl("/logincheck") //configuramos cual es la url q va a usar SS para procesar o autenticar algún usuario --> esa url es la que hay q usar en el formulario de nstra pag en html
                         .usernameParameter("email") //establecemos con que nombre van a viajar los parametros de nombre d usuario y clave
                         .passwordParameter("clave") 
