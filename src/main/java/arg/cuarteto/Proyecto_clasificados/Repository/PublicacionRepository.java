@@ -2,6 +2,7 @@
 package arg.cuarteto.Proyecto_clasificados.Repository;
 
 import arg.cuarteto.Proyecto_clasificados.Entity.Publicacion;
+import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Provincia;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -24,7 +25,7 @@ public interface PublicacionRepository  extends JpaRepository<Publicacion, Strin
     
     //buscar por Provincia
     @Query("SELECT q FROM Publicacion q WHERE q.provincia = :provincia")
-    public Publicacion buscarporProvincia (@Param("provincia") String provincia);
+    public Publicacion buscarporProvincia (@Param("provincia") Provincia provincia);
     
   
 
