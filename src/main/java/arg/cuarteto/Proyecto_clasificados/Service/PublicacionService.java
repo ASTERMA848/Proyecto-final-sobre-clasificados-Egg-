@@ -30,9 +30,9 @@ public class PublicacionService {
 
     @Transactional(propagation = Propagation.NESTED)
     public void crearPublicacion(MultipartFile archivo, String idUsuario, String titulo,
-            int precio, String descripcion, Oficio oficio, Date fechaAltabaja) throws ErrorService {
+            int precio, String descripcion, Oficio oficio, Date fechaAltabaja, Provincia provincia) throws ErrorService {
         Usuario usuario = usuarioRepository.findById(idUsuario).get();
-        validar(titulo, precio, descripcion, oficio);
+        validar(titulo, precio, descripcion, oficio, provincia);
         Photo foto = fotoService.guardar(archivo);
 
         Publicacion publicacion = new Publicacion();
@@ -41,7 +41,7 @@ public class PublicacionService {
         publicacion.setOficio(oficio);
         publicacion.setPrecio(precio);
         publicacion.setDescripcion(descripcion);
-        
+        publicacion.setProvincia(provincia);
         publicacion.setFechaAltabaja(new Date());
         publicacion.setUsuario(usuario);
         publicacion.setPhoto(foto);
@@ -50,10 +50,10 @@ public class PublicacionService {
 
     @Transactional(propagation = Propagation.NESTED)
     public void modificarPublicacion(MultipartFile archivo, String id, String titulo,
-            int precio, String descripcion, Oficio oficio, Date fechaAltabaja) throws ErrorService {
+            int precio, String descripcion, Oficio oficio, Date fechaAltabaja, Provincia provincia) throws ErrorService {
         
         
-        validar(titulo, precio, descripcion, oficio);
+        validar(titulo, precio, descripcion, oficio, provincia);
         Optional<Publicacion> respuesta = publicacionRepository.findById(id);
         Photo foto = fotoService.guardar(archivo);
 
@@ -65,7 +65,7 @@ public class PublicacionService {
             publicacion.setOficio(oficio);
             publicacion.setFechaAltabaja(new Date());
             publicacion.setPhoto(foto);
-            
+            publicacion.setProvincia(provincia);
             publicacionRepository.save(publicacion);
         }
     }
@@ -95,7 +95,7 @@ public class PublicacionService {
     }
 
     public void validar(String titulo, int precio, String descripcion,
-            Oficio oficio) throws ErrorService {
+            Oficio oficio, Provincia provincia) throws ErrorService {
         if (titulo == null || titulo.isEmpty()) {
             throw new ErrorService("El nombre no puede ser nulo ni puede estar vacio");
         }
@@ -107,6 +107,9 @@ public class PublicacionService {
         }
         if (oficio == null) {
             throw new ErrorService("Debe poseer un oficio identificado");
+        }
+        if(provincia == null){
+          throw new ErrorService("Debe elegir una provincia de la lista");  
         }
       
     }
