@@ -22,6 +22,10 @@ public interface PublicacionRepository  extends JpaRepository<Publicacion, Strin
     @Query("SELECT f FROM Publicacion f WHERE f.oficio = :oficio")
     public Publicacion buscarporOficio (@Param("oficio") String oficio);
     
+    //buscar por Provincia
+    @Query("SELECT q FROM Publicacion q WHERE q.provincia = :provincia")
+    public Publicacion buscarporProvincia (@Param("provincia") String provincia);
+    
   
 
 }
