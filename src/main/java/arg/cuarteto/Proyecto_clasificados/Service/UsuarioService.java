@@ -50,7 +50,8 @@ public class UsuarioService implements UserDetailsService {
         String encriptada = new BCryptPasswordEncoder().encode(clave);
         usuario.setClave(encriptada);
         
-        envioDeMail.enviarMail(email, "Bienvenido "+ nombre + " a Post Solutions ", "Su registro a sido confirmado con exito");
+        envioDeMail.enviarMail(email, "Bienvenido "+ nombre + " a Post Solutions ",
+                "Su registro a sido confirmado con exito");
         
         //guardamos los datos en un nuevo objeto usuario 
         usuario.setAlta(new Date());

@@ -19,13 +19,12 @@ private JavaMailSender msj;
 public void enviarMail(String mail, String titulo, String descripcion){
   
     SimpleMailMessage mensaje= new SimpleMailMessage();
-    
     mensaje.setTo(mail);
-    mensaje.setFrom("@noreply");
+    mensaje.setFrom("ALGUIEN");
     mensaje.setSubject(titulo);
     mensaje.setText(descripcion);
     mensaje.setSentDate(new Date());
-    
+    msj.send(mensaje);
 }
 
 
