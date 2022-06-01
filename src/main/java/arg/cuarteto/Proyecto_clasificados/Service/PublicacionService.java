@@ -67,6 +67,8 @@ public class PublicacionService {
             publicacion.setPhoto(foto);
             publicacion.setProvincia(provincia);
             publicacionRepository.save(publicacion);
+        }else{
+            throw new ErrorService("Error al modificar la publicacion");
         }
     }
 

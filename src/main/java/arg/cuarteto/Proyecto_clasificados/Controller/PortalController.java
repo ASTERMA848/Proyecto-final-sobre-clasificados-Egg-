@@ -16,6 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class PortalController {
     @GetMapping("/")
     public String inicio(){
-        return"inicio.html";
+        return"index.html";
     }
 }
