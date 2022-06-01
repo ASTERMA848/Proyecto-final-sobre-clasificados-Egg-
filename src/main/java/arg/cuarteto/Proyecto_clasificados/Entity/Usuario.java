@@ -3,9 +3,12 @@ package arg.cuarteto.Proyecto_clasificados.Entity;
 
 import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Oficio;
 import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Provincia;
+import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Roles;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -34,7 +37,8 @@ public class Usuario {
     @OneToOne
     private Photo foto;
     
-
+    @Enumerated(EnumType.STRING)
+    private Roles roles;
  
     @OneToOne
     private Publicacion publicacion;
@@ -52,14 +56,17 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String nombre, String apellido, String email, String clave, Date alta, Date baja) {
+    public Usuario(String nombre, String apellido, String email, String clave, Date alta, Date baja, Roles roles) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.clave = clave;
         this.alta = alta;
         this.baja = baja;
+        this.roles = roles;
     }
+
+  
 
     public String getId() {
         return id;
@@ -116,12 +123,7 @@ public class Usuario {
     public void setBaja(Date baja) {
         this.baja = baja;
     }
-
-    @Override
-    public String toString() {
-        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", clave=" + clave + ", alta=" + alta + ", baja=" + baja + '}';
-    }
-
+    
     public Photo getFoto() {
         return foto;
     }
@@ -138,6 +140,20 @@ public class Usuario {
     public void setPublicacion(Publicacion publicacion) {
         this.publicacion = publicacion;
     }
+
+    public Roles getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Roles roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", clave=" + clave + ", alta=" + alta + ", baja=" + baja + ", foto=" + foto + ", roles=" + roles + ", publicacion=" + publicacion + ", Provincia=" + Provincia + '}';
+    }
+    
     
     
     

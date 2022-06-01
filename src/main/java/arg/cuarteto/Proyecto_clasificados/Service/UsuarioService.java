@@ -4,6 +4,7 @@ import arg.cuarteto.Proyecto_clasificados.Entity.Photo;
 import arg.cuarteto.Proyecto_clasificados.Repository.UsuarioRepository;
 import arg.cuarteto.Proyecto_clasificados.Entity.Usuario;
 import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Provincia;
+import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Roles;
 import arg.cuarteto.Proyecto_clasificados.ErrorService.ErrorService;
 import java.util.ArrayList;
 import java.util.Date;
@@ -47,8 +48,10 @@ public class UsuarioService implements UserDetailsService {
         usuario.setApellido(apellido);
         usuario.setEmail(email);
         //encriptamos la clave para que se vea con un hash 
-        String encriptada = new BCryptPasswordEncoder().encode(clave);
+        String encriptada = new BCryptPasswordEncoder().encode(clave);       
         usuario.setClave(encriptada);
+        
+        usuario.setRoles(Roles.USUARIO);
         
         envioDeMail.enviarMail(email, "Bienvenido "+ nombre + " a Post Solutions ",
                 "Su registro a sido confirmado con exito");
@@ -161,12 +164,13 @@ public class UsuarioService implements UserDetailsService {
         if (usuario != null) {
             List<GrantedAuthority> permisos = new ArrayList<>();
 //Esto son roles que se le agregar al usuario. 
-            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_USUARIO_REGISTRADO");
+            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_USUARIO_REGISTRADO" + usuario.getRoles());
             permisos.add(p1);
 //Esto me permite guardar el OBJETO USUARIO LOG, para luego ser utilizado
             ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-            HttpSession session = attr.getRequest().getSession();
+            HttpSession session = attr.getRequest().getSession(true);
             session.setAttribute("usuariosession", usuario);
+            
             User user = new User(usuario.getEmail(), usuario.getClave(), permisos);
             return user;
         } else {
