@@ -1,15 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package arg.cuarteto.Proyecto_clasificados.Enumeraciones;
 
-/**
- *
- * @author Nnahu
- */
+package arg.cuarteto.Proyecto_clasificados.Enumeraciones;
 public enum Roles {
-    USUARIO, 
-    ADMINISTRADOR;
+    
+    USUARIO ("USUARIO"), 
+    ADMINISTRADOR("ADMINISTRADOR");
+
+    private String nombre;
+
+    private Roles(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getNombre() {
+        return this.nombre;
+    }
 }
