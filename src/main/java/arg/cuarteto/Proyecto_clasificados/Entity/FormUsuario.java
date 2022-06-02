@@ -2,11 +2,14 @@
 package arg.cuarteto.Proyecto_clasificados.Entity;
 
 import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Provincia;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -35,10 +38,10 @@ public class FormUsuario {
     
     //EDUCACION
     private String educacion; 
-    @Enumerated(EnumType.STRING)
-    private String anioInicio; // hacer enum 
-    @Enumerated(EnumType.STRING)
-    private String anioFin; // hacer enum 
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date anioInicio;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date anioFin;
     private String descripcion; 
     @Enumerated(EnumType.STRING)
     private String instituciones; //hacer enum 
@@ -57,8 +60,10 @@ public class FormUsuario {
     private String puesto;
     @Enumerated(EnumType.STRING)
     private boolean estado; // hacer enum
-    private String anioInicio2;
-    private String anioFin2;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date anioInicio2;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date anioFin2;
     private String descripcion2;
     @Enumerated(EnumType.STRING)
     private String remoto ; // hacer enum
@@ -68,12 +73,12 @@ public class FormUsuario {
     public FormUsuario() {
     }
 
-    public FormUsuario(String nombre, String apellido, String oficio, String edad,
+    public FormUsuario( String nombre, String apellido, String oficio, String edad,
             String nacionalidad, Provincia provincia, String direccion, String telefono,
-            String instagram, String facebook, String linkedin, String miweb, String educacion, 
-            String anioInicio, String anioFin, String descripcion, String instituciones,
-            Provincia provinciaEducacion, String idiomas, String nivel, String porcentaje,
-            String trabajo, String puesto, boolean estado, String anioInicio2, String anioFin2,
+            String instagram, String facebook, String linkedin, String miweb, String educacion,
+            Date anioInicio, Date anioFin, String descripcion, String instituciones,
+            Provincia provinciaEducacion, String idiomas, String nivel, String porcentaje, 
+            String trabajo, String puesto, boolean estado, Date anioInicio2, Date anioFin2,
             String descripcion2, String remoto) {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -112,7 +117,7 @@ public class FormUsuario {
     public void setId(String id) {
         this.id = id;
     }
-     
+
     public String getNombre() {
         return nombre;
     }
@@ -217,19 +222,19 @@ public class FormUsuario {
         this.educacion = educacion;
     }
 
-    public String getAnioInicio() {
+    public Date getAnioInicio() {
         return anioInicio;
     }
 
-    public void setAnioInicio(String anioInicio) {
+    public void setAnioInicio(Date anioInicio) {
         this.anioInicio = anioInicio;
     }
 
-    public String getAnioFin() {
+    public Date getAnioFin() {
         return anioFin;
     }
 
-    public void setAnioFin(String anioFin) {
+    public void setAnioFin(Date anioFin) {
         this.anioFin = anioFin;
     }
 
@@ -305,19 +310,19 @@ public class FormUsuario {
         this.estado = estado;
     }
 
-    public String getAnioInicio2() {
+    public Date getAnioInicio2() {
         return anioInicio2;
     }
 
-    public void setAnioInicio2(String anioInicio2) {
+    public void setAnioInicio2(Date anioInicio2) {
         this.anioInicio2 = anioInicio2;
     }
 
-    public String getAnioFin2() {
+    public Date getAnioFin2() {
         return anioFin2;
     }
 
-    public void setAnioFin2(String anioFin2) {
+    public void setAnioFin2(Date anioFin2) {
         this.anioFin2 = anioFin2;
     }
 
@@ -339,8 +344,19 @@ public class FormUsuario {
 
     @Override
     public String toString() {
-        return "FormUsuario{" + "nombre=" + nombre + ", apellido=" + apellido + ", oficio=" + oficio + ", edad=" + edad + ", nacionalidad=" + nacionalidad + ", provincia=" + provincia + ", direccion=" + direccion + ", telefono=" + telefono + ", instagram=" + instagram + ", facebook=" + facebook + ", linkedin=" + linkedin + ", miweb=" + miweb + ", educacion=" + educacion + ", anioInicio=" + anioInicio + ", anioFin=" + anioFin + ", descripcion=" + descripcion + ", instituciones=" + instituciones + ", provinciaEducacion=" + provinciaEducacion + ", idiomas=" + idiomas + ", nivel=" + nivel + ", porcentaje=" + porcentaje + ", trabajo=" + trabajo + ", puesto=" + puesto + ", estado=" + estado + ", anioInicio2=" + anioInicio2 + ", anioFin2=" + anioFin2 + ", descripcion2=" + descripcion2 + ", remoto=" + remoto + '}';
+        return "FormUsuario{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + 
+                apellido + ", oficio=" + oficio + ", edad=" + edad + ", nacionalidad=" +
+                nacionalidad + ", provincia=" + provincia + ", direccion="
+                + direccion + ", telefono=" + telefono + ", instagram=" + instagram +
+                ", facebook=" + facebook + ", linkedin=" + linkedin + ", miweb=" 
+                + miweb + ", educacion=" + educacion + ", anioInicio=" + anioInicio +
+                ", anioFin=" + anioFin + ", descripcion=" + descripcion + ", instituciones=" +
+                instituciones + ", provinciaEducacion=" + provinciaEducacion + ", idiomas=" + idiomas +
+                ", nivel=" + nivel + ", porcentaje=" + porcentaje + ", trabajo=" + trabajo + 
+                ", puesto=" + puesto + ", estado=" + estado + ", anioInicio2=" + anioInicio2 +
+                ", anioFin2=" + anioFin2 + ", descripcion2=" + descripcion2 + ", remoto=" + remoto + '}';
     }
+  
     
     
     
