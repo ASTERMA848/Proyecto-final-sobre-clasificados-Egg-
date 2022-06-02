@@ -49,11 +49,10 @@ public class FormUsuario {
     
     //IDIOMAS
     @Enumerated(EnumType.STRING)
-    private String idiomas; // hacer enum
+    private String idiomas; // HACER ENUM
     @Enumerated(EnumType.STRING)
-    private String nivel; // hacer enum
-    @Enumerated(EnumType.STRING)
-    private String porcentaje; //hacer enum
+    private String nivel; // HACER ENUM
+    
     
     //EXPERIENCIA LABORAL
     private String trabajo;
@@ -77,7 +76,7 @@ public class FormUsuario {
             String nacionalidad, Provincia provincia, String direccion, String telefono,
             String instagram, String facebook, String linkedin, String miweb, String educacion,
             Date anioInicio, Date anioFin, String descripcion, String instituciones,
-            Provincia provinciaEducacion, String idiomas, String nivel, String porcentaje, 
+            Provincia provinciaEducacion, String idiomas, String nivel, 
             String trabajo, String puesto, boolean estado, Date anioInicio2, Date anioFin2,
             String descripcion2, String remoto) {
         this.nombre = nombre;
@@ -100,7 +99,6 @@ public class FormUsuario {
         this.provinciaEducacion = provinciaEducacion;
         this.idiomas = idiomas;
         this.nivel = nivel;
-        this.porcentaje = porcentaje;
         this.trabajo = trabajo;
         this.puesto = puesto;
         this.estado = estado;
@@ -278,13 +276,6 @@ public class FormUsuario {
         this.nivel = nivel;
     }
 
-    public String getPorcentaje() {
-        return porcentaje;
-    }
-
-    public void setPorcentaje(String porcentaje) {
-        this.porcentaje = porcentaje;
-    }
 
     public String getTrabajo() {
         return trabajo;
@@ -352,7 +343,7 @@ public class FormUsuario {
                 + miweb + ", educacion=" + educacion + ", anioInicio=" + anioInicio +
                 ", anioFin=" + anioFin + ", descripcion=" + descripcion + ", instituciones=" +
                 instituciones + ", provinciaEducacion=" + provinciaEducacion + ", idiomas=" + idiomas +
-                ", nivel=" + nivel + ", porcentaje=" + porcentaje + ", trabajo=" + trabajo + 
+                ", nivel=" + nivel + ", trabajo=" + trabajo + 
                 ", puesto=" + puesto + ", estado=" + estado + ", anioInicio2=" + anioInicio2 +
                 ", anioFin2=" + anioFin2 + ", descripcion2=" + descripcion2 + ", remoto=" + remoto + '}';
     }
