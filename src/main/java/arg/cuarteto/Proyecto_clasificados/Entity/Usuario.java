@@ -23,7 +23,6 @@ public class Usuario {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     private String nombre;
-    private String apellido;
     @Column(unique = true)
     private String email;
     private String clave;
@@ -34,31 +33,20 @@ public class Usuario {
     @Temporal(TemporalType.TIMESTAMP)
     private Date baja;
     
-    @OneToOne
-    private Photo foto;
-    
     @Enumerated(EnumType.STRING)
     private Roles roles;
  
     @OneToOne
     private Publicacion publicacion;
 
+  
+
     
-    private Provincia Provincia;
-
-    public Provincia getProvincia() {
-        return Provincia;
-    }
-
-    public void setProvincia(Provincia Provincia) {
-        this.Provincia = Provincia;
-    }
     public Usuario() {
     }
 
-    public Usuario(String nombre, String apellido, String email, String clave, Date alta, Date baja, Roles roles) {
+    public Usuario(String nombre, String email, String clave, Date alta, Date baja, Roles roles) {
         this.nombre = nombre;
-        this.apellido = apellido;
         this.email = email;
         this.clave = clave;
         this.alta = alta;
@@ -84,13 +72,6 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
 
     public String getEmail() {
         return email;
@@ -123,15 +104,6 @@ public class Usuario {
     public void setBaja(Date baja) {
         this.baja = baja;
     }
-    
-    public Photo getFoto() {
-        return foto;
-    }
-
-    public void setFoto(Photo foto) {
-        this.foto = foto;
-    }
-
 
     public Publicacion getPublicacion() {
         return publicacion;
@@ -151,10 +123,10 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", clave=" + clave + ", alta=" + alta + ", baja=" + baja + ", foto=" + foto + ", roles=" + roles + ", publicacion=" + publicacion + ", Provincia=" + Provincia + '}';
+        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", email=" + email + ", clave=" + clave + ", alta=" + alta + ", baja=" + baja + ", roles=" + roles + ", publicacion=" + publicacion + '}';
     }
-    
-    
+
+  
     
     
 }

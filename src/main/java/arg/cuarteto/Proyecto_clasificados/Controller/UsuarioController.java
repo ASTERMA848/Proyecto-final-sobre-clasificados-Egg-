@@ -65,16 +65,15 @@ public class UsuarioController {
     
     @PostMapping("/registrar") // metodo registrar para la pagina registro, carga en la base de datos lo solicitado
     public String register(ModelMap modelo,
-            @RequestParam String nombre, @RequestParam String apellido,
+            @RequestParam String nombre,
             @RequestParam String email, @RequestParam String clave) {
         try {
 
-            usuarioService.register(nombre, apellido, email, clave);
+            usuarioService.register(nombre, email, clave);
         } catch (ErrorService ex) { // <p th:if="${Error != null}" th:text="${Error}" style=color:red;></p>  
 
             modelo.put("Error", ex.getMessage()); //estos msj estan enlazados en validation usuarioService
             modelo.put("nombre", nombre);
-            modelo.put("apellido", apellido);
             modelo.put("email", email);
             modelo.put("clave", clave);
            
