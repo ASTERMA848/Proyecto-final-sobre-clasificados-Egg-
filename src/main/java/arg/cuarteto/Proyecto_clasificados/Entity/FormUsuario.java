@@ -38,13 +38,13 @@ public class FormUsuario {
     
     //EDUCACION
     private String educacion; 
-    @Temporal(TemporalType.TIMESTAMP)
+  
     private Date anioInicio;
-    @Temporal(TemporalType.TIMESTAMP)
+    
     private Date anioFin;
     private String descripcion; 
-    @Enumerated(EnumType.STRING)
-    private String instituciones; //hacer enum 
+   
+    private String instituciones;
     private Provincia provinciaEducacion; 
     
     //IDIOMAS
@@ -58,10 +58,8 @@ public class FormUsuario {
     private String trabajo;
     private String puesto;
     @Enumerated(EnumType.STRING)
-    private boolean estado; // hacer enum
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date anioInicio2;
-    @Temporal(TemporalType.TIMESTAMP)
+    private String estado; // hacer enum  
+    private Date anioInicio2;   
     private Date anioFin2;
     private String descripcion2;
     @Enumerated(EnumType.STRING)
@@ -77,7 +75,7 @@ public class FormUsuario {
             String instagram, String facebook, String linkedin, String miweb, String educacion,
             Date anioInicio, Date anioFin, String descripcion, String instituciones,
             Provincia provinciaEducacion, String idiomas, String nivel, 
-            String trabajo, String puesto, boolean estado, Date anioInicio2, Date anioFin2,
+            String trabajo, String puesto, String estado, Date anioInicio2, Date anioFin2,
             String descripcion2, String remoto) {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -293,11 +291,11 @@ public class FormUsuario {
         this.puesto = puesto;
     }
 
-    public boolean isEstado() {
+    public String isEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
