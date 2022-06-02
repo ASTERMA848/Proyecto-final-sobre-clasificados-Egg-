@@ -8,8 +8,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -24,7 +23,7 @@ public class FormUsuario {
     private String apellido;
     private String oficio;
     private String edad;
-    @Enumerated(EnumType.STRING)
+    
     private String nacionalidad; // hacer enum
     private Provincia provincia; 
     
@@ -48,21 +47,21 @@ public class FormUsuario {
     private Provincia provinciaEducacion; 
     
     //IDIOMAS
-    @Enumerated(EnumType.STRING)
+    
     private String idiomas; // HACER ENUM
-    @Enumerated(EnumType.STRING)
+    
     private String nivel; // HACER ENUM
     
     
     //EXPERIENCIA LABORAL
     private String trabajo;
     private String puesto;
-    @Enumerated(EnumType.STRING)
+    
     private String estado; // hacer enum  
     private Date anioInicio2;   
     private Date anioFin2;
     private String descripcion2;
-    @Enumerated(EnumType.STRING)
+    
     private String remoto ; // hacer enum
     
    //FUTURAS COSAS A AGREGAR ...
