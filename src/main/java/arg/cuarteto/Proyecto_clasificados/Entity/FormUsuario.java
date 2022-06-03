@@ -7,10 +7,12 @@ import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Nivel;
 import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Oficio;
 import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Provincia;
 import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Remoto;
+import arg.cuarteto.Proyecto_clasificados.Enumeraciones.estadoCivil;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -22,13 +24,21 @@ public class FormUsuario {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
+   
+    @OneToOne
+    private Photo photo;
+    
     private String nombre;
     private String apellido;
     private Oficio oficio;
     private String edad;
+    private String dni;
+    private estadoCivil estadoCivil; //hacer enum
+    
     
     private Nacionalidad nacionalidad; // hacer enum
     private Provincia provincia; 
+    private String ciudad;
     
     //CONTACTO
     private String direccion;
@@ -72,13 +82,17 @@ public class FormUsuario {
     public FormUsuario() {
     }
 
-    public FormUsuario(String nombre, String apellido, Oficio oficio, String edad, Nacionalidad nacionalidad, Provincia provincia, String direccion, String telefono, String instagram, String facebook, String linkedin, String miweb, String educacion, Date anioInicio, Date anioFin, String descripcion, String instituciones, Provincia provinciaEducacion, Idiomas idiomas, Nivel nivel, String trabajo, String puesto, Boolean estado, Date anioInicio2, Date anioFin2, String descripcion2, Remoto remoto) {
+    public FormUsuario(Photo photo, String nombre, String apellido, Oficio oficio, String edad, String dni, estadoCivil estadoCivil, Nacionalidad nacionalidad, Provincia provincia, String ciudad, String direccion, String telefono, String instagram, String facebook, String linkedin, String miweb, String educacion, Date anioInicio, Date anioFin, String descripcion, String instituciones, Provincia provinciaEducacion, Idiomas idiomas, Nivel nivel, String trabajo, String puesto, Boolean estado, Date anioInicio2, Date anioFin2, String descripcion2, Remoto remoto) {
+        this.photo = photo;
         this.nombre = nombre;
         this.apellido = apellido;
         this.oficio = oficio;
         this.edad = edad;
+        this.dni = dni;
+        this.estadoCivil = estadoCivil;
         this.nacionalidad = nacionalidad;
         this.provincia = provincia;
+        this.ciudad = ciudad;
         this.direccion = direccion;
         this.telefono = telefono;
         this.instagram = instagram;
@@ -142,6 +156,22 @@ public class FormUsuario {
         this.edad = edad;
     }
 
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public estadoCivil getEstadoCivil() {
+        return estadoCivil;
+    }
+
+    public void setEstadoCivil(estadoCivil estadoCivil) {
+        this.estadoCivil = estadoCivil;
+    }
+
     public Nacionalidad getNacionalidad() {
         return nacionalidad;
     }
@@ -156,6 +186,14 @@ public class FormUsuario {
 
     public void setProvincia(Provincia provincia) {
         this.provincia = provincia;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
     }
 
     public String getDireccion() {
@@ -327,6 +365,7 @@ public class FormUsuario {
     }
 
     
+    
 
     @Override
     public String toString() {
@@ -341,6 +380,14 @@ public class FormUsuario {
                 ", nivel=" + nivel + ", trabajo=" + trabajo + 
                 ", puesto=" + puesto + ", estado=" + estado + ", anioInicio2=" + anioInicio2 +
                 ", anioFin2=" + anioFin2 + ", descripcion2=" + descripcion2 + ", remoto=" + remoto + '}';
+    }
+
+    public Photo getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Photo photo) {
+        this.photo = photo;
     }
   
     
