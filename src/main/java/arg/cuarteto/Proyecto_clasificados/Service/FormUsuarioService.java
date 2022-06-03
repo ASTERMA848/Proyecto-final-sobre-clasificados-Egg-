@@ -43,7 +43,7 @@ public class FormUsuarioService {
     public void guardarForm(MultipartFile archivo, String nombre, String apellido, String email, Oficio oficio, String edad, String dni, estadoCivil estadoCivil,Nacionalidad nacionalidad,
             Provincia provincia, String ciudad, String direccion, String telefono, String instagram, String facebook, String linkedin, String miweb,
             String educacion, Date anioInicio, Date anioFin, String descripcion, String instituciones, Provincia provinciaEducacion,
-            Idiomas idiomas, Nivel nivel, String trabajo, String puesto, Boolean estado, Date anioInicio2, Date anioFin2,
+            Idiomas idiomas, Nivel nivel, String trabajo, String puesto, Date anioInicio2, Date anioFin2,
             String descripcion2, Remoto remoto ) throws ErrorService {//este metodo registra al usuario en la base de datos
         
         FormUsuario formUsuario = new FormUsuario();
@@ -74,7 +74,7 @@ public class FormUsuarioService {
         formUsuario.setNivel(nivel);
         formUsuario.setTrabajo(trabajo);
         formUsuario.setPuesto(puesto);
-        formUsuario.setEstado(estado);
+        formUsuario.setEstado(true);
         formUsuario.setAnioInicio2(anioInicio2);
         formUsuario.setAnioFin2(anioFin2);
         formUsuario.setDescripcion2(descripcion2);
@@ -87,4 +87,6 @@ public class FormUsuarioService {
 
         FormUsuarioRepository.save(formUsuario);
     }
+    
+    
 }

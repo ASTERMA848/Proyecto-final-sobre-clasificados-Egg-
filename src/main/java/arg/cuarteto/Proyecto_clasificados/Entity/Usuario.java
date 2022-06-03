@@ -126,6 +126,14 @@ public class Usuario {
         return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", email=" + email + ", clave=" + clave + ", alta=" + alta + ", baja=" + baja + ", roles=" + roles + ", publicacion=" + publicacion + '}';
     }
 
+    public FormUsuario getFormUsuario() {
+        return formUsuario;
+    }
+
+    public void setFormUsuario(FormUsuario formUsuario) {
+        this.formUsuario = formUsuario;
+    }
+
   
     
     
