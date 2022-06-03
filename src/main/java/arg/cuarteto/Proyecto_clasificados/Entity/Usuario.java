@@ -39,8 +39,8 @@ public class Usuario {
     @OneToOne
     private Publicacion publicacion;
 
-  
-
+    @OneToOne
+    private FormUsuario formUsuario;
     
     public Usuario() {
     }

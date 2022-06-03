@@ -1,11 +1,14 @@
 
 package arg.cuarteto.Proyecto_clasificados.Entity;
 
+import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Idiomas;
+import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Nacionalidad;
+import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Nivel;
+import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Oficio;
 import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Provincia;
+import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Remoto;
 import java.util.Date;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -21,10 +24,10 @@ public class FormUsuario {
     private String id;
     private String nombre;
     private String apellido;
-    private String oficio;
+    private Oficio oficio;
     private String edad;
     
-    private String nacionalidad; // hacer enum
+    private Nacionalidad nacionalidad; // hacer enum
     private Provincia provincia; 
     
     //CONTACTO
@@ -48,34 +51,28 @@ public class FormUsuario {
     
     //IDIOMAS
     
-    private String idiomas; // HACER ENUM
+    private Idiomas idiomas; // HACER ENUM
     
-    private String nivel; // HACER ENUM
+    private Nivel nivel; // HACER ENUM
     
     
     //EXPERIENCIA LABORAL
     private String trabajo;
     private String puesto;
     
-    private String estado; // hacer enum  
+    private Boolean estado; 
     private Date anioInicio2;   
     private Date anioFin2;
     private String descripcion2;
     
-    private String remoto ; // hacer enum
+    private Remoto remoto ; // hacer enum
     
    //FUTURAS COSAS A AGREGAR ...
 
     public FormUsuario() {
     }
 
-    public FormUsuario( String nombre, String apellido, String oficio, String edad,
-            String nacionalidad, Provincia provincia, String direccion, String telefono,
-            String instagram, String facebook, String linkedin, String miweb, String educacion,
-            Date anioInicio, Date anioFin, String descripcion, String instituciones,
-            Provincia provinciaEducacion, String idiomas, String nivel, 
-            String trabajo, String puesto, String estado, Date anioInicio2, Date anioFin2,
-            String descripcion2, String remoto) {
+    public FormUsuario(String nombre, String apellido, Oficio oficio, String edad, Nacionalidad nacionalidad, Provincia provincia, String direccion, String telefono, String instagram, String facebook, String linkedin, String miweb, String educacion, Date anioInicio, Date anioFin, String descripcion, String instituciones, Provincia provinciaEducacion, Idiomas idiomas, Nivel nivel, String trabajo, String puesto, Boolean estado, Date anioInicio2, Date anioFin2, String descripcion2, Remoto remoto) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.oficio = oficio;
@@ -129,11 +126,11 @@ public class FormUsuario {
         this.apellido = apellido;
     }
 
-    public String getOficio() {
+    public Oficio getOficio() {
         return oficio;
     }
 
-    public void setOficio(String oficio) {
+    public void setOficio(Oficio oficio) {
         this.oficio = oficio;
     }
 
@@ -145,11 +142,11 @@ public class FormUsuario {
         this.edad = edad;
     }
 
-    public String getNacionalidad() {
+    public Nacionalidad getNacionalidad() {
         return nacionalidad;
     }
 
-    public void setNacionalidad(String nacionalidad) {
+    public void setNacionalidad(Nacionalidad nacionalidad) {
         this.nacionalidad = nacionalidad;
     }
 
@@ -257,22 +254,21 @@ public class FormUsuario {
         this.provinciaEducacion = provinciaEducacion;
     }
 
-    public String getIdiomas() {
+    public Idiomas getIdiomas() {
         return idiomas;
     }
 
-    public void setIdiomas(String idiomas) {
+    public void setIdiomas(Idiomas idiomas) {
         this.idiomas = idiomas;
     }
 
-    public String getNivel() {
+    public Nivel getNivel() {
         return nivel;
     }
 
-    public void setNivel(String nivel) {
+    public void setNivel(Nivel nivel) {
         this.nivel = nivel;
     }
-
 
     public String getTrabajo() {
         return trabajo;
@@ -290,11 +286,11 @@ public class FormUsuario {
         this.puesto = puesto;
     }
 
-    public String isEstado() {
+    public Boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 
@@ -322,13 +318,15 @@ public class FormUsuario {
         this.descripcion2 = descripcion2;
     }
 
-    public String getRemoto() {
+    public Remoto getRemoto() {
         return remoto;
     }
 
-    public void setRemoto(String remoto) {
+    public void setRemoto(Remoto remoto) {
         this.remoto = remoto;
     }
+
+    
 
     @Override
     public String toString() {
