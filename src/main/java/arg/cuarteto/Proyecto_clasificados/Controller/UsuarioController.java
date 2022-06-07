@@ -27,7 +27,7 @@ public class UsuarioController {
 
     @GetMapping("/main") // pagina main
     public String index() {
-        return "index.html";
+        return "/publicacionForm";
     }
 
     @PreAuthorize("hasAnyRole ('ROLE_USUARIO_REGISTRADO')") // autorizacion para usuarios logeado "con esto podemos hacer que el admin tenga mas privilegios"
@@ -81,7 +81,7 @@ public class UsuarioController {
         //- msj que se ve una vez bien registrado el usuario
         modelo.put("descripcion", "Tu usuario fue registrado satisfactoriamente");
         // <p th:text="${descripcion}"></p>     
-        return "exito.html";
+        return "pulicacion.html";
     }
 
     @GetMapping("/formulario-clasificados") // pagina registro

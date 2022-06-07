@@ -42,7 +42,7 @@ public class SecuritySettings extends WebSecurityConfigurerAdapter{ // websecuri
                         .loginProcessingUrl("/logincheck") //configuramos cual es la url q va a usar SS para procesar o autenticar algún usuario --> esa url es la que hay q usar en el formulario de nstra pag en html
                         .usernameParameter("email") //establecemos con que nombre van a viajar los parametros de nombre d usuario y clave
                         .passwordParameter("clave") 
-                        .defaultSuccessUrl("/main") //retornamos al main una vez logeados
+                        .defaultSuccessUrl("/publicacionForm") //retornamos al main una vez logeados
                         .permitAll()
                 .and().logout()
                         .logoutUrl("/logout")// boton logout
