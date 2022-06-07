@@ -34,7 +34,7 @@ public class SecuritySettings extends WebSecurityConfigurerAdapter{ // websecuri
     protected void configure(HttpSecurity http) throws Error, Exception{
         http.headers().frameOptions().sameOrigin().and()
                 .authorizeRequests()
-                .antMatchers("/usuario/").hasRole("USUARIO")
+                //.antMatchers("/usuario/").hasRole("USUARIO")
                     .antMatchers("/css/", "/js/", "/img/*")//cualquiera puede acceder a css, js, img
                     .permitAll()
                 .and().formLogin() //configuramos el método login, a través de que url se va a acceder al login

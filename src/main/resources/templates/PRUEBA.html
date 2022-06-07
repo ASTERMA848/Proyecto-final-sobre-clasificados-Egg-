@@ -4,7 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
@@ -25,14 +25,11 @@ and open the template in the editor.
                                 <!--<input type="file" class="form-control" name="archivo" placeholder="foto"/>  envia el archivo ala base de datos -->       
                                 <input type="file" class="form-control" name="archivo" placeholder="foto"/>
                                 <!--hidden sirve es pra que la etiqueta funcione pero no se muestre en la vista-->
-                                <input type="hidden" class="form-control" name="idUsuario" 
-                                       placeholder="id"  th:value="${session.usuariosession.id}"/>
+                                <input type="text" class="form-control" name="idUsuario" 
+                                       placeholder="id"  />
                                 <!--//session.usuariosession.id trael el ID del usuario que inicio sesion en ese momento (en el metodo get del controlador tiene una anoracion que permite hacer eso)-->
-                                <input th:value="${titulo}" class="form-control" type="text" name="titulo"
-                                       placeholder="Titulo"/> <!-- envia el nombre ala base de datos -->
-                                <input th:value="${precio}" class="form-control" type="number" name="precio"
-                                       placeholder="Precio"/>
-                                <select name="oficio">
+                               
+<!--                                <select name="oficio">
                                     <option selected value=""> 
                                         Seleccionar oficio
 
@@ -52,7 +49,7 @@ and open the template in the editor.
 
                                     </option>
 
-                                </select>
+                                </select>-->
 
                                 <input th:value="${descripcion}" class="form-control" type="text" name="descripcion" 
                                        placeholder="Descripcion"/>

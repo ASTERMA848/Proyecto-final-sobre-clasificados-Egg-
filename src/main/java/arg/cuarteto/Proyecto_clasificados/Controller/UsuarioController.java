@@ -25,15 +25,15 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-   @PreAuthorize("hasAnyRole ('ROLE_USUARIO_REGISTRADO')" ) // autorizacion para usuarios logeado "con esto podemos hacer que el admin tenga mas privilegios"
     @GetMapping("/main") // pagina main
     public String index() {
         return "index.html";
     }
 
+    @PreAuthorize("hasAnyRole ('ROLE_USUARIO_REGISTRADO')") // autorizacion para usuarios logeado "con esto podemos hacer que el admin tenga mas privilegios"
     @GetMapping("/exito") // pagina msj de exito del usuario registrado
     public String exito() {
-        return "exito.html";
+        return "formularioClasificados.html";
     }
 
     @GetMapping("/login-registro") // toma como enlace al securitySettings donde valida 
@@ -57,12 +57,9 @@ public class UsuarioController {
 //    public String registro() {
 //        return "registroaylogin.html";
 //    }
-
     //registrar, envia datos del formlario a base datos, form th:action="@{/registrar}" method="POST"
     //RequestParam es para indicar que son necesarios para guardar y viajen  en metodo post
     //ModelMap guarda todo lo que neceistamos guardar temporariamente interfaz de usuario
-    
-    
     @PostMapping("/registrar") // metodo registrar para la pagina registro, carga en la base de datos lo solicitado
     public String register(ModelMap modelo,
             @RequestParam String nombre,
@@ -76,7 +73,6 @@ public class UsuarioController {
             modelo.put("nombre", nombre);
             modelo.put("email", email);
             modelo.put("clave", clave);
-           
 
             return "registro.html";
         }

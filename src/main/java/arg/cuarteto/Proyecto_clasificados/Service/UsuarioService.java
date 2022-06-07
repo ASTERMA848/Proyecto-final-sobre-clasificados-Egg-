@@ -26,7 +26,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
-
 @Service
 public class UsuarioService implements UserDetailsService {
 
@@ -38,26 +37,26 @@ public class UsuarioService implements UserDetailsService {
 
     @Autowired
     private EnvioMail envioDeMail;
-    
+
     @Transactional(propagation = Propagation.NESTED)
-        public void register(String nombre, String email, String clave) throws ErrorService {//este metodo registra al usuario en la base de datos
-        validation(nombre,email, clave);// implementamos validation para no andar haciendo if en cada transaccion
+    public void register(String nombre, String email, String clave) throws ErrorService {//este metodo registra al usuario en la base de datos
+        validation(nombre, email, clave);// implementamos validation para no andar haciendo if en cada transaccion
         //llamamos a usuario entidad donde seteamos los atributos
         Usuario usuario = new Usuario();
         usuario.setNombre(nombre);
         usuario.setEmail(email);
         //encriptamos la clave para que se vea con un hash 
-        String encriptada = new BCryptPasswordEncoder().encode(clave);       
+        String encriptada = new BCryptPasswordEncoder().encode(clave);
         usuario.setClave(encriptada);
-        
+
         usuario.setRoles(Roles.USUARIO);
-        
-        envioDeMail.enviarMail(email, "Bienvenido "+ nombre + " a Post Solutions ",
+
+        envioDeMail.enviarMail(email, "Bienvenido " + nombre + " a Post Solutions ",
                 "Su registro a sido confirmado con exito");
-        
+
         //guardamos los datos en un nuevo objeto usuario 
         usuario.setAlta(new Date());
-           
+
         usuarioRepository.save(usuario);
     }
 
@@ -78,7 +77,6 @@ public class UsuarioService implements UserDetailsService {
 //        //guardamos los datos en un nuevo objeto usuario    
 //        usuarioRepository.save(usuario);
 //    }
-
     @Transactional(propagation = Propagation.NESTED)
     public void modificar(MultipartFile archivo, String id, String nombre, String email, String clave, Provincia provincia) throws ErrorService {// este metodo modifica al usuario en la base de datos
         validation(nombre, email, clave);
@@ -94,10 +92,8 @@ public class UsuarioService implements UserDetailsService {
 //            if (usuario.getFoto() != null) { //if vinculaa la foto que no este nula
 //                idFoto = usuario.getFoto().getid(); // vincula esa foto con el id del usuario
 //            }
-
 //            Photo foto = fotoService.editar(idFoto, archivo); // edita la foto con el metodo servicio foto
 //            usuario.setFoto(foto); //setea la foto a editar
-
             usuarioRepository.save(usuario);
         } else {
             throw new ErrorService("No se encontro el usuario solicitado");
@@ -119,8 +115,6 @@ public class UsuarioService implements UserDetailsService {
         if (clave == null || clave.isEmpty() || clave.length() <= 3) {
             throw new ErrorService("Clave obligatoria. Debe tener mas de tres digitos.");
         }
-        
-
 
     }
 
@@ -158,13 +152,16 @@ public class UsuarioService implements UserDetailsService {
         if (usuario != null) {
             List<GrantedAuthority> permisos = new ArrayList<>();
 //Esto son roles que se le agregar al usuario. 
-            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_USUARIO_REGISTRADO" + usuario.getRoles());
+            GrantedAuthority p1 = new SimpleGrantedAuthority("ROL_USUARIO_REGISTRADO");
             permisos.add(p1);
+            GrantedAuthority p2 = new SimpleGrantedAuthority("ROL_USUARIO_ADMINISTRADOR");
+            permisos.add(p2);
 //Esto me permite guardar el OBJETO USUARIO LOG, para luego ser utilizado
-            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.
+                    currentRequestAttributes();
             HttpSession session = attr.getRequest().getSession(true);
             session.setAttribute("usuariosession", usuario);
-            
+
             User user = new User(usuario.getEmail(), usuario.getClave(), permisos);
             return user;
         } else {

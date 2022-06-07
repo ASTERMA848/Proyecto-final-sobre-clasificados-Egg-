@@ -10,6 +10,7 @@ import arg.cuarteto.Proyecto_clasificados.ErrorService.ErrorService;
 import arg.cuarteto.Proyecto_clasificados.Repository.PublicacionRepository;
 import arg.cuarteto.Proyecto_clasificados.Repository.UsuarioRepository;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,7 @@ public class PublicacionService {
 
     @Transactional(propagation = Propagation.NESTED)
     public void crearPublicacion(MultipartFile archivo, String idUsuario, String titulo,
-            int precio, String descripcion, Oficio oficio, Date fechaAltabaja, Provincia provincia) throws ErrorService {
+            int precio, String descripcion, Oficio oficio,Provincia provincia) throws ErrorService {
         Usuario usuario = usuarioRepository.findById(idUsuario).get();
         validar(titulo, precio, descripcion, oficio, provincia);
         Photo foto = fotoService.guardar(archivo);
@@ -95,6 +96,8 @@ public class PublicacionService {
             throw new ErrorService("El ID consultado no se encuentra en la base de datos.");
         }
     }
+    
+    
 
     public void validar(String titulo, int precio, String descripcion,
             Oficio oficio, Provincia provincia) throws ErrorService {
@@ -114,6 +117,10 @@ public class PublicacionService {
           throw new ErrorService("Debe elegir una provincia de la lista");  
         }
       
+    }
+    @Transactional(readOnly = true)
+    public List<Publicacion> mostrarPublicaciones(){
+        return publicacionRepository.findAll();
     }
 
 }

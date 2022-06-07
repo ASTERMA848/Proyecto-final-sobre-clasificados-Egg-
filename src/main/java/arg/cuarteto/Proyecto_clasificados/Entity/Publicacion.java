@@ -1,4 +1,3 @@
-
 package arg.cuarteto.Proyecto_clasificados.Entity;
 
 import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Oficio;
@@ -6,6 +5,8 @@ import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Provincia;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -15,12 +16,12 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Publicacion implements Serializable {
-   
+
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-
+    @Enumerated(EnumType.STRING)
     private Oficio oficio;
     private String titulo;
     private int precio;
@@ -32,7 +33,7 @@ public class Publicacion implements Serializable {
     private Photo photo;
     @OneToOne
     private Usuario usuario;
-
+    @Enumerated(EnumType.STRING)
     private Provincia provincia;
 
     public Provincia getProvincia() {
@@ -42,8 +43,7 @@ public class Publicacion implements Serializable {
     public void setProvincia(Provincia provincia) {
         this.provincia = provincia;
     }
-    
-    
+
     public Oficio getOficio() {
         return oficio;
     }
@@ -59,7 +59,7 @@ public class Publicacion implements Serializable {
     public void setPhoto(Photo photo) {
         this.photo = photo;
     }
-   
+
     public Usuario getUsuario() {
         return usuario;
     }
@@ -67,7 +67,6 @@ public class Publicacion implements Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
 
     public String getId() {
         return id;
@@ -76,8 +75,6 @@ public class Publicacion implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
-
-    
 
     public String getTitulo() {
         return titulo;
@@ -94,6 +91,7 @@ public class Publicacion implements Serializable {
     public void setPrecio(int precio) {
         this.precio = precio;
     }
+
     public String getDescripcion() {
         return descripcion;
     }
@@ -118,6 +116,4 @@ public class Publicacion implements Serializable {
         this.fechaAltabaja = fechaAltabaja;
     }
 
-    
- 
 }
