@@ -38,7 +38,7 @@ public class PublicacionController {
     @PostMapping("/cargarPublicacion") // metodo registrar para la pagina registro,
     //carga en la base de datos lo solicitado
     public String crearPublicacion(ModelMap modelo,
-            @RequestParam(required = false) MultipartFile archivo,
+            MultipartFile archivo,
             @RequestParam(required = false) String titulo,
             @RequestParam(required = false) int precio,
             @RequestParam(required = false) String descripcion,

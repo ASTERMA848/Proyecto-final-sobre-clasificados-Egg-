@@ -35,7 +35,7 @@ public class PublicacionService {
         Usuario usuario = usuarioRepository.findById(idUsuario).get();
         validar(titulo, precio, descripcion, oficio, provincia);
         Photo foto = fotoService.guardar(archivo);
-
+        System.out.println("ENTRAAAA");
         Publicacion publicacion = new Publicacion();
         publicacion.setActivo(Boolean.TRUE);
         publicacion.setTitulo(titulo);

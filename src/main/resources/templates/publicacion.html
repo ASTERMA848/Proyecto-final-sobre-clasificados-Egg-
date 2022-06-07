@@ -113,20 +113,26 @@
 
                     <form th:action="@{/cargarPublicacion}" method = "POST" enctype="multipart/form-data"> <!--Back metodo post--> 
 
-                        <div class="post-imput-container">
+                        
                             <textarea rows="3" placeholder="¿Qué deseas publicar hoy?"></textarea>
 
-                            <input type="text" name="titulo"> 
+                            <input type="text" name="titulo" placeholder="Titulo"> 
                            
-                            <input type="text" name="descripcion"> 
-                            <input type="number" name="precio"> 
-                            <select  name="provincia">     
+                            <input type="text" name="descripcion" placeholder="Descripcion"> 
+                            
+                            <input type="number" name="precio" placeholder="Precio"> 
+                             
+                            <select type="text" name="provincia" placeholder="Provincia">     
                                 <option th:each ="provincia: ${provincias}" th:value="${provincia.nombre}"></option> 
                             </select>
-                            <select  name="oficio">     
+                             
+                            <select type="text" name="oficio" placeholder="Oficio">     
                                 <option th:each ="oficio: ${oficios}" th:value="${oficio.nombre}"></option> 
                             </select>
-                           <input type="file" class="form-control" name="archivo" /> 
+                                    
+                           <input type="file" class="form-control" name="archivo" placeholder="Foto"/> 
+                            <input type="text" class="form-control" name="idUsuario" placeholder="ID" /> 
+                           
 
 
                             <div class="add-post-links">
@@ -135,7 +141,7 @@
                                 <button type="publicar" class="btn btn-primary">Publicar</button>
 
                             </div>
-                        </div>
+                       
                     </form>
                 </div>
 
