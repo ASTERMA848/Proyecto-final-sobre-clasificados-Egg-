@@ -11,7 +11,11 @@
     --bg-color: #fff;
 }
 
-
+.dark-theme {
+    --body-color: #0a0a0a;
+    --nav-color: #000;
+    --bg-color: #000;
+}
 
 body {
 
@@ -235,57 +239,26 @@ nav {
     margin-right: 10px;
 }
 
-.post-container {
+.post-imput-container {
     padding-left: 55px;
     padding-top: 20px;
 }
 
-
-  .campo {
-    margin-bottom: 1em;
-    
+.post-imput-container textarea {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid #ccc;
+    background: transparent;
+    resize: none;
 }
 
-/* Elementos de clase "campo" de tag <label> */
-.campo label {
-    margin-bottom: 0.2em;
-    color: #59429d;
-    display: block;
+.post-imput-container select {
+    padding: 10px;
+    width: 100%;
+    border: 0;
+    outline: 0;
 }
-
-/* Elementos de classe "campo" y "grupo" de tag <fieldset> */
-fieldset.grupo .campo {
-    float:  left;
-    margin-right: 1em;
-}
-
-/* Elementos de clase "campo"  tags <input> con atributo text y email, de tag <select> e da tag <textarea>*/
-.campo input[type="text"], .campo input[type="number"], .campo select, .campo textarea .campo {
-    padding: 0.2em;
-    border: 1px solid #59429d;
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
-    display: block;
-}
-
-/* Elementos de clase "campo" de tag <select> e <option>*/
-.campo select option {
-    padding-right: 1em;
-}
-
-/* Elemento de clase "campo" con tag <input>, <select> e <textarea> "focus"*/
-.campo input:focus, .campo select:focus, .campo textarea:focus {
-    background: #E0E0F8;
-}
-
-.grupo:before, .grupo:after {
-    display: table;
-}
-
-
-.grupo:after {
-    clear: both;
-}
-
 
 .file-select {
     position: relative;
@@ -306,24 +279,25 @@ fieldset.grupo .campo {
     top: 0;
     bottom: 0;
   }
-.file-select input[type="file"] {
+  
+  .file-select input[type="file"] {
     opacity: 0;
     width: 200px;
     height: 32px;
     display: inline-block;
   }
-
-
-#src-file1::before {
+  
+  #src-file1::before {
     content: 'Subir foto';
   }
   
   #src-file2::before {
     content: 'Subir video';
-  } 
+  }  
 
 
-.post-container button {
+
+.post-imput-container button {
     border-radius: 100px;
     padding: 10px;
     width: 100%;

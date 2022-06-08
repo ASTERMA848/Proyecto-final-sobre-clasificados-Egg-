@@ -28,6 +28,7 @@ input{
 padding: 5px;
 border-radius: 10px ;
 overflow: hidden;
+border: black 2px solid;
 }
 
 .button-box{
@@ -36,6 +37,7 @@ margin: 30px auto;
 position: relative;
 box-shadow: 0 0 20px 9px  #e0e0e0;
 border-radius: 30px ;
+border: black 1px solid;
 
 }
 
