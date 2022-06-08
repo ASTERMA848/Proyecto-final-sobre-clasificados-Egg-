@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -103,69 +103,80 @@
                 <div class="user-profile">
                     <img src="imagenes/fotoPerfil.jpg">
                     <div>
-                        <p>Milagros Saldaña</p>
+                        <p th:text="${session.usuariosession.nombre}"> </p>
                         <small>publica tu empleo aquí</small>
                     </div>
                 </div>
 
                 <form th:action="@{/cargarPublicacion}" method = "POST" enctype="multipart/form-data">
-                <div class="post-imput-container">
-                    <input type="text" name="titulo" placeholder="Titulo">
-                    <hr>
-                    <input type="text" name="descripcion" placeholder="Descripcion">  <input type="number" name="precio" placeholder="$"  >
-                    <hr>
+                <div class="post-container">
+                  <fieldset class="grupo">
+                    <div class="campo">
+                        <label for="titulo"><strong>Título</strong></label>
+                      <input type="text" name="titulo" >
+                    </div>
                     
-                    <select type="text" name="provincia" placeholder="Provincia">     
-                        <option th:each ="provincia: ${provincias}" th:value="${provincia.nombre}"></option> 
+                    <div class="campo">
+                        <label for="descripcion"><strong>Descripción</strong></label>
+                     <input type="text" name="descripcion">  
+                     </div>
+                    
+                    <div class="campo">
+                        <label for="precio"><strong>Precio</strong></label>
+                        <input type="number" name="precio" placeholder="$">
+                      </div>
+
+
+
+                    <select type="text" name="provincia" id="provincia" >   
+                        <option selected disable value="">Seleccionar provincia</option>  
+                        <option th:each ="provincia: ${provincias}" th:value="${provincia}"th:text="${provincia.nombre}" ></option> 
                     </select>
                     <hr>
-                    <select type="text" name="oficio" placeholder="Oficio">     
-                        <option th:each ="oficio: ${oficios}" th:value="${oficio.nombre}"></option> 
+                    <select type="text" name="oficio" id="oficio">
+                        <option selected disable value="">Seleccionar oficio</option>      
+                        <option th:each ="oficio: ${oficios}" th:value="${oficio}" th:text="${oficio.nombre}"></option> 
                     </select>
+                  </fieldset>  
                     <hr>
                     <input type="hidden" class="form-control" name="idUsuario" placeholder="ID" th:value="${session.usuariosession.id}"/>
 
                 
                     
                           <div class="file-select" id="src-file1" >
-                            <input type="file" name="src-file1" aria-label="Archivo">
+                            <input type="file" aria-label="Archivo" name="archivo">
                           </div>
                           <div class="file-select" id="src-file2" >
                             <input type="file" name="src-file2" aria-label="Archivo">
                           </div>
                           <div class="add-post-links">
-                              <button type="publicar" class="btn btn-primary">Publicar</button>
+                              <button type="submit" class="btn btn-primary">Publicar</button>
                             </div>
 
-                          
-                          
-                          
-
-                        
-
-                    
                 </div>
                 </form>
             </div>
 
 
-            <div class="post-container">
+            <div class="post-container" th:each="publicacion:${publicaciones}">
                 <div class="post-row">
                     <div class="user-profile">
-                        <img src="imagenes/fotoPerfil.jpg">
+                        
+                        <!--<img src="@{publicacion.usuario.foto}">-->
                         <div>
-                            <p>Milagros Saldaña</p>
-                            <span>Mayo 25 2022, 09:00 am</span>
+                            <p th:text="${publicacion.usuario.nombre}"></p>
+                            <span th:text="${publicacion.fechaAltabaja}"></span>
                         </div>
                     </div>
                     <a href="#"><img src="imagenes/mas.png"></a>
+                    <!--boton-->
                 </div>
 
                 <p class="post-text">Desde <span>@Flip</span> estamos buscando mujeres developer para sumar a
                     nuestro equipo, sumate
                     <a href="#">#Fullstack</a> <a href="#">#Back end</a> <a href="#">#Front end</a>
                 </p>
-                <img src="imagenes/medium-shot-woman-holding-tablet.jpg" class="post-img">
+                <img src="${publicacion.foto}" class="post-img">
 
                 <div class="post-row">
                     <div class="activity-icons">

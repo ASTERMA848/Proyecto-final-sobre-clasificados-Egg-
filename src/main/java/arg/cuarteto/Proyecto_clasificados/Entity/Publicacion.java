@@ -21,7 +21,7 @@ public class Publicacion implements Serializable {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private Oficio oficio;
     private String titulo;
     private int precio;
@@ -33,7 +33,7 @@ public class Publicacion implements Serializable {
     private Photo photo;
     @OneToOne
     private Usuario usuario;
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private Provincia provincia;
 
     public Provincia getProvincia() {
