@@ -45,13 +45,16 @@
 
 </form>
 
-<form id="registrar" class="input-group" th:action="@{/registrar}" method = "POST">
+<form id="registrar" class="input-group" th:action="@{/registrar}" method = "POST" enctype="multipart/form-data">
     <input type="text" class="input-field" placeholder="Nombre de Usuario" required name="nombre" th:value="${nombre}">
         <p th:if="${Error != null}" th:text="${Error}" style=color:red;></p>
     <input type="email" class="input-field" placeholder="Correo" required name="email" th:value="${email}">
         <p th:if="${Error != null}" th:text="${Error}" style=color:red;></p>
     <input type="password" class="input-field" placeholder="Contraseña" required name="clave" th:value="${clave}">
         <p th:if="${Error != null}" th:text="${Error}" style=color:red;></p>
+        <input type="file" class="input-field" placeholder="Foto" required name="archivo" th:value="${archivo}">
+        <p th:if="${Error != null}" th:text="${Error}" style=color:red;></p>
+        
     <input type="checkbox" class="check-box"><span>Acepto los Términos y Condiciones.</span>
     <button type="submit" class="submit-btn">Registrarse</button>
     

@@ -39,7 +39,7 @@ public class UsuarioService implements UserDetailsService {
     private EnvioMail envioDeMail;
 
     @Transactional(propagation = Propagation.NESTED)
-    public void register(String nombre, String email, String clave) throws ErrorService {//este metodo registra al usuario en la base de datos
+    public void register(MultipartFile archivo, String nombre, String email, String clave) throws ErrorService {//este metodo registra al usuario en la base de datos
         validation(nombre, email, clave);// implementamos validation para no andar haciendo if en cada transaccion
         //llamamos a usuario entidad donde seteamos los atributos
         Usuario usuario = new Usuario();
@@ -48,7 +48,8 @@ public class UsuarioService implements UserDetailsService {
         //encriptamos la clave para que se vea con un hash 
         String encriptada = new BCryptPasswordEncoder().encode(clave);
         usuario.setClave(encriptada);
-
+        Photo foto = fotoService.guardar(archivo); // guarda la foto en la base de dato
+        usuario.setFoto(foto); // setea la foto
         usuario.setRoles(Roles.USUARIO);
 
         envioDeMail.enviarMail(email, "Bienvenido " + nombre + " a Post Solutions ",

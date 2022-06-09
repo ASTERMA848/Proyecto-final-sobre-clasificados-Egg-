@@ -62,11 +62,20 @@ public class UsuarioController {
     //ModelMap guarda todo lo que neceistamos guardar temporariamente interfaz de usuario
     @PostMapping("/registrar") // metodo registrar para la pagina registro, carga en la base de datos lo solicitado
     public String register(ModelMap modelo,
+            MultipartFile archivo,
             @RequestParam String nombre,
             @RequestParam String email, @RequestParam String clave) {
         try {
-
-            usuarioService.register(nombre, email, clave);
+            System.out.println(archivo);
+             System.out.println(nombre);
+             System.out.println(email);
+              System.out.println(clave);
+            
+            
+            
+            
+            
+            usuarioService.register(archivo, nombre, email, clave);
         } catch (ErrorService ex) { // <p th:if="${Error != null}" th:text="${Error}" style=color:red;></p>  
 
             modelo.put("Error", ex.getMessage()); //estos msj estan enlazados en validation usuarioService
@@ -81,7 +90,7 @@ public class UsuarioController {
         //- msj que se ve una vez bien registrado el usuario
         modelo.put("descripcion", "Tu usuario fue registrado satisfactoriamente");
         // <p th:text="${descripcion}"></p>     
-        return "pulicacion.html";
+        return "/registroaylogin";
     }
 
     @GetMapping("/formulario-clasificados") // pagina registro

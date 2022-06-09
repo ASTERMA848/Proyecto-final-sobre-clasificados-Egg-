@@ -23,7 +23,16 @@ public class Usuario {
     @Column(unique = true)
     private String email;
     private String clave;
-    
+    @OneToOne
+    private Photo foto;
+
+    public Photo getFoto() {
+        return foto;
+    }
+
+    public void setFoto(Photo foto) {
+        this.foto = foto;
+    }
     @Temporal(TemporalType.TIMESTAMP)
     private Date alta;
     
