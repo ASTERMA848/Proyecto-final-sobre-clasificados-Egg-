@@ -146,6 +146,7 @@ public class UsuarioService implements UserDetailsService {
             throw new ErrorService("No se encontro el usuario solicitado");
         }
     }
+     
 
     @Override // usuario quiere autentificarse en plataforma, les da esos permisos
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

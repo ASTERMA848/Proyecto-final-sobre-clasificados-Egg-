@@ -1,17 +1,20 @@
 package arg.cuarteto.Proyecto_clasificados.Controller;
 
 import arg.cuarteto.Proyecto_clasificados.Entity.Publicacion;
+
 import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Oficio;
 import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Provincia;
 import arg.cuarteto.Proyecto_clasificados.ErrorService.ErrorService;
 import arg.cuarteto.Proyecto_clasificados.Service.PublicacionService;
-import java.util.Date;
+import arg.cuarteto.Proyecto_clasificados.Service.UsuarioService;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,14 +27,20 @@ public class PublicacionController {
     @Autowired
     private PublicacionService publicacionService;
 
-   // @PreAuthorize("hasAnyRole ('ROLE_USUARIO_REGISTRADO')") // autorizacion para 
+    @Autowired
+    private UsuarioService usuarioService;
+
+    // @PreAuthorize("hasAnyRole ('ROLE_USUARIO_REGISTRADO')") // autorizacion para 
     //usuarios logeado "con esto podemos hacer que el admin tenga mas privilegios"
-    @GetMapping("/publicacionForm") 
+    @GetMapping("/publicacionForm")
     public String crear(ModelMap modelo) {
         modelo.put("oficios", Oficio.values()); //paso la lista de oficios
         //para que se muestre en una lista en el html
         modelo.put("provincias", Provincia.values()); //paso las provincias
         //para ponerlas en el html en forma de lista
+        List<Publicacion> publicaciones = publicacionService.mostrarPublicaciones();
+        System.out.println(publicaciones);
+        modelo.put("publicaciones", publicaciones);
         return "publicacion.html";
     }
 
@@ -45,14 +54,14 @@ public class PublicacionController {
             @RequestParam(required = false) Oficio oficio,
             @RequestParam(required = false) String idUsuario,
             @RequestParam(required = false) Provincia provincia) {
-        
+
         try {
             System.out.println(titulo);
-             System.out.println(precio);
-              System.out.println(descripcion);
-               System.out.println(provincia);
-                System.out.println(oficio);
-                  System.out.println(idUsuario);
+            System.out.println(precio);
+            System.out.println(descripcion);
+            System.out.println(provincia);
+            System.out.println(oficio);
+            System.out.println(idUsuario);
             publicacionService.crearPublicacion(archivo, idUsuario, titulo, precio,
                     descripcion, oficio, provincia);
         } catch (ErrorService ex) { // <p th:if="${Error != null}" th:text="${Error}" style=color:red;></p>   
@@ -68,13 +77,16 @@ public class PublicacionController {
             return "publicacion.html";
         }
 
-        return "index.html";
+        return "/publicacionForm";
     }
 
-    @GetMapping("/mostrarPublicacion")
-    public String mostrarPublicacion(ModelMap modelo) {
-        List<Publicacion> publicaciones = publicacionService.mostrarPublicaciones();
-        modelo.put("publicaciones", publicaciones);
-        return "publicacion.html";
-    }
+
+
+//    @GetMapping("/mostrarPublicacion")
+//    public String mostrarPublicacion(ModelMap modelo) {
+//        List<Publicacion> publicaciones = publicacionService.mostrarPublicaciones();
+//     
+//        modelo.put("publicaciones", publicaciones);
+//        return "publicacion3.html";
+//    }
 }

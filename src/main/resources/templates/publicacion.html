@@ -1,364 +1,338 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/publi.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/publi.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <title>Portal de Empleo</title>
+        <title>Portal de Empleo</title>
 
-</head>
+    </head>
 
 
-<body>
+    <body>
 
-    <nav>
-        <div class="nav-left">
-            <img src="imagenes/logomark.png" class="logo">
-            <ul>
+        <nav>
+            <div class="nav-left">
+                <img src="imagenes/logomark.png" class="logo">
+                <ul>
 
-                <li><img src="imagenes/bell.png"></li>
-                <li><img src="imagenes/inbox.png"></li>
-                <li><img src="imagenes/video.png"></li>
-            </ul>
-        </div>
-        <div class="nav-right">
-            <div class="search-box">
-                <img src="imagenes/loupe.png">
-                <input type="text" placeholder="Search">
+                    <li><img src="imagenes/bell.png"></li>
+                    <li><img src="imagenes/inbox.png"></li>
+                    <li><img src="imagenes/video.png"></li>
+                </ul>
             </div>
-            <div class="nav-user-icon online" onclick="settingsMenuToggle()">
-                <img src="imagenes/fotoPerfil.jpg" alt="">
+            <div class="nav-right">
+                <div class="search-box">
+                    <img src="imagenes/loupe.png">
+                    <input type="text" placeholder="Search">
+                </div>
+                <div class="nav-user-icon online" onclick="settingsMenuToggle()">
+                    <img src="imagenes/fotoPerfil.jpg" alt="">
 
 
+                </div>
             </div>
-        </div>
 
-        <!--------settings-menu--------->
+            <!--------settings-menu--------->
 
-        <div class="settings-menu">
+            <div class="settings-menu">
 
 
-            <div id="dark-btn">
-                <span></span>
-            </div>
-        
-            <div class="settings-menu-inner">
-                <div class="user-profile">
-                    <img src="imagenes/fotoPerfil.jpg">
-                    <div>
-                        <p>Milagros Saldaña</p>
-                        <a href="#">Mi perfil</a>
+                <div id="dark-btn">
+                    <span></span>
+                </div>
+
+                <div class="settings-menu-inner">
+                    <div class="user-profile">
+                        <img src="css/logomark.png">
+                        <div>
+                            <p>Milagros Saldaña</p>
+                            <a href="#">Mi perfil</a>
+                        </div>
                     </div>
-                </div>
-                <hr>
-                <div class="user-profile">
-                    <img src="imagenes/comentario-alt.png">
-                    <div>
-                        <p>Dejanos tu opinión</p>
-                        <a href="#">Ayudanos a seguir mejorando</a>
-                    </div>
-                </div>
-                <hr>
-                <div class="settings-links">
-                    <img src="imagenes/ajustes.png" class="settings-icon">
-                    <a href="#">Ajustes y privacidad <img src="imagenes/angulo-derecho.png" width="10px "></a>
-                </div>
-                <div class="settings-links">
-                    <img src="imagenes/interrogatorio.png" class="settings-icon">
-                    <a href="#">Ayuda y soporte <img src="imagenes/angulo-derecho.png" width="10px "></a>
-                </div>
-                <div class="settings-links">
-                    <img src="imagenes/energia.png" class="settings-icon">
-                    <a href="#">Cerrar sesión <img src="imagenes/angulo-derecho.png" width="10px "></a>
-                </div>
-
-
-            </div>
-        </div>
-
-
-    </nav>
-
-
-    <div class="container">
-        <!----left-sidebar--->
-
-        <div class="left-sidebar">
-            <div class="imp-links">
-                <a href="#"><img src="imagenes/job-seeker.png">Busqueda Laboral</a>
-                <a href="#"><img src="imagenes/list.png">categorias</a>
-                <a href="#"><img src="imagenes/map.png">Buscar por Provincias</a>
-            </div>
-           
-        </div>
-        <!-------main-content-------->
-
-        <div class="main-content">
-            <div class="write-post-container">
-                <div class="user-profile">
-                    
-                    <img src="imagenes/fotoPerfil.jpg">
-                    <div>
-                        <p th:text="${session.usuariosession.nombre}"> </p>
-                        <small>publica tu empleo aquí</small>
-                    </div>
-                </div>
-
-                <form th:action="@{/cargarPublicacion}" method = "POST" enctype="multipart/form-data">
-                <div class="post-container">
-                  <fieldset class="grupo">
-                    <div class="campo">
-                        <label for="titulo"><strong>Título</strong></label>
-                      <input type="text" name="titulo" >
-                    </div>
-                    
-                    <div class="campo">
-                        <label for="descripcion"><strong>Descripción</strong></label>
-                     <input type="text" name="descripcion">  
-                     </div>
-                    
-                    <div class="campo">
-                        <label for="precio"><strong>Precio</strong></label>
-                        <input type="number" name="precio" placeholder="$">
-                      </div>
-
-
-
-                    <select type="text" name="provincia" id="provincia" >   
-                        <option selected disable value="">Seleccionar provincia</option>  
-                        <option th:each ="provincia: ${provincias}" th:value="${provincia}"th:text="${provincia.nombre}" ></option> 
-                    </select>
                     <hr>
-                    <select type="text" name="oficio" id="oficio">
-                        <option selected disable value="">Seleccionar oficio</option>      
-                        <option th:each ="oficio: ${oficios}" th:value="${oficio}" th:text="${oficio.nombre}"></option> 
-                    </select>
-                  </fieldset>  
+                    <div class="user-profile">
+                        <img src="imagenes/comentario-alt.png">
+                        <div>
+                            <p>Dejanos tu opinión</p>
+                            <a href="#">Ayudanos a seguir mejorando</a>
+                        </div>
+                    </div>
                     <hr>
-                    <input type="hidden" class="form-control" name="idUsuario" placeholder="ID" th:value="${session.usuariosession.id}"/>
+                    <div class="settings-links">
+                        <img src="imagenes/ajustes.png" class="settings-icon">
+                        <a href="#">Ajustes y privacidad <img src="imagenes/angulo-derecho.png" width="10px "></a>
+                    </div>
+                    <div class="settings-links">
+                        <img src="imagenes/interrogatorio.png" class="settings-icon">
+                        <a href="#">Ayuda y soporte <img src="imagenes/angulo-derecho.png" width="10px "></a>
+                    </div>
+                    <div class="settings-links">
+                        <img src="imagenes/energia.png" class="settings-icon">
+                        <a href="#">Cerrar sesión <img src="imagenes/angulo-derecho.png" width="10px "></a>
+                    </div>
 
-                
-                    
-                          <div class="file-select" id="src-file1" >
-                            <input type="file" aria-label="Archivo" name="archivo">
-                          </div>
-                          <div class="file-select" id="src-file2" >
-                            <input type="file" name="src-file2" aria-label="Archivo">
-                          </div>
-                          <div class="add-post-links">
-                              <button type="submit" class="btn btn-primary">Publicar</button>
+
+                </div>
+            </div>
+
+
+        </nav>
+
+
+        <div class="container">
+            <!----left-sidebar--->
+
+            <div class="left-sidebar">
+                <div class="imp-links">
+                    <a href="#"><img src="imagenes/job-seeker.png">Busqueda Laboral</a>
+                    <a href="#"><img src="imagenes/list.png">categorias</a>
+                    <a href="#"><img src="imagenes/map.png">Buscar por Provincias</a>
+                </div>
+
+            </div>
+            <!-------main-content-------->
+
+            <div class="main-content">
+                <div class="write-post-container">
+                    <div class="user-profile">
+
+                        <img th:if="${session.usuariosession.foto != null}" class="img-fluid rounded-circle" th:src="${'/foto/usuario/'+ session.usuariosession.id}" alt=""><!--se le agrega foto cargo del perfil-->
+                        <img th:if="${session.usuariosession.foto  == null}" class="img-fluid rounded-circle" src="css/logomark.png" alt="">
+                        <div>
+                            <p th:text="${session.usuariosession.nombre}"> </p>
+                            <small>publica tu empleo aquí</small>
+                        </div>
+                    </div>
+
+                    <form th:action="@{/cargarPublicacion}" method = "POST" enctype="multipart/form-data">
+                        <div class="post-container">
+                            <fieldset class="grupo">
+                                <div class="campo">
+                                    <label for="titulo"><strong>Título</strong></label>
+                                    <input type="text" name="titulo" >
+                                </div>
+
+                                <div class="campo">
+                                    <label for="descripcion"><strong>Descripción</strong></label>
+                                    <input type="text" name="descripcion">  
+                                </div>
+
+                                <div class="campo">
+                                    <label for="precio"><strong>Precio</strong></label>
+                                    <input type="number" name="precio" placeholder="$">
+                                </div>
+
+
+
+                                <select type="text" name="provincia" id="provincia" >   
+                                    <option selected disable value="">Seleccionar provincia</option>  
+                                    <option th:each ="provincia: ${provincias}" th:value="${provincia}"th:text="${provincia.nombre}" ></option> 
+                                </select>
+                                <hr>
+                                <select type="text" name="oficio" id="oficio">
+                                    <option selected disable value="">Seleccionar oficio</option>      
+                                    <option th:each ="oficio: ${oficios}" th:value="${oficio}" th:text="${oficio.nombre}"></option> 
+                                </select>
+                            </fieldset>  
+                            <hr>
+                            <input type="hidden" class="form-control" name="idUsuario" placeholder="ID" th:value="${session.usuariosession.id}"/>
+
+
+
+                            <div class="file-select" id="src-file1" >
+                                <input type="file" aria-label="Archivo" name="archivo">
+                            </div>
+                            <div class="file-select" id="src-file2" >
+                                <input type="file" name="src-file2" aria-label="Archivo">
+                            </div>
+                            <div class="add-post-links">
+                                <button type="submit" class="btn btn-primary">Publicar</button>
                             </div>
 
-                </div>
-                </form>
-            </div>
-
-
-            <div class="post-container" th:each="publicacion:${publicaciones}">
-                <div class="post-row">
-                    <div class="user-profile">
-                        
-                        <!--<img src="@{publicacion.usuario.foto}">-->
-                        <div>
-                            <p th:text="${publicacion.usuario.nombre}"></p>
-                            <span th:text="${publicacion.fechaAltabaja}"></span>
                         </div>
-                    </div>
-                    <a href="#"><img src="imagenes/mas.png"></a>
-                    <!--boton-->
-                </div>
-
-                <p class="post-text">Desde <span>@Flip</span> estamos buscando mujeres developer para sumar a
-                    nuestro equipo, sumate
-                    <a href="#">#Fullstack</a> <a href="#">#Back end</a> <a href="#">#Front end</a>
-                </p>
-                <img src="${publicacion.foto}" class="post-img">
-
-                <div class="post-row">
-                    <div class="activity-icons">
-                        <div><img src="imagenes/like.png"> 450</div>
-                        <div><img src="imagenes/comments.png"> 270</div>
-                        <div><img src="imagenes/next.png"> 22</div>
-                    </div>
-
-                    <div class="post-profile-icons">
-
-                    </div>
-
+                    </form>
                 </div>
 
 
+                <div class="post-container" th:each="publicacion : ${publicaciones}">
+                    <div class="post-row">
+                        <div class="user-profile">
 
-            </div>
+                            <!--<img src="@{publicacion.usuario.foto}">-->
+                            <div>
+                                <p th:text="${publicacion.usuario.nombre}">Nombre</p>
+                                <span th:text="${publicacion.fechaAltabaja}"></span>
 
-            <div class="post-container">
-                <div class="post-row">
-                    <div class="user-profile">
-                        <img src="imagenes/FotodePerfil.jpeg">
-                        <div>
-                            <p>Juan Manuel Silva</p>
-                            <span>Mayo 30 2022, 14:00 pm</span>
+
+                            </div>
                         </div>
-                    </div>
-                    <a href="#"><img src="imagenes/mas.png"></a>
-                </div>
-
-                <p class="post-text">Junto <span>@Mercado Libre</span> reclutamos personas developer para sumar a
-                    nuestro equipo, sumate
-                    <a href="#">#Fullstack</a> <a href="#">#Back end</a> <a href="#">#Front end</a>
-                </p>
-                <img src="imagenes/group-of-diverse-people-having-business-meeting.jpg" class="post-img">
-
-                <div class="post-row">
-                    <div class="activity-icons">
-                        <div><img src="imagenes/like.png"> 1200</div>
-                        <div><img src="imagenes/comments.png"> 2000</div>
-                        <div><img src="imagenes/next.png"> 120</div>
+                        <a href="#"><img src=""></a>
+                        <!--boton-->
                     </div>
 
-                    <div class="post-profile-icons">
+                    <p class="post-text" th:text="${publicacion.descripcion}">
+                    <p class="post-text" th:text="${publicacion.oficio}">
+                    <p class="post-text" th:text="${publicacion.provincia}">
 
-                    </div>
+                        <a href="#">#Fullstack</a> <a href="#">#Back end</a> <a href="#">#Front end</a>
+                    </p>
+                    <!--ACA SE PONE LA FOTO DE LA PUBLICACION-->
+                    <img th:value="${publicacion.photo.content}" class="post-img">
 
-                </div>
-
-
-
-            </div>
-
-
-
-            <div class="post-container">
-                <div class="post-row">
-                    <div class="user-profile">
-                        <img
-                            src="imagenes/handsome-african-american-man-with-beard-turn-face-at-camera-and-smiling-confident-standing-over-pink-background.jpg">
-                        <div>
-                            <p>Marck Carapaligue</p>
-                            <span>Mayo 30 2022, 14:00 pm</span>
+                    <div class="post-row">
+                        <div class="activity-icons">
+                            <div><img src="imagenes/like.png"> 450</div>
+                            <div><img src="imagenes/comments.png"> 270</div>
+                            <div><img src="imagenes/next.png"> 22</div>
                         </div>
-                    </div>
-                    <a href="#"><img src="imagenes/mas.png"></a>
-                </div>
 
-                <p class="post-text">Buscamos junto a <span>@Sushi Club</span> personal para sumar a nuestro equipo
-                    de cocina, con experiencia o no
-                    en comida oriental<a href="#">#Ramen</a> <a href="#">#Sushi</a> <a href="#">#Sushi Club</a> </p>
-                <img src="imagenes/group-of-chefs-working-in-the-kitchen.jpg" class="post-img">
+                        <div class="post-profile-icons">
 
-                <div class="post-row">
-                    <div class="activity-icons">
-                        <div><img src="imagenes/like.png"> 100</div>
-                        <div><img src="imagenes/comments.png"> 30</div>
-                        <div><img src="imagenes/next.png"> 5</div>
-                    </div>
-
-                    <div class="post-profile-icons">
-
-                    </div>
-
-                </div>
-
-
-
-            </div>
-
-
-
-            <div class="post-container">
-                <div class="post-row">
-                    <div class="user-profile">
-                        <img
-                            src="imagenes/playful-hot-african-american-with-afro-hairstyle-pulling-hands-towards-to-make-selfie-winking-joyfully-and-smiling-broadly-making-new-profile-pic-for-social-network.jpg">
-                        <div>
-                            <p>Guadalupe Rodriguez</p>
-                            <span>Mayo 30 2022, 14:00 pm</span>
                         </div>
+
                     </div>
-                    <a href="#"><img src="imagenes/mas.png"></a>
+
+
+
                 </div>
 
-                <p class="post-text">Hotel <span>@Piscis</span> está buscando personal de limpieza para sumar a
-                    nuestro equipo de trabajo, con experiencia o no
-                    en puestos similares<a href="#">#Clean</a> <a href="#">#Hotel 5 estrellas</a> <a
-                        href="#">#Piscis</a> </p>
-                <img src="imagenes/young-beautiful-cleaner-woman-holding-bucket-with-products-pointing-at-camera-against-blue-backdrop.jpg"
-                    class="post-img">
 
-                <div class="post-row">
-                    <div class="activity-icons">
-                        <div><img src="imagenes/like.png"> 400</div>
-                        <div><img src="imagenes/comments.png"> 30</div>
-                        <div><img src="imagenes/next.png"> 20</div>
-                    </div>
 
-                    <div class="post-profile-icons">
 
-                    </div>
+
+                <!--            <div class="post-container">
+                                <div class="post-row">
+                                    <div class="user-profile">
+                                        <img
+                                            src="imagenes/handsome-african-american-man-with-beard-turn-face-at-camera-and-smiling-confident-standing-over-pink-background.jpg">
+                                        <div>
+                                            <p>Marck Carapaligue</p>
+                                            <span>Mayo 30 2022, 14:00 pm</span>
+                                        </div>
+                                    </div>
+                                    <a href="#"><img src="imagenes/mas.png"></a>
+                                </div>
+                
+                                <p class="post-text">Buscamos junto a <span>@Sushi Club</span> personal para sumar a nuestro equipo
+                                    de cocina, con experiencia o no
+                                    en comida oriental<a href="#">#Ramen</a> <a href="#">#Sushi</a> <a href="#">#Sushi Club</a> </p>
+                                <img src="imagenes/group-of-chefs-working-in-the-kitchen.jpg" class="post-img">
+                
+                                <div class="post-row">
+                                    <div class="activity-icons">
+                                        <div><img src="imagenes/like.png"> 100</div>
+                                        <div><img src="imagenes/comments.png"> 30</div>
+                                        <div><img src="imagenes/next.png"> 5</div>
+                                    </div>
+                
+                                    <div class="post-profile-icons">
+                
+                                    </div>
+                
+                                </div>
+                
+                
+                
+                            </div>
+                
+                
+                
+                            <div class="post-container">
+                                <div class="post-row">
+                                    <div class="user-profile">
+                                        <img
+                                            src="imagenes/playful-hot-african-american-with-afro-hairstyle-pulling-hands-towards-to-make-selfie-winking-joyfully-and-smiling-broadly-making-new-profile-pic-for-social-network.jpg">
+                                        <div>
+                                            <p>Guadalupe Rodriguez</p>
+                                            <span>Mayo 30 2022, 14:00 pm</span>
+                                        </div>
+                                    </div>
+                                    <a href="#"><img src="imagenes/mas.png"></a>
+                                </div>
+                
+                                <p class="post-text">Hotel <span>@Piscis</span> está buscando personal de limpieza para sumar a
+                                    nuestro equipo de trabajo, con experiencia o no
+                                    en puestos similares<a href="#">#Clean</a> <a href="#">#Hotel 5 estrellas</a> <a
+                                        href="#">#Piscis</a> </p>
+                                <img src="imagenes/young-beautiful-cleaner-woman-holding-bucket-with-products-pointing-at-camera-against-blue-backdrop.jpg"
+                                    class="post-img">
+                
+                                <div class="post-row">
+                                    <div class="activity-icons">
+                                        <div><img src="imagenes/like.png"> 400</div>
+                                        <div><img src="imagenes/comments.png"> 30</div>
+                                        <div><img src="imagenes/next.png"> 20</div>
+                                    </div>
+                
+                                    <div class="post-profile-icons">
+                
+                                    </div>
+                
+                                </div>
+                
+                
+                
+                            </div>-->
+
+
+
+
+                <div><button type="button" class="load-more-btn">cargar más</button>
 
                 </div>
+
+
+
+
 
 
 
             </div>
 
 
+            <!--------right-sidebar--------->
 
-
-            <div><button type="button" class="load-more-btn">cargar más</button>
+            <div class="right-sidebar">
+                <div class="imp-links">
+                    <a href="#"><img src="imagenes/relacion-publica (1).png"> Publicaciones</a>
+                    <a href="#"><img src="imagenes/cronograma.png">Mis Publicaciones</a> 
+                </div>
 
             </div>
-
-
-
-
-
-
-
         </div>
+        <!-----Cierra los contenedores-->
 
 
-        <!--------right-sidebar--------->
 
-        <div class="right-sidebar">
-            <div class="imp-links">
-                <a href="#"><img src="imagenes/relacion-publica (1).png"> Publicaciones</a>
-                <a href="#"><img src="imagenes/cronograma.png">Mis Publicaciones</a> 
+
+        <footer>
+            <div class="container">
+                <p>&copy;job positions Js 2022</p>
             </div>
+        </footer>
 
-        </div>
-    </div>
-    <!-----Cierra los contenedores-->
-
-
-
-
-    <footer>
-        <div class="container">
-            <p>&copy;job positions Js 2022</p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+        <script src="script.js"></script>
 
 
 
 
 
-</body>
+    </body>
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+            integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
     crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+            integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
     crossorigin="anonymous"></script>
 
 </html>
