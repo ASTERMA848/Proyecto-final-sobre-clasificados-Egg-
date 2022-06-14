@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resgistro Segunda Opción</title>
+    <link rel="stylesheet" href="css/RegistroSegundaO.css">
+</head>
+
+<body>
+
+    <div class="root">
+        <form action="" class="form-register">
+            <h1>CREÁ TU PERFIL</h1>
+            <!-- progressbar -->
+            <div class="form-register__header">
+                <ul class="progressbar">
+                    <li class="progressbar__option active">Paso 1</li>
+                    <li class="progressbar__option">Paso 2</li>
+                    <li class="progressbar__option">Paso 3</li>
+                </ul>
+            </div>
+
+            <div class="form-register__body">
+                <!--Ventana 1-->
+                <div class="step active" id="step-1">
+                    <div class="step__header">
+                        <h2 class="step__title">Datos Personales</h2>
+                    </div>
+                    <div class="step__body">
+                        <input type="text" name="nombre" id="nombreapellido" class="step__input" placeholder="Nombre">
+                        <input type="text" name="apellido" id="nombreapellido" class="step__input"
+                            placeholder="Apellido">
+                        <select name="oficio" id="oficio" class="step__input">
+                            <option selected disabled value="">Oficio</option>
+                        </select>
+                        <label for="nacimiento">Fecha de Nacimiento</label>
+                        <input type="date" name="nacimiento" id="nacimiento" class="step__input"
+                            placeholder="Fecha de Nacimiento">
+                        <label for="dni">Tipo de identificacion</label>
+                        <select name="dni" id="dni" class="step__input">
+                            <option value="1">DNI</option>
+                            <option value="2">Pasaporte</option>
+                            <option value="3">Cédula de Identidad</option>
+                        </select>
+                        <input type="number" name="numero" id="dni" class="step__input" placeholder="Número">
+                        <select name="civil" id="civil" class="step__input">
+                            <option selected disabled value="">Estado Civil</option>
+                            <option value="1">Casado(a)</option>
+                            <option value="2">Separado(a)</option>
+                            <option value="3">Divorciado(a)</option>
+                            <option value="4">Soltero(a)</option>
+                            <option value="5">Viudo(a)</option>
+                        </select>
+                        <label for="redes">Ubicación</label>
+                        <Select name="pais" id="pais" class="step__input" required>
+                            <option selected disabled value="">País</option>
+                            
+                        </Select>
+
+                        <input type="text" name="provincia" id="provincia" class="step__input" placeholder="Provincia">
+                        <input type="text" name="ciudad" id="provincia" class="step__input" placeholder="Ciudad">
+                        <input type="text" name="direccion" id="direccion" class="step__input" placeholder="Direccion">
+                        <input type="tel" name="telefono" id="telefono" class="step__input" placeholder="Telefono">
+                        <label for="redes">Redes Sociales</label>
+                        <input type="text" name="linkedin" id="redes" class="step__input" placeholder="Linkedin">
+                        <input type="text" name="Twitter" id=redes class="step__input" placeholder="Twitter">
+                        <input type="text" name="facebook" id="redes" class="step__input" placeholder="Facebook">
+                        <input type="email" name="email" id="email" class="step__input" placeholder="Email">
+                        <input type="url" name="web" id="web" class="step__input" placeholder="Página web">
+                    </div>
+                    <div class="step__footer">
+                        <button type="button" class="step__button step__button--next" data-to_step="2"
+                            data-step="1">Siguiente</button>
+                    </div>
+                </div>
+
+                <!--Ventana 2-->
+                <div class="step" id="step-2">
+                    <div class="step__header">
+                        <h2 class="step__title">Experiencia Laboral</h2>
+                    </div>
+                    <div class="step__body">
+                        <label for="info">Experiencia 1</label>
+                        <input type="text" name="inicio" id="año" class="step__input" placeholder="Inicio">
+                        <input type="text" name="fin" id="año" class="step__input" placeholder="Fin">
+
+
+                        <input type="text" name="empresa" id="empresa" class="step__input"
+                            placeholder="Organización/Empresa">
+
+                        <input type="textarea" name="tarea" id="tarea" class="step__input"
+                            placeholder="Escriba brevemente las tareas realizadas">
+
+                        <select name="provincia" id="provincia_laboral1" class="step__input">
+                            <option selected disabled value="">Provincia</option>
+                        </select>
+                        <select name="pais" id="pais" class="step__input">
+                            <option selected disabled value="">País</option>
+                        </select>
+
+                        <br>
+
+                        <label for="info">Experiencia 2</label>
+                        <input type="text" name="inicio" id="año2" class="step__input" placeholder="Inicio">
+                        <input type="text" name="fin" id="año2" class="step__input" placeholder="Fin">
+
+                        <input type="text" name="empresa" id="empresa2" class="step__input"
+                            placeholder="Organización/Empresa">
+
+                        <input type="textarea" name="tarea" id="tarea2" class="step__input"
+                            placeholder="Escriba brevemente las tareas realizadas">
+
+                        <select name="provincia" id="provincia_laboral2" class="step__input">
+                            <option selected disabled value="">Provincia</option>
+                        </select>
+                        <select name="pais" id="pais" class="step__input">
+                            <option selected disabled value="">País</option>
+                        </select>
+
+                        <br>
+
+                        <label for="info">Experiencia 3</label>
+                        <input type="text" name="inicio" id="año3" class="step__input" placeholder="Inicio">
+                        <input type="text" name="fin" id="año3" class="step__input" placeholder="Fin">
+
+                        <input type="text" name="empresa" id="empresa3" class="step__input"
+                            placeholder="Organización/Empresa">
+
+                        <input type="textarea" name="tarea" id="tarea3" class="step__input"
+                            placeholder="Escriba brevemente las tareas realizadas">
+
+                        <select name="provincia" id="provincia_laboral3" class="step__input">
+                            <option selected disabled value="">Provincia</option>
+                        </select>
+                        <select name="pais" id="pais" class="step__input">
+                            <option selected disabled value="">País</option>
+                        </select>
+
+                        <div class="step__footer">
+                            <button type="button" class="step__button step__button--back" data-to_step="1"
+                                data-step="2">Regresar</button>
+                            <button type="button" class="step__button step__button--next" data-to_step="3"
+                                data-step="2">Siguiente</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Ventana 3-->
+                <div class="step" id="step-3">
+                    <div class="step__header">
+                        <h2 class="step__title">Formación Académica</h2>
+                    </div>
+                    <div class="step__body">
+                        <input type="text" name="titulo" id="titulo" class="step__input" placeholder="Titulo">
+                        <input type="text" name="año_inicio" id="año4" class="step__input" placeholder="Inicio">
+                        <input type="text" name="año_fin" id="año4" class="step__input" placeholder="Fin">
+                        <input type="text" name="institucion" id="institucion" class="step__input"
+                            placeholder="Institución">
+                        <input type="text" name="pais" id="pais" class="step__input" placeholder="País">
+                        <input type="text" name="provincia" id="pais" class="step__input" placeholder="Provincia">
+                        <input type="text" name="ciudad" id="pais" class="step__input" placeholder="Ciudad">
+                        <br>
+                        <br>
+                        <input type="text" name="titulo" id="titulo2" class="step__input" placeholder="Titulo">
+                        <input type="text" name="año_inicio" id="año5" class="step__input" placeholder="Inicio">
+                        <input type="text" name="año_fin" id="año5" class="step__input" placeholder="Fin">
+                        <input type="text" name="institucion" id="institucion2" class="step__input"
+                            placeholder="Institución">
+
+                        <input type="text" name="pais" id="pais" class="step__input" placeholder="País">
+                        <input type="text" name="provincia" id="pais" class="step__input" placeholder="Provincia">
+                        <input type="text" name="ciudad" id="pais" class="step__input" placeholder="Ciudad">
+                        <br>
+                        <br>
+
+                        <input type="text" name="titulo3" id="titulo3" class="step__input" placeholder="Titulo">
+                        <input type="text" name="año_inicio" id="año6" class="step__input" placeholder="Inicio">
+                        <input type="text" name="año_fin" id="año6" class="step__input" placeholder="Fin">
+
+                        <input type="text" name="institucion3" id="institucion3" class="step__input"
+                            placeholder="Institución">
+
+                        <input type="text" name="pais" id="pais" class="step__input" placeholder="País">
+                        <input type="text" name="provincia" id="pais" class="step__input" placeholder="Provincia">
+                        <input type="text" name="ciudad" id="pais" class="step__input" placeholder="Ciudad">
+
+                        <div class="step__footer">
+                            <button type="button" class="step__button step__button--back" data-to_step="2"
+                                data-step="3">Regresar</button>
+                            <button type="submit" class="step__button">Registrarse</button>
+                        </div>
+                    </div>
+                </div>
+
+
+        </form>
+    </div>
+</body>
+
+<script>
+    let form = document.querySelector('.form-register');
+    let progressOptions = document.querySelectorAll('.progressbar__option');
+
+    form.addEventListener('click', function (e) {
+        let element = e.target;
+        let isButtonNext = element.classList.contains('step__button--next');
+        let isButtonBack = element.classList.contains('step__button--back');
+        if (isButtonNext || isButtonBack) {
+            let currentStep = document.getElementById('step-' + element.dataset.step);
+            let jumpStep = document.getElementById('step-' + element.dataset.to_step);
+            currentStep.addEventListener('animationend', function callback() {
+                currentStep.classList.remove('active');
+                jumpStep.classList.add('active');
+                if (isButtonNext) {
+                    currentStep.classList.add('to-left');
+                    progressOptions[element.dataset.to_step - 1].classList.add('active');
+                } else {
+                    jumpStep.classList.remove('to-left');
+                    progressOptions[element.dataset.step - 1].classList.remove('active');
+                }
+                currentStep.removeEventListener('animationend', callback);
+            });
+            currentStep.classList.add('inactive');
+            jumpStep.classList.remove('inactive');
+        }
+    });
+</script>
+
+</html>

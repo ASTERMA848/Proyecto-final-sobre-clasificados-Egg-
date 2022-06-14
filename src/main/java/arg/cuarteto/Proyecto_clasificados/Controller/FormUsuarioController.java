@@ -35,7 +35,7 @@ public class FormUsuarioController {
         modelo.addAttribute("Provincia", Provincia.values());
         modelo.addAttribute("Remoto", Remoto.values());
         modelo.addAttribute("EstadoCivil", estadoCivil.values());
-        return "exito.html"; // falta vista html
+        return "RegistroSegundaO.html"; // falta vista html
     }
     
     @PostMapping("/Cargar-Formulario-Usuario") // metodo registrar para la pagina registro,

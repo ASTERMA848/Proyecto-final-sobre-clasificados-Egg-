@@ -2,19 +2,23 @@
     margin: 0;
     padding: 0;
 font-size:  13px;
-font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+
 }
 input{
    color: black; 
 }
+
 .container{
     height: 100%;
     width: 100%;
-    background:#270082;
+    background: linear-gradient(to right, rgba(10, 52, 68, 0.877), rgba(229, 180, 248, 0.89));
     background-position: center;
     background-size: cover;
     position: absolute;
-    background-color: var(--background-color);
+
+   
+  
 }
 
 
@@ -28,7 +32,7 @@ input{
 padding: 5px;
 border-radius: 10px ;
 overflow: hidden;
-border: black 2px solid;
+/*border: black 2px solid;*/
 }
 
 .button-box{
@@ -37,7 +41,7 @@ margin: 30px auto;
 position: relative;
 box-shadow: 0 0 20px 9px  #e0e0e0;
 border-radius: 30px ;
-border: black 1px solid;
+/*border: black 1px solid;*/
 
 }
 
@@ -129,6 +133,7 @@ margin: 30px 10px 30px 0;
      font-size: 16px;
      bottom: 64px;
      position: absolute;
+
 
  }
 

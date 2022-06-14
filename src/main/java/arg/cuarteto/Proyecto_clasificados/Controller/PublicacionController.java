@@ -64,6 +64,16 @@ public class PublicacionController {
             System.out.println(idUsuario);
             publicacionService.crearPublicacion(archivo, idUsuario, titulo, precio,
                     descripcion, oficio, provincia);
+
+            modelo.put("oficios", Oficio.values()); //paso la lista de oficios
+            //para que se muestre en una lista en el html
+            modelo.put("provincias", Provincia.values()); //paso las provincias
+            //para ponerlas en el html en forma de lista
+            List<Publicacion> publicaciones = publicacionService.mostrarPublicaciones();
+            System.out.println(publicaciones);
+            modelo.put("publicaciones", publicaciones);
+
+          
         } catch (ErrorService ex) { // <p th:if="${Error != null}" th:text="${Error}" style=color:red;></p>   
             modelo.put("Error", ex.getMessage()); //estos msj estan enlazados en validation usuarioService
             modelo.put("Foto:", archivo);
@@ -76,11 +86,9 @@ public class PublicacionController {
 
             return "publicacion.html";
         }
+        return "publicacion.html";
 
-        return "/publicacionForm";
     }
-
-
 
 //    @GetMapping("/mostrarPublicacion")
 //    public String mostrarPublicacion(ModelMap modelo) {
