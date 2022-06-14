@@ -79,7 +79,7 @@ public class FormUsuarioController {
                     facebook, linkedin, miWeb, educacion, anioInicio, anioFin, descripcion, instituciones, provinciaEducacion,
                     idiomas, nivel, trabajo, puesto, anioInicio2, anioFin2, descripcion2, remoto);
         } catch (ErrorService ex) {  
-                modelo.put("Error", ex.getMessage()); 
+               // modelo.put("Error", ex.getMessage()); 
                 modelo.put("Foto:", archivo);
                 modelo.put("nombre:", nombre);
                 modelo.put("apellido:", apellido);
