@@ -12,7 +12,7 @@
 <body>
 
     <div class="root">
-        <form action="" class="form-register">
+        <form  th:action="@{/Cargar-Formulario-Usuario}" method = "POST" class="form-register">
             <h1>CREÁ TU PERFIL</h1>
             <!-- progressbar -->
             <div class="form-register__header">
@@ -28,16 +28,19 @@
                 <div class="step active" id="step-1">
                     <div class="step__header">
                         <h2 class="step__title">Datos Personales</h2>
+                     
                     </div>
                     <div class="step__body">
                         <input type="text" name="nombre" id="nombreapellido" class="step__input" placeholder="Nombre">
                         <input type="text" name="apellido" id="nombreapellido" class="step__input"
                             placeholder="Apellido">
-                        <select name="oficio" id="oficio" class="step__input">
-                            <option selected disabled value="">Oficio</option>
-                        </select>
+                        
+                         <select type="text" name="oficio" id="oficio">
+                                    <option selected disable value="">Seleccionar oficio</option>      
+                                    <option th:each ="oficio: ${oficios}" th:value="${oficio}" th:text="${oficio.nombre}"></option> 
+                                </select>
                         <label for="nacimiento">Fecha de Nacimiento</label>
-                        <input type="date" name="nacimiento" id="nacimiento" class="step__input"
+                        <input type="date" name="edad" id="nacimiento" class="step__input"
                             placeholder="Fecha de Nacimiento">
                         <label for="dni">Tipo de identificacion</label>
                         <select name="dni" id="dni" class="step__input">
@@ -45,31 +48,35 @@
                             <option value="2">Pasaporte</option>
                             <option value="3">Cédula de Identidad</option>
                         </select>
-                        <input type="number" name="numero" id="dni" class="step__input" placeholder="Número">
-                        <select name="civil" id="civil" class="step__input">
-                            <option selected disabled value="">Estado Civil</option>
-                            <option value="1">Casado(a)</option>
-                            <option value="2">Separado(a)</option>
-                            <option value="3">Divorciado(a)</option>
-                            <option value="4">Soltero(a)</option>
-                            <option value="5">Viudo(a)</option>
-                        </select>
-                        <label for="redes">Ubicación</label>
-                        <Select name="pais" id="pais" class="step__input" required>
-                            <option selected disabled value="">País</option>
-                            
-                        </Select>
+                        <input type="number" name="dni" id="dni" class="step__input" placeholder="Número">
+                        
+                           <select type="text" name="estadoCivil" id="EstadoCivil">
+                                    <option selected disable value="">Seleccionar estado Civil</option>      
+                                    <option th:each ="estadoCivil: ${EstadoCivil}" th:value="${estadoCivil}" th:text="${estadoCivil.nombre}"></option> 
+                                </select>
+                        
+                           <select type="text" name="nacionalidad" id="Nacionalidad">
+                                    <option selected disable value="">Seleccionar nacionalidad</option>      
+                                    <option th:each ="nacionalidad: ${Nacionalidad}" th:value="${nacionalidad}" th:text="${nacionalidad.nombre}"></option> 
+                                </select>
 
-                        <input type="text" name="provincia" id="provincia" class="step__input" placeholder="Provincia">
+                        <select type="text" name="provincia" id="Provincia" >   
+                                    <option selected disable value="">Seleccionar provincia</option>  
+                                    <option th:each ="provincia: ${provincias}" th:value="${provincia}"th:text="${provincia.nombre}" ></option> 
+                                </select>
+                        
+                        
+                        
+                        
                         <input type="text" name="ciudad" id="provincia" class="step__input" placeholder="Ciudad">
                         <input type="text" name="direccion" id="direccion" class="step__input" placeholder="Direccion">
                         <input type="tel" name="telefono" id="telefono" class="step__input" placeholder="Telefono">
                         <label for="redes">Redes Sociales</label>
                         <input type="text" name="linkedin" id="redes" class="step__input" placeholder="Linkedin">
-                        <input type="text" name="Twitter" id=redes class="step__input" placeholder="Twitter">
+                        <input type="text" name="twitter" id=redes class="step__input" placeholder="Twitter">
                         <input type="text" name="facebook" id="redes" class="step__input" placeholder="Facebook">
                         <input type="email" name="email" id="email" class="step__input" placeholder="Email">
-                        <input type="url" name="web" id="web" class="step__input" placeholder="Página web">
+                        <input type="url" name="miWeb" id="miWeb" class="step__input" placeholder="Página web">
                     </div>
                     <div class="step__footer">
                         <button type="button" class="step__button step__button--next" data-to_step="2"

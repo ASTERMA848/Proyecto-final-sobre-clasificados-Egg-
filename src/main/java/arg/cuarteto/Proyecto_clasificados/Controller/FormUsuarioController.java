@@ -31,8 +31,8 @@ public class FormUsuarioController {
         modelo.addAttribute("Idiomas", Idiomas.values());
         modelo.addAttribute("Nacionalidad", Nacionalidad.values());
         modelo.addAttribute("Nivel", Nivel.values());
-        modelo.addAttribute("Oficios", Oficio.values());
-        modelo.addAttribute("Provincia", Provincia.values());
+        modelo.put("oficios", Oficio.values());
+        modelo.put("provincias", Provincia.values());
         modelo.addAttribute("Remoto", Remoto.values());
         modelo.addAttribute("EstadoCivil", estadoCivil.values());
         return "RegistroSegundaO.html"; // falta vista html
@@ -54,7 +54,7 @@ public class FormUsuarioController {
          @RequestParam (required = false) String ciudad,
          @RequestParam (required = false) String direccion,
          @RequestParam (required = false) String telefono,
-         @RequestParam (required = false) String instagram,
+         @RequestParam (required = false) String twitter,
          @RequestParam (required = false) String facebook,
          @RequestParam (required = false) String linkedin,
          @RequestParam (required = false) String miWeb,
@@ -75,7 +75,7 @@ public class FormUsuarioController {
         try {   
             
             FormUsuarioService.guardarForm(archivo, nombre, apellido, email, oficio, edad, dni,
-                    estadoCivil, nacionalidad, provincia, ciudad, direccion, telefono, instagram,
+                    estadoCivil, nacionalidad, provincia, ciudad, direccion, telefono, twitter,
                     facebook, linkedin, miWeb, educacion, anioInicio, anioFin, descripcion, instituciones, provinciaEducacion,
                     idiomas, nivel, trabajo, puesto, anioInicio2, anioFin2, descripcion2, remoto);
         } catch (ErrorService ex) {  
@@ -93,7 +93,7 @@ public class FormUsuarioController {
                 modelo.put("ciudad", ciudad);
                 modelo.put("direccion", direccion);
                 modelo.put("telefono", telefono);
-                modelo.put("instagram", instagram);
+                modelo.put("instagram", twitter);
                 modelo.put("facebook", facebook);
                 modelo.put("linkedin", linkedin);
                 modelo.put("miWeb", miWeb);
