@@ -154,10 +154,10 @@ public class UsuarioService implements UserDetailsService {
         if (usuario != null) {
             List<GrantedAuthority> permisos = new ArrayList<>();
 //Esto son roles que se le agregar al usuario. 
-            GrantedAuthority p1 = new SimpleGrantedAuthority("ROL_USUARIO_REGISTRADO");
+            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_USUARIO_REGISTRADO");
             permisos.add(p1);
-            GrantedAuthority p2 = new SimpleGrantedAuthority("ROL_USUARIO_ADMINISTRADOR");
-            permisos.add(p2);
+//            GrantedAuthority p2 = new SimpleGrantedAuthority("ROL_USUARIO_ADMINISTRADOR");
+//            permisos.add(p2);
 //Esto me permite guardar el OBJETO USUARIO LOG, para luego ser utilizado
             ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.
                     currentRequestAttributes();

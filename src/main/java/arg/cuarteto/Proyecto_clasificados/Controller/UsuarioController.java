@@ -30,7 +30,7 @@ public class UsuarioController {
         return "/publicacionForm";
     }
 
-    @PreAuthorize("hasAnyRole ('ROLE_USUARIO_REGISTRADO')") // autorizacion para usuarios logeado "con esto podemos hacer que el admin tenga mas privilegios"
+     @PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')") // autorizacion para usuarios logeado "con esto podemos hacer que el admin tenga mas privilegios"
     @GetMapping("/exito") // pagina msj de exito del usuario registrado
     public String exito() {
         return "formularioClasificados.html";
