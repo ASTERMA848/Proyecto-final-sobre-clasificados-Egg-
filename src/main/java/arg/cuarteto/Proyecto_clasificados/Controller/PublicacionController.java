@@ -10,6 +10,7 @@ import arg.cuarteto.Proyecto_clasificados.Service.UsuarioService;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -30,7 +31,8 @@ public class PublicacionController {
     @Autowired
     private UsuarioService usuarioService;
 
-    // @PreAuthorize("hasAnyRole ('ROLE_USUARIO_REGISTRADO')") // autorizacion para 
+     @PreAuthorize("hasAnyRole ('ROLE_USUARIO_REGISTRADO')") 
+   // autorizacion para 
     //usuarios logeado "con esto podemos hacer que el admin tenga mas privilegios"
     @GetMapping("/publicacionForm")
     public String crear(ModelMap modelo) {

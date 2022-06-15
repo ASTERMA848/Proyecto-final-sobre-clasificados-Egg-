@@ -28,6 +28,9 @@ public class FormUsuario {
     @OneToOne
     private Photo photo;
     
+      @OneToOne
+    private Usuario usuario;
+    
     private String nombre;
     private String apellido;
     private Oficio oficio;
@@ -52,7 +55,6 @@ public class FormUsuario {
     private String educacion; 
   
     private Date anioInicio;
-    
     private Date anioFin;
     private String descripcion; 
    
@@ -82,6 +84,17 @@ public class FormUsuario {
     public FormUsuario() {
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    
+   
+    
     public FormUsuario(Photo photo, String nombre, String apellido, Oficio oficio, String edad, String dni, estadoCivil estadoCivil, Nacionalidad nacionalidad, Provincia provincia, String ciudad, String direccion, String telefono, String instagram, String facebook, String linkedin, String miweb, String educacion, Date anioInicio, Date anioFin, String descripcion, String instituciones, Provincia provinciaEducacion, Idiomas idiomas, Nivel nivel, String trabajo, String puesto, Boolean estado, Date anioInicio2, Date anioFin2, String descripcion2, Remoto remoto) {
         this.photo = photo;
         this.nombre = nombre;

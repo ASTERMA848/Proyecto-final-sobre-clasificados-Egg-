@@ -13,6 +13,7 @@
 
     <div class="root">
         <form  th:action="@{/Cargar-Formulario-Usuario}" method = "POST" class="form-register">
+             <input type="hidden" class="form-control" name="idUsuario" placeholder="ID" th:value="${session.usuariosession.id}"/>
             <h1>CREÁ TU PERFIL</h1>
             <!-- progressbar -->
             <div class="form-register__header">
@@ -40,8 +41,8 @@
                                     <option th:each ="oficio: ${oficios}" th:value="${oficio}" th:text="${oficio.nombre}"></option> 
                                 </select>
                         <label for="nacimiento">Fecha de Nacimiento</label>
-                        <input type="date" name="edad" id="nacimiento" class="step__input"
-                            placeholder="Fecha de Nacimiento">
+                        <input type="text" name="edad" id="nacimiento" class="step__input"
+                            placeholder="aaaa/mm/dd">
                         <label for="dni">Tipo de identificacion</label>
                         <select name="dni" id="dni" class="step__input">
                             <option value="1">DNI</option>
@@ -91,8 +92,8 @@
                     </div>
                     <div class="step__body">
                         <label for="info">Experiencia 1</label>
-                        <input type="date" name="anioInicio2" id="año" class="step__input" placeholder="Inicio">
-                        <input type="date" name="anioFin2" id="año" class="step__input" placeholder="Fin">
+                        <input type="text" name="anioInicio2" id="año" class="step__input" placeholder="aaaa/mm/dd">
+                        <input type="text" name="anioFin2" id="año" class="step__input" placeholder="aaaa/mm/dd">
 
 
                         <input type="text" name="trabajo" id="empresa" class="step__input"
@@ -162,8 +163,8 @@
                     </div>
                     <div class="step__body">
                         <input type="text" name="educacion" id="titulo" class="step__input" placeholder="Titulo">
-                        <input type="date" name="anioInicio" id="año4" class="step__input" placeholder="Inicio">
-                        <input type="date" name="anioFin" id="año4" class="step__input" placeholder="Fin">
+                        <input type="text" name="anioInicio" id="año4" class="step__input" placeholder="aaaa/mm/dd">
+                        <input type="text" name="anioFin" id="año4" class="step__input" placeholder="aaaa/mm/dd">
                         <input type="text" name="instituciones" id="institucion" class="step__input"
                             placeholder="Institución">
 <!--                        <input type="text" name="pais" id="pais" class="step__input" placeholder="País">

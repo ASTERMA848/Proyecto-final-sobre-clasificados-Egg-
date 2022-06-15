@@ -42,6 +42,7 @@ public class FormUsuarioController {
             //carga en la base de datos lo solicitado
     public String crearPublicacion(ModelMap modelo,
          MultipartFile archivo, 
+         @RequestParam (required = false) String idUsuario,
          @RequestParam (required = false) String nombre,
          @RequestParam (required = false) String apellido,
          @RequestParam (required = false) String email,
@@ -74,7 +75,7 @@ public class FormUsuarioController {
          @RequestParam (required = false) Remoto remoto){        
         try {   
             
-            FormUsuarioService.guardarForm(archivo, nombre, apellido, email, oficio, edad, dni,
+            FormUsuarioService.guardarForm(archivo,idUsuario, nombre, apellido, email, oficio, edad, dni,
                     estadoCivil, nacionalidad, provincia, ciudad, direccion, telefono, twitter,
                     facebook, linkedin, miWeb, educacion, anioInicio, anioFin, descripcion, instituciones, provinciaEducacion,
                     idiomas, nivel, trabajo, puesto, anioInicio2, anioFin2, descripcion2, remoto);
