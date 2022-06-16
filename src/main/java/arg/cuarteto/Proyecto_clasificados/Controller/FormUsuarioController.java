@@ -1,5 +1,6 @@
 package arg.cuarteto.Proyecto_clasificados.Controller;
 
+import arg.cuarteto.Proyecto_clasificados.Entity.FormUsuario;
 import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Idiomas;
 import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Nacionalidad;
 import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Nivel;
@@ -8,8 +9,10 @@ import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Provincia;
 import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Remoto;
 import arg.cuarteto.Proyecto_clasificados.Enumeraciones.estadoCivil;
 import arg.cuarteto.Proyecto_clasificados.ErrorService.ErrorService;
+import arg.cuarteto.Proyecto_clasificados.Repository.FormUsuarioRepository;
 import arg.cuarteto.Proyecto_clasificados.Service.FormUsuarioService;
 import java.util.Date;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -26,6 +29,8 @@ public class FormUsuarioController {
     @Autowired
     private FormUsuarioService FormUsuarioService;
     
+      @Autowired
+    private FormUsuarioRepository formUsuarioRepository;
     @GetMapping("/Formulario-Usuario") 
     public String exito(ModelMap modelo) {
         modelo.addAttribute("Idiomas", Idiomas.values());
@@ -117,4 +122,33 @@ public class FormUsuarioController {
            
             return "index.html";     // retorna ala vista publicacion clasificados 
     }
+    
+    
+    
+     @GetMapping("/mostrarUsuario")
+    public String mostrar(ModelMap modelo) throws ErrorService {
+        //System.out.println("El ID es "+ id);
+        
+//        
+//        Optional<FormUsuario> respuesta = formUsuarioRepository.findById("cfc86146-19bf-47f7-8a58-d0850a66cc10");
+//         if(respuesta.isPresent()){
+//             FormUsuario usuarioo = respuesta.get();  
+//             modelo.put("usuario", usuarioo);
+//            
+//         }else{
+//             throw new ErrorService("NO SE ENCONTRO EL usuario ");
+//         }
+
+        return "seccion-perfil-usuario.html";
+    }
+    
+    
+     @PostMapping("/perfilUsuario")
+      public String perfil(ModelMap modelo,  @RequestParam (required = false) String idUsuario) throws ErrorService {
+         System.out.println("EL ID DEL USUARIO ES-------------------------------------------------------------------------------------------------------------------------- " + idUsuario);
+         return "seccion-perfil-usuario.html"; 
+          
+      }
+    
+    
 }

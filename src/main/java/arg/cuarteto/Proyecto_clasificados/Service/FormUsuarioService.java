@@ -14,6 +14,7 @@ import arg.cuarteto.Proyecto_clasificados.ErrorService.ErrorService;
 import arg.cuarteto.Proyecto_clasificados.Repository.FormUsuarioRepository;
 import arg.cuarteto.Proyecto_clasificados.Repository.UsuarioRepository;
 import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -41,6 +42,9 @@ public class FormUsuarioService {
             Idiomas idiomas, Nivel nivel, String trabajo, String puesto, Date anioInicio2, Date anioFin2,
             String descripcion2, Remoto remoto) throws ErrorService {//este metodo registra al usuario en la base de datos
         Usuario usuario = usuarioRepository.findById(idUsuario).get();
+        
+        
+        
         FormUsuario formUsuario = new FormUsuario();
         Photo photo = PhotoService.guardar(archivo);
         formUsuario.setPhoto(photo);
@@ -75,11 +79,19 @@ public class FormUsuarioService {
         formUsuario.setDescripcion2(descripcion2);
         formUsuario.setRemoto(remoto);
         formUsuario.setUsuario(usuario);
+        usuario.setFormUsuario(formUsuario);
 
         envioDeMail.enviarMail(email, "Completaste tus datos correctamente" + nombre + apellido + " en Post Solutions ",
                 "Su formulario a sido confirmado con exito");
 
         FormUsuarioRepository.save(formUsuario);
     }
+    
+    
+     @Transactional(readOnly = true)
+    public List<FormUsuario> mostrarUsuario(){
+        return FormUsuarioRepository.findAll();
+    }
+
 
 }

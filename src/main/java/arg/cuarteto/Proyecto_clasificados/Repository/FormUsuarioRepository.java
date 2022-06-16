@@ -11,13 +11,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author Nnahu
- */
+
 @Repository
 public interface FormUsuarioRepository extends JpaRepository<FormUsuario, String> {
     
      @Query("SELECT f FROM FormUsuario f WHERE f.id = :id") // buscar por id
     public FormUsuarioRepository buscarPorId(@Param("id") String id);
+    
+//       @Query("SELECT g FROM FormUsuario g WHERE g.usuario.id = :id") // buscar por id
+//    public FormUsuarioRepository buscarPorIdUsuario(@Param("id") String id);
+    
+    
+    
 }

@@ -1,14 +1,18 @@
 package arg.cuarteto.Proyecto_clasificados.Controller;
 
+import arg.cuarteto.Proyecto_clasificados.Entity.FormUsuario;
 import arg.cuarteto.Proyecto_clasificados.Entity.Publicacion;
 
 import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Oficio;
 import arg.cuarteto.Proyecto_clasificados.Enumeraciones.Provincia;
 import arg.cuarteto.Proyecto_clasificados.ErrorService.ErrorService;
+import arg.cuarteto.Proyecto_clasificados.Repository.FormUsuarioRepository;
+import arg.cuarteto.Proyecto_clasificados.Service.FormUsuarioService;
 import arg.cuarteto.Proyecto_clasificados.Service.PublicacionService;
 import arg.cuarteto.Proyecto_clasificados.Service.UsuarioService;
 
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 
@@ -27,12 +31,15 @@ public class PublicacionController {
 
     @Autowired
     private PublicacionService publicacionService;
-
+    @Autowired
+    private FormUsuarioService formUsuarioService;
+    @Autowired
+    private FormUsuarioRepository formUsuarioRepository;
     @Autowired
     private UsuarioService usuarioService;
 
     // @PreAuthorize("hasAnyRole ('ROLE_USUARIO_REGISTRADO')") 
-   // autorizacion para 
+    // autorizacion para 
     //usuarios logeado "con esto podemos hacer que el admin tenga mas privilegios"
     @GetMapping("/publicacionForm")
     public String crear(ModelMap modelo) {
@@ -75,7 +82,6 @@ public class PublicacionController {
             System.out.println(publicaciones);
             modelo.put("publicaciones", publicaciones);
 
-          
         } catch (ErrorService ex) { // <p th:if="${Error != null}" th:text="${Error}" style=color:red;></p>   
             modelo.put("Error", ex.getMessage()); //estos msj estan enlazados en validation usuarioService
             modelo.put("Foto:", archivo);
@@ -92,6 +98,9 @@ public class PublicacionController {
 
     }
 
+   
+
+    
 //    @GetMapping("/mostrarPublicacion")
 //    public String mostrarPublicacion(ModelMap modelo) {
 //        List<Publicacion> publicaciones = publicacionService.mostrarPublicaciones();
