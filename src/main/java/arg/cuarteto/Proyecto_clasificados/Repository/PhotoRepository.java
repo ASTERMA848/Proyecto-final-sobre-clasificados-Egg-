@@ -21,5 +21,5 @@ public interface PhotoRepository extends JpaRepository<Photo, String> {
     
     
      @Query("Select p from Photo p Where p.id = :id")
-    public List<Photo> searchPhoto(@Param("id") String id);
+    public Photo searchPhoto(@Param("id") String id);
 }

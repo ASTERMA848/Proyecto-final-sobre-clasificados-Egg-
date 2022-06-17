@@ -32,7 +32,7 @@
                     <input type="text" placeholder="Search">
                 </div>
                 <div class="nav-user-icon online" onclick="settingsMenuToggle()">
-                    <img src="css/foto.jpg" alt=""> 
+                    <img alt=""> 
 
 
                 </div>
@@ -49,12 +49,21 @@
 
                 <div class="settings-menu-inner">
                     <div class="user-profile">
-                        <img src="css/foto.jpg">
+                        <!--<p th:text=" ${session.usuariosession.foto.id" ></p>-->
+                        <!--<img  th:src="${'/foto/usuario?id=' + ${session.usuariosession.foto.id}">-->
+
+
+                        <!--<img th:if="${session.usuariosession.foto.id == null}" src="css/logomark.png">--> 
+
+
+                       <!--<img th:src="@{'/foto/usuario/' + ${session.usuariosession.foto.id}}">-->
+                       
+                       
                         <div>
                             <p th:text="${session.usuariosession.nombre}" ></p> 
                             <a href="/mostrarUsuario">Mi perfil</a>
                             <br>
-                             <a href="/Formulario-Usuario">Completa tus datos</a>
+                            <a href="/Formulario-Usuario">Completa tus datos</a>
                         </div>
                     </div>
                     <hr>
@@ -97,6 +106,16 @@
                     <a href="#"><img src="css/map.png">Buscar por Provincias</a>
                 </div>
 
+                <br>
+                <div class="imp-baner-img">
+                    <img src="imagenes/banertips-01.png">
+                    <img src="imagenes/banertips-02.png">
+                    <img src="imagenes/banertips-03.png">
+                    <img src="imagenes/banertips-04.png">
+                    <img src="imagenes/banertips-05.png">    
+                </div>
+
+
             </div>
             <!-------main-content-------->
 
@@ -104,7 +123,7 @@
                 <div class="write-post-container">
                     <div class="user-profile">
 
-                        <img th:if="${session.usuariosession.foto != null}" class="img-fluid rounded-circle" th:src="${'/foto/usuario/'+ session.usuariosession.id}" alt=""><!--se le agrega foto cargo del perfil-->
+                        <img th:if="${session.usuariosession.foto != null}" class="img-fluid rounded-circle" th:src="@{/foto/usuario/8eb28b12-00ea-42c0-a04c-9dde585b6c05}" ><!--se le agrega foto cargo del perfil-->
                         <img th:if="${session.usuariosession.foto  == null}" class="img-fluid rounded-circle" src="css/logomark.png" alt="">
                         <div>
                             <p th:text="${session.usuariosession.nombre}"> </p>
@@ -161,7 +180,7 @@
                     </form>
                 </div>
 
-<!--<tr th:each="ment : ${#lists.sort(mentor)}">-->
+                <!--<tr th:each="ment : ${#lists.sort(mentor)}">-->
                 <div class="post-container" th:each="publicacion : ${publicaciones}">
                     <div class="post-row">
                         <div class="user-profile">
@@ -177,15 +196,18 @@
                         <a href="#"><img src=""></a>
                         <!--boton-->
                     </div>
-
-                    <p class="post-text" th:text="${publicacion.descripcion}">
+                    <p class="post-text" th:text="${publicacion.titulo}">
                     <p class="post-text" th:text="${publicacion.oficio}">
+                    <p class="post-text" th:text="${publicacion.descripcion}">
                     <p class="post-text" th:text="${publicacion.provincia}">
+
 
                         <a href="#">#Fullstack</a> <a href="#">#Back end</a> <a href="#">#Front end</a>
                     </p>
                     <!--ACA SE PONE LA FOTO DE LA PUBLICACION-->
-                    <img th:value="${publicacion.photo.content}" class="post-img">
+                    <img th:if="${session.usuariosession.formUsuario.nombre == Lucas}" class="post-img" src="css/mantenimiento.jpg">
+
+                    <!--<img src="css/mantenimiento.jpg" class="post-img">-->
 
                     <div class="post-row">
                         <div class="activity-icons">
@@ -320,19 +342,19 @@
         </footer>
 
         <script>
-        
-    
-        var settingsmenu = document.querySelector(".settings-menu");
-
-        function settingsMenuToggle() {
-          settingsmenu.classList.toggle("settings-menu-height");
-
-         }
 
 
-        
-        
-        
+            var settingsmenu = document.querySelector(".settings-menu");
+
+            function settingsMenuToggle() {
+            settingsmenu.classList.toggle("settings-menu-height");
+
+            }
+
+
+
+
+
         </script>
 
 

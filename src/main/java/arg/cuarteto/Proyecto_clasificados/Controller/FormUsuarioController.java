@@ -120,7 +120,7 @@ public class FormUsuarioController {
                 return "formularioClasificados.html"; // falta vista html
         } 
            
-            return "index.html";     // retorna ala vista publicacion clasificados 
+            return "/publicacionForm";     // retorna ala vista publicacion clasificados 
     }
     
     
