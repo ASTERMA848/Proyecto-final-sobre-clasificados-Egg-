@@ -7,6 +7,7 @@ import arg.cuarteto.Proyecto_clasificados.Repository.PhotoRepository;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,9 +21,9 @@ public class PhotoService {
     @Autowired
     private PhotoRepository repositorio_de_fotos;
     
-    @Transactional
+    @Transactional 
     public Photo guardar(MultipartFile archivo) throws ErrorService {
-        if (archivo != null) {
+        if (archivo != null && !archivo.isEmpty()) {
             try { 
                Photo foto = new Photo();
                foto.setMime(archivo.getContentType());
@@ -36,7 +37,7 @@ public class PhotoService {
         return null;
     }
     
-    @Transactional
+     @Transactional 
     public Photo editar(String idFoto, MultipartFile archivo) throws ErrorService{
         
         if (archivo != null) {

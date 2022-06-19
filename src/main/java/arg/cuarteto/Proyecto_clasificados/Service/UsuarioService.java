@@ -101,7 +101,7 @@ public class UsuarioService implements UserDetailsService {
         }
     }
 
-    public Usuario buscarPorId(String id) { // todavia no le doy uso
+    public Usuario buscarPorId(String id) { 
         return usuarioRepository.buscarPorId(id);
     }
 

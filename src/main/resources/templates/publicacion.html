@@ -32,7 +32,7 @@
                     <input type="text" placeholder="Search">
                 </div>
                 <div class="nav-user-icon online" onclick="settingsMenuToggle()">
-                    <img alt=""> 
+                    <img class="img-fluid rounded-circle" th:src="${'/foto/usuario/'+ session.usuariosession.id}" alt="">
 
 
                 </div>
@@ -44,21 +44,17 @@
 
 
                 <div id="dark-btn">
-                    <span></span>
+                    <span>
+
+
+                    </span>
                 </div>
 
                 <div class="settings-menu-inner">
                     <div class="user-profile">
-                        <!--<p th:text=" ${session.usuariosession.foto.id" ></p>-->
-                        <!--<img  th:src="${'/foto/usuario?id=' + ${session.usuariosession.foto.id}">-->
 
+                        <img class="img-fluid rounded-circle" th:src="${'/foto/usuario/'+ session.usuariosession.id}" alt="">
 
-                        <!--<img th:if="${session.usuariosession.foto.id == null}" src="css/logomark.png">--> 
-
-
-                       <!--<img th:src="@{'/foto/usuario/' + ${session.usuariosession.foto.id}}">-->
-                       
-                       
                         <div>
                             <p th:text="${session.usuariosession.nombre}" ></p> 
                             <a href="/mostrarUsuario">Mi perfil</a>
@@ -108,11 +104,11 @@
 
                 <br>
                 <div class="imp-baner-img">
-                    <img src="imagenes/banertips-01.png">
-                    <img src="imagenes/banertips-02.png">
-                    <img src="imagenes/banertips-03.png">
-                    <img src="imagenes/banertips-04.png">
-                    <img src="imagenes/banertips-05.png">    
+                    <img src="css/mili1.png">
+                    <img src="css/mili2.png">
+                    <img src="css/mili3.png">
+                    <img src="css/mili4.png">
+                    <img src="css/mili5.png">    
                 </div>
 
 
@@ -123,7 +119,11 @@
                 <div class="write-post-container">
                     <div class="user-profile">
 
-                        <img th:if="${session.usuariosession.foto != null}" class="img-fluid rounded-circle" th:src="@{/foto/usuario/8eb28b12-00ea-42c0-a04c-9dde585b6c05}" ><!--se le agrega foto cargo del perfil-->
+                        <!--<img  class="img-fluid rounded-circle" th:src="@{/foto/usuario/8eb28b12-00ea-42c0-a04c-9dde585b6c05}" >se le agrega foto cargo del perfil-->
+
+                        <img class="img-fluid rounded-circle" th:src="${'/foto/usuario/'+ session.usuariosession.id}" alt="">
+
+
                         <img th:if="${session.usuariosession.foto  == null}" class="img-fluid rounded-circle" src="css/logomark.png" alt="">
                         <div>
                             <p th:text="${session.usuariosession.nombre}"> </p>
@@ -184,8 +184,8 @@
                 <div class="post-container" th:each="publicacion : ${publicaciones}">
                     <div class="post-row">
                         <div class="user-profile">
-
-                            <!--<img src="@{publicacion.usuario.foto}">-->
+                            <img class="img-fluid rounded-circle" th:src="${'/foto/usuario/'+ publicacion.usuario.id}" alt="">
+                          
                             <div>
                                 <p th:text="${publicacion.usuario.nombre}">Nombre</p>
                                 <span th:text="${publicacion.fechaAltabaja}"></span>
@@ -199,15 +199,17 @@
                     <p class="post-text" th:text="${publicacion.titulo}">
                     <p class="post-text" th:text="${publicacion.oficio}">
                     <p class="post-text" th:text="${publicacion.descripcion}">
-                    <p class="post-text" th:text="${publicacion.provincia}">
+
+
 
 
                         <a href="#">#Fullstack</a> <a href="#">#Back end</a> <a href="#">#Front end</a>
                     </p>
                     <!--ACA SE PONE LA FOTO DE LA PUBLICACION-->
-                    <img th:if="${session.usuariosession.formUsuario.nombre == Lucas}" class="post-img" src="css/mantenimiento.jpg">
 
-                    <!--<img src="css/mantenimiento.jpg" class="post-img">-->
+                    <img  class="post-img" th:src="${'/foto/publicacion/'+ publicacion.id}" alt=""> 
+                    <p class="post-text" th:text="${publicacion.provincia}">
+
 
                     <div class="post-row">
                         <div class="activity-icons">
@@ -225,85 +227,6 @@
 
 
                 </div>
-
-
-
-
-
-                <!--            <div class="post-container">
-                                <div class="post-row">
-                                    <div class="user-profile">
-                                        <img
-                                            src="imagenes/handsome-african-american-man-with-beard-turn-face-at-camera-and-smiling-confident-standing-over-pink-background.jpg">
-                                        <div>
-                                            <p>Marck Carapaligue</p>
-                                            <span>Mayo 30 2022, 14:00 pm</span>
-                                        </div>
-                                    </div>
-                                    <a href="#"><img src="imagenes/mas.png"></a>
-                                </div>
-                
-                                <p class="post-text">Buscamos junto a <span>@Sushi Club</span> personal para sumar a nuestro equipo
-                                    de cocina, con experiencia o no
-                                    en comida oriental<a href="#">#Ramen</a> <a href="#">#Sushi</a> <a href="#">#Sushi Club</a> </p>
-                                <img src="imagenes/group-of-chefs-working-in-the-kitchen.jpg" class="post-img">
-                
-                                <div class="post-row">
-                                    <div class="activity-icons">
-                                        <div><img src="imagenes/like.png"> 100</div>
-                                        <div><img src="imagenes/comments.png"> 30</div>
-                                        <div><img src="imagenes/next.png"> 5</div>
-                                    </div>
-                
-                                    <div class="post-profile-icons">
-                
-                                    </div>
-                
-                                </div>
-                
-                
-                
-                            </div>
-                
-                
-                
-                            <div class="post-container">
-                                <div class="post-row">
-                                    <div class="user-profile">
-                                        <img
-                                            src="imagenes/playful-hot-african-american-with-afro-hairstyle-pulling-hands-towards-to-make-selfie-winking-joyfully-and-smiling-broadly-making-new-profile-pic-for-social-network.jpg">
-                                        <div>
-                                            <p>Guadalupe Rodriguez</p>
-                                            <span>Mayo 30 2022, 14:00 pm</span>
-                                        </div>
-                                    </div>
-                                    <a href="#"><img src="imagenes/mas.png"></a>
-                                </div>
-                
-                                <p class="post-text">Hotel <span>@Piscis</span> está buscando personal de limpieza para sumar a
-                                    nuestro equipo de trabajo, con experiencia o no
-                                    en puestos similares<a href="#">#Clean</a> <a href="#">#Hotel 5 estrellas</a> <a
-                                        href="#">#Piscis</a> </p>
-                                <img src="imagenes/young-beautiful-cleaner-woman-holding-bucket-with-products-pointing-at-camera-against-blue-backdrop.jpg"
-                                    class="post-img">
-                
-                                <div class="post-row">
-                                    <div class="activity-icons">
-                                        <div><img src="imagenes/like.png"> 400</div>
-                                        <div><img src="imagenes/comments.png"> 30</div>
-                                        <div><img src="imagenes/next.png"> 20</div>
-                                    </div>
-                
-                                    <div class="post-profile-icons">
-                
-                                    </div>
-                
-                                </div>
-                
-                
-                
-                            </div>-->
-
 
 
 

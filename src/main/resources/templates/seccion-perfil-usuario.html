@@ -17,7 +17,7 @@
                     <div class="perfil-usuario-avatar">
                         <!--<img th:if="${session.usuariosession.foto != null}" class="img-fluid rounded-circle" th:src="${'/foto/usuario/'+ session.usuariosession.id}" alt="">se le agrega foto cargo del perfil-->
                         <!--<img th:if="${session.usuariosession.foto != null}" class="img-fluid rounded-circle" th:src="${'/foto/usuario/'+ session.usuariosession.id}" alt="">se le agrega foto cargo del perfil-->    
-                        <img src="css/foto.jpg" width="100px"></img>
+                       <img  th:src="${'/foto/usuario/'+ session.usuariosession.id}" alt="">
                     </div>
                     <div> 
                         <button type="button" class="boton-portada">

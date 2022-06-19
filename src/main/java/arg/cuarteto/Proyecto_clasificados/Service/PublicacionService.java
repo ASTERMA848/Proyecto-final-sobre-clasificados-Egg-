@@ -118,6 +118,18 @@ public class PublicacionService {
         }
       
     }
+    
+    
+    
+    
+     public Publicacion buscarPorId(String id) { 
+        return publicacionRepository.buscarPorId(id);
+    }
+     
+     
+     
+     
+     
     @Transactional(readOnly = true)
     public List<Publicacion> mostrarPublicaciones(){
         return publicacionRepository.findAll();

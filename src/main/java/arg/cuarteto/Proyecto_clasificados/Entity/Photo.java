@@ -17,10 +17,12 @@ import org.hibernate.annotations.GenericGenerator;
 public class Photo {
     @Id
     @GeneratedValue(generator = "uuid")
-    @ GenericGenerator(name = "uuid", strategy = "uuid2")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
+    
     private String name;
     private String mime; 
+    
     @Lob @Basic(fetch = FetchType.LAZY) //LAZY significa carga tardia del archivo
     private byte[] content;
 
