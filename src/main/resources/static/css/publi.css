@@ -196,14 +196,24 @@ nav {
     border-radius: 6px;
     padding: 20px;
     color: #626262;
-
-
 }
+.titulo h1{
+    font-family: sans-serif;
+    font-size: 20px;
+    color:#626262;
+    
+ 
+}
+.lista-datos img{
+    float: left;
+    padding: 3px;
+}
+
 
 .user-profile {
     display: flex;
     align-items: center;
-
+ 
 }
 
 

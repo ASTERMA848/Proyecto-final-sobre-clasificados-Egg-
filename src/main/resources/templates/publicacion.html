@@ -185,7 +185,7 @@
                     <div class="post-row">
                         <div class="user-profile">
                             <img class="img-fluid rounded-circle" th:src="${'/foto/usuario/'+ publicacion.usuario.id}" alt="">
-                          
+
                             <div>
                                 <p th:text="${publicacion.usuario.nombre}">Nombre</p>
                                 <span th:text="${publicacion.fechaAltabaja}"></span>
@@ -196,8 +196,21 @@
                         <a href="#"><img src=""></a>
                         <!--boton-->
                     </div>
-                    <p class="post-text" th:text="${publicacion.titulo}">
-                    <p class="post-text" th:text="${publicacion.oficio}">
+
+                    <div class="titulo">
+                        <h1 class="post-text" th:text="${publicacion.titulo}" ></h1> 
+                    </div>
+                  
+                    <div class="lista-datos">
+                        <img src="css/maletin.png"> 
+                        <p class="post-text" th:text="${publicacion.oficio}" style="text-align: left" > </p>  
+                        
+                        <img src="css/ubicacionMili.png"> 
+                        <p class="post-text" th:text="${publicacion.provincia}" style="text-align: left"> </p> 
+
+                
+                   </div>
+                   
                     <p class="post-text" th:text="${publicacion.descripcion}">
 
 
@@ -208,7 +221,7 @@
                     <!--ACA SE PONE LA FOTO DE LA PUBLICACION-->
 
                     <img  class="post-img" th:src="${'/foto/publicacion/'+ publicacion.id}" alt=""> 
-                    <p class="post-text" th:text="${publicacion.provincia}">
+
 
 
                     <div class="post-row">

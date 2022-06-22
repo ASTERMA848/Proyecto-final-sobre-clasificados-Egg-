@@ -25,9 +25,6 @@
                         </button>
                     </div>
 
-
-
-
                 </div>
             </div>
             <!--<div class="post-container" th:each="publicacion : ${publicaciones}">-->
@@ -43,28 +40,30 @@
                 </div>
                 <div class="perfil-usuario-footer">
                     <ul class="lista-datos">
-                          <p> Nacionalidad</p>
-                        <li th:text="${session.usuariosession.formUsuario.nacionalidad}"></li>
-                         <p> Provincia</p>
-                        <li th:text="${session.usuariosession.formUsuario.provincia}"></li>
-                          <p> Ciudad</p>
-                        <li th:text="${session.usuariosession.formUsuario.ciudad}"></li>
-                        <p> Direccion de usuario: </p>
-                        <li th:text="${session.usuariosession.formUsuario.direccion}"> </li>
-                        <p> Telefono: </p>
-                        <li th:text="${session.usuariosession.formUsuario.telefono}"></li>
+                        <p> <img src="css/bandera.png">  Nacionalidad</p>
+                        <li th:text="${session.usuariosession.formUsuario.nacionalidad}"></li> <br>
+                         <p> <img src="css/colombia.png">  Provincia</p>
+                        <li th:text="${session.usuariosession.formUsuario.provincia}"></li><br>
+                          <p> <img src="css/ubicacion.png">  Ciudad</p>
+                        <li th:text="${session.usuariosession.formUsuario.ciudad}"></li><br>
+                        
+                        <p> <img src="css/localizacion.png">  Direccion de usuario: </p>
+                        <li th:text="${session.usuariosession.formUsuario.direccion}"> </li><br>
+                        
+                        <p> <img src="css/telefono-inteligente.png">  Telefono: </p>
+                        <li th:text="${session.usuariosession.formUsuario.telefono}"></li><br>
                         <!--                        <p> Email </p>
                                                 <li th:text="${session.usuariosession.formUsuario.email}"></li>-->
 
-                        <p> Linkedln </p>
-                        <li th:text="${session.usuariosession.formUsuario.linkedin}"></li>
+                        <p> <img src="css/linkedin.png">  Linkedln </p>
+                        <li th:text="${session.usuariosession.formUsuario.linkedin}"></li><br>
 
-                        <p> Facebook </p>
-                        <li th:text="${session.usuariosession.formUsuario.facebook}"></li>
-                        <p> Fecha de nacimiento: </p>
-                        <li th:text="${session.usuariosession.formUsuario.edad}"></li>
-                        <p> Numero de documento</p>
-                        <li th:text="${session.usuariosession.formUsuario.dni}"></li>
+                        <p> <img src="css/facebookk.png">  Facebook </p>
+                        <li th:text="${session.usuariosession.formUsuario.facebook}"></li><br>
+                        <p> <img src="css/calendario.png">  Fecha de nacimiento: </p>
+                        <li th:text="${session.usuariosession.formUsuario.edad}"></li><br>
+                        <p> <img src="css/licencia-de-conducir.png">  Numero de documento</p>
+                        <li th:text="${session.usuariosession.formUsuario.dni}"></li><br>
                         
 
 
@@ -72,25 +71,25 @@
                     </ul>
                     <ul class="lista-datos">
 
-                        <p> Estudios </p>
-                        <li th:text="${session.usuariosession.formUsuario.educacion}"></li>
-                        <p> Institucion </p>
-                        <li th:text="${session.usuariosession.formUsuario.instituciones}"></li>
-                        <p> Trabajo </p>
-                        <li th:text="${session.usuariosession.formUsuario.trabajo}"></li>
-                        <p> Puesto </p>
-                        <li th:text="${session.usuariosession.formUsuario.puesto}"></li>
-                        <p> Fecha inicio de trabajo </p>
-                        <li th:text="${session.usuariosession.formUsuario.anioInicio2}"></li>
+                        <p> <img src="css/libro-abierto.png">  Estudios </p>
+                        <li th:text="${session.usuariosession.formUsuario.educacion}"></li><br>
+                        <p> <img src="css/institucion.png">  Institucion </p>
+                        <li th:text="${session.usuariosession.formUsuario.instituciones}"></li><br>
+                        <p> <img src="css/trabajar.png">  Trabajo </p>
+                        <li th:text="${session.usuariosession.formUsuario.trabajo}"></li><br>
+                        <p> <img src="css/puesto-de-trabajo.png">  Puesto </p>
+                        <li th:text="${session.usuariosession.formUsuario.puesto}"></li><br>
+                        <p> <img src="css/calendarioo.png">  Fecha inicio de trabajo </p>
+                        <li th:text="${session.usuariosession.formUsuario.anioInicio2}"></li><br>
 
 
 
                     </ul>
                 </div>
                 <div class="redes-sociales">
-                    <a href="" class="boton-redes facebook fab fa-facebook-f"><img src="imagenes/facebook.png"></i></a>
-                    <a href="" class="boton-redes twitter fab fa-twitter"><img src="imagenes/gorjeo (1).png"></i></a>
-                    <a href="" class="boton-redes instagram fab fa-instagram"><img src="imagenes/linkedin.png" width="30px"></i></a>
+                    <a href="" class="boton-redes facebook fab fa-facebook-f"><img src="css/facebookMili.png"></i></a>
+                    <a href="" class="boton-redes twitter fab fa-twitter"><img src="css/gorjeo.png"></i></a>
+                    <a href="" class="boton-redes instagram fab fa-instagram"><img src="css/linkedinMili.png" width="30px"></i></a>
                 </div>
             </div>
         </section>

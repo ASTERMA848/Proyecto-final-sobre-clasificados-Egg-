@@ -153,6 +153,14 @@ Copiar esto
     font-size: 1.2rem;
     vertical-align: middle;
 }
+.lista-datos li img{
+    float: left;
+    padding: 3px;
+}
+
+.lista-datos li p{
+    font-family: fantasy;
+}
 
 .seccion-perfil-usuario .redes-sociales {
     position: absolute;

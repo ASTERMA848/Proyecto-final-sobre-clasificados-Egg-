@@ -30,9 +30,11 @@
 /* Formulario */
 .form-register {
     padding: 20px 15px;
-    width: 100%;
+    width: 110%;
     max-width: 500px;
     align-items: center;
+    margin-left: -120px;
+   
 }
 
 /* Header del formulario */
@@ -41,8 +43,9 @@
 .progressbar {
     display: flex;
     list-style: none;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     counter-reset: step;
+    margin-left: 80px;
 }
 
 
@@ -50,7 +53,7 @@
 .progressbar__option {
     width: 100%;
     text-align: center;
-    font-size: .4rem;
+    font-size: .7rem;
     text-transform: uppercase;
     position: relative;
     color: #fff;
@@ -62,7 +65,7 @@
     content: counter(step);
     counter-increment: step;
     width: 20px;
-    height: 20px;
+    height: 25px;
     color: #333;
     background-color: rgb(253, 251, 251);
     margin: 0 auto 0;
@@ -111,6 +114,7 @@ h1 {
     margin: 50px auto;
     font-family: 'poppins', sans-serif;
     font-size: 45px;
+    margin-left: 80px;
 }
 
 /* formato del cuerpo*/

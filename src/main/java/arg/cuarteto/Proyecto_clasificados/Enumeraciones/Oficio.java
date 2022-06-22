@@ -2,21 +2,22 @@
 package arg.cuarteto.Proyecto_clasificados.Enumeraciones;
 public enum Oficio {
     
-    CARPINTERO("CARPINTERO"),
-    ELECTRICISTA("ELECTRICISTA"),
-    ALBAÑIL("ALBAÑIL"),
-    PLOMERO("PLOMERO"),
-    PROFESOR("PROFESOR"),
-    ARTESANO("ARTESANO"),
-    PANADERO("PANADERO"),
-    COMERCIANTE("COMERCIANTE"),
-    COCINERO("COCINERO"),
-    REPOSTERO("REPOSTERO"),
-    JARDINERO("JADINERO"),
-    GASISTA("GASISTA"),
-    ESTALISTA("ESTILISTA"),
-    REMISERO("REMISERO"),
-    OTRO("OTRO");
+    CARPINTERO("Carpintero"),
+    ELECTRICISTA("Electricista"),
+    ALBAÑIL("Albañil"),
+    PLOMERO("Plomero"),
+    PROFESOR("Profesor"),
+    ARTESANO("Artesano"),
+    PANADERO("Panadero"),
+    COMERCIANTE("Comerciante"),
+    COCINERO("Cocinero"),
+    REPOSTERO("Repostero"),
+    JARDINERO("Jardinero"),
+    GASISTA("Gasista"),
+    ESTALISTA("Estilista"),
+    REMISERO("Remisero"),
+    PROGRAMADOR("Programador"),
+    OTRO("Otro");
 
 
     private String nombre;
