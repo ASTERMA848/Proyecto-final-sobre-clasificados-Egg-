@@ -18,7 +18,7 @@
 
         <nav>
             <div class="nav-left">
-                <img src="css/logomark.png" class="logo">
+                <img src="css/logoUltimo.png" class="logo">
                 <ul>
 
                     <li><img src="css/bell.png"></li>
@@ -200,17 +200,18 @@
                     <div class="titulo">
                         <h1 class="post-text" th:text="${publicacion.titulo}" ></h1> 
                     </div>
-                  
+
                     <div class="lista-datos">
                         <img src="css/maletin.png"> 
                         <p class="post-text" th:text="${publicacion.oficio}" style="text-align: left" > </p>  
-                        
+
                         <img src="css/ubicacionMili.png"> 
                         <p class="post-text" th:text="${publicacion.provincia}" style="text-align: left"> </p> 
+                        
+                        <img src="css/signoPeso.png"> 
+                        <p class="post-text" th:text="${publicacion.precio}" style="text-align: left">
+                    </div>
 
-                
-                   </div>
-                   
                     <p class="post-text" th:text="${publicacion.descripcion}">
 
 
@@ -262,8 +263,12 @@
                 <div class="imp-links">
                     <a href="#"><img src="css/relacion-publica (1).png"> Publicaciones</a>
                     <a href="#"><img src="css/cronograma.png">Mis Publicaciones</a> 
-                </div>
 
+                </div>
+                <div class="text-job">
+                    <h2>Somos <br> <span class="color-acento"> Job Solutions</span></h2>
+                    <p>Una plataforma enfocada en ofrecer la solución a encontrar tu empleo ideal el cual resalte tus más grandes habilidades.</p>
+                </div>
             </div>
         </div>
         <!-----Cierra los contenedores-->

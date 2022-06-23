@@ -158,6 +158,18 @@ nav {
     color: #626262;
 
 }
+.text-job h2{
+    font-size:30px;
+    font-family: sans-serif;
+    color: #59429d;
+    text-align: center;
+}
+
+.text-job p{
+    font-size:20px;
+    font-family: sans-serif;
+    text-align: center;
+}
 
 .main-content {
     flex-basis: 47%;

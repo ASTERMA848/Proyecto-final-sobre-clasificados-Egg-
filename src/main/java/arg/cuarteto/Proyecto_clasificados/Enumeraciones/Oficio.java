@@ -17,7 +17,9 @@ public enum Oficio {
     ESTALISTA("Estilista"),
     REMISERO("Remisero"),
     PROGRAMADOR("Programador"),
+    Repositor("Repositor"),
     OTRO("Otro");
+    
 
 
     private String nombre;

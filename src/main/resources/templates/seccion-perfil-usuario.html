@@ -19,10 +19,12 @@
                         <!--<img th:if="${session.usuariosession.foto != null}" class="img-fluid rounded-circle" th:src="${'/foto/usuario/'+ session.usuariosession.id}" alt="">se le agrega foto cargo del perfil-->    
                        <img  th:src="${'/foto/usuario/'+ session.usuariosession.id}" alt="">
                     </div>
-                    <div> 
-                        <button type="button" class="boton-portada">
-                            <img src="css/logomark.png" width="100px"></img>
+                    <div > 
+                        <a href="/publicacionForm">
+                            <button type="button" class="boton-portada" >
+                            <img src="css/logoUltimo.png" width="100px"> </img>  
                         </button>
+                        </a>
                     </div>
 
                 </div>
